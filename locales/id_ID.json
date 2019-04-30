@@ -1,0 +1,71 @@
+{
+  "profile": {
+    "greeting": "Selamat datang di Original Coast Clothing {{user_first_name}}! Klik mulai untuk mencoba pengalaman olahpesan otomatis. Jika kamu ingin membangun pengalaman yg sama, kunjungi https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "support": "Dukungan pelanggan",
+    "order": "Cek order",
+    "help": "Hubungi agen",
+    "suggestion": "Rekomendasi pakaian",
+    "shop": "Belanja sekarang",
+    "start_over": "Mulai kembali"
+  },
+  "get_started": {
+    "welcome": "Hi {{userFirstName}}! Selamat datang di Original Coast Clothing dimana kamu akan menemukan pakaian buat semua kesempatan.",
+    "guidance": "Kapanpun, gunakan menu dibawah untuk navigasi antar fitur.",
+    "help": "Apa yang bisa kami bantu hari ini?"
+  },
+  "leadgen": {
+    "promo": "Hi {{userFirstName}}, mencari pakaian bagus sekarang jadi lebih mudah.",
+    "title": "Kupon 50%",
+    "subtitle": "Ini adalah kupon anda",
+    "apply": "Gunakan diskon",
+    "coupon": "Kupon sudah ditambahkan ke percakapan ini, kamu sudah bisa mencari koleksi musim panas yang lagi diskon"
+  },
+  "curation": {
+    "prompt": "Apakah kamu sedang mencari pakaian buat kamu sendiri atau orang lain?",
+    "occasion": "Bagus! Mari kita mulai. Pertama-tama, adakah acara tertentu yang ada di pikiran kamu?",
+    "price": "Berapa budget kamu?",
+    "me": "Untuk saya!",
+    "someone": "Orang lain",
+    "work": "Kerja",
+    "dinner": "Makan malam",
+    "party": "Pesta",
+    "sales": "Bicara dengan sales",
+    "shop": "Belanja model ini",
+    "title": "Koleksi musim panas 2019",
+    "subtitle": "Koleksi pakaian pilihan",
+    "show": "Tampilan berikutnya"
+  },
+  "order": {
+    "prompt": "Kami dengan senang hati membantu anda. Pilih dari pilihan berikut",
+    "search": "Cek status orderan",
+    "account": "Koneksikan akun saya",
+    "dialog": "Dialog koneksi akun",
+    "searching": "Mencari order terakhir kamu...",
+    "number": "Tentu, silahkan tulis nomor orderan kamu.",
+    "status": "Order kamu sedang dalam perjalanan, dapatkan dalam 3 hari."
+  },
+  "care": {
+    "prompt": "Untuk dihubungkan dengan tim yang sesuai, silahkan beri tahu kami masalah apa yang dihadapi?",
+    "order": "Orderan",
+    "billing": "Pembayaran",
+    "other": "Lainnya",
+    "issue": "Hi {{userFirstName}}, nama saya {{agentFirstName}}, Saya akan membantu anda seputar pertanyaan tentang {{topic}}.",
+    "default": "Hi {{userFirstName}}, nama saya {{agentFirstName}}, Saya akan membantu anda hari ini. Bagaimana saya membantu anda?",
+    "style": "Hi {{userFirstName}}, nama saya {{agentFirstName}}, Saya akan membantu anda mengenai pertanyaan seputar koleksi musim panas kami.",
+    "end": "Ini adalah akhir dari demo. Pergunakan fitur fitur messenger untuk bisnis anda. Kunjungi  https://fb.me/get-sample-oc untuk belajar bagaimana membangun pengalaman yang sama.",
+    "help": "Bantuan"
+  },
+  "survey": {
+    "prompt": "Hi, kami ingin mendapatkan saran dari pengalaman anda dengan {{agentFirstName}}",
+    "positive": "Terima kasih atas sarannya",
+    "neutral": "Terima kasih atas sarannya, jika ada sesuatu yang kami bisa perbaiki, kamu bisa komen dengan hashtag #suggestion",
+    "negative": "Terima kasih atas info nya. Kami sangat menyesali itu. Jika ada sesuatu yang kami bisa perbuat, silahkan beri tahu kami.",
+    "suggestion": "Saran anda sudah kami simpan untuk perbaikan pelayanan kami ke depan. Jika anda perlu bantuan sekarang, anda bisa komen/balas \"help\""
+  },
+  "fallback": {
+    "any": "Maaf, saya tidak mengenali \"{{message}}\".",
+    "attachment": "Terima kasih atas lampiran ini, kami akan menghubungkan anda dengan agen kami untuk mereview ini atau kita bisa mengulang kembali proses ini"
+  }
+}

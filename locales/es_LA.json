@@ -1,0 +1,71 @@
+{
+  "profile": {
+    "greeting": "Te damos la bienvenida a Original Coast Clothing {{user_first_name}}! Haga clic en comenzar para disfrutar de nuestra experiencia de mensajería automatizada de muestra. Si desea crear uno similar, visite https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "support": "Servicio al cliente",
+    "order": "Estado de Órdenes",
+    "help": "Hablar con un agente",
+    "suggestion": "Estilos sugeridos",
+    "shop": "Tienda",
+    "start_over": "Empezar de nuevo"
+  },
+  "get_started": {
+    "welcome": "Hola {{userFirstName}}! Te damos la bienvenida a Original Coast Clothing donde encontrarás estilos para cada ocasión.",
+    "guidance": "En cualquier momento, utilize el menú para iniciar cualquiera de las funciones",
+    "help": "¿Qué podemos hacer para ayudarte hoy?"
+  },
+  "leadgen": {
+    "promo": "Hola, {{userFirstName}}, ahora es más fácil y más conveniente encontrar estilos.",
+    "title": "Cupón de 50%",
+    "subtitle": "Aqui esta tu cupón",
+    "apply": "Aplicar descuento",
+    "coupon": "Agregamos este cupón a la conversación, ahora puede ver la colección de verano con descuento"
+  },
+  "curation": {
+    "prompt": "¿Estás buscando ropa para ti o para alguien más?",
+    "occasion": "¡Genial! Primero, ¿tienes alguna ocasión en mente?",
+    "price": "¿Cuanto quieres gastar?",
+    "me": "¡Para mi!",
+    "someone": "Alguien mas",
+    "work": "Trabajo",
+    "dinner": "Cena",
+    "party": "Celebración",
+    "sales": "Hablar con ventas",
+    "shop": "Compra este estilo",
+    "title": "Colección de Verano 2019",
+    "subtitle": "Estilo destacado",
+    "show": "Otro estilo"
+  },
+  "order": {
+    "prompt": "Estaremos encantados de ayudarle. Seleccione entre los siguientes",
+    "search": "Búsqueda por número de pedido",
+    "account": "Vincular mi cuenta",
+    "dialog": "Diálogo de vinculación de cuenta",
+    "searching": "Buscando tu último pedido...",
+    "number": "Claro, por favor escriba el número de pedido",
+    "status": "Su pedido está en camino, espere recibirlo en 3 días."
+  },
+  "care": {
+    "prompt": "Para conectarte con el equipo correcto, por favor, dime de qué se trata tu consulta",
+    "order": "Consultas de pedidos",
+    "billing": "Problemas de facturación",
+    "other": "Otro",
+    "issue": "Hola {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para ayudarte con cualquier pregunta que puedas tener sobre {{topic}}.",
+    "default": "Hola, {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para ayudarte. ¿Como puedo ayudarte?",
+    "style": "Hola, {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para responder las preguntas que puedas tener sobre nuestros estilos de verano.",
+    "end": "Hasta aqui llega este demo. Aproveche el poder de la plataforma de Messenger para su negocio. Vea https://fb.me/get-sample-oc para aprender cómo construir una experiencia similar",
+    "help": "Ayuda"
+  },
+  "survey": {
+    "prompt": "Hola, queremos tu opinión sobre tu experiencia reciente con {{agentFirstName}}",
+    "positive": "Gracias por la respuesta",
+    "neutral": "Gracias por la respuesta, Si hay algo que deberíamos mejorar, siéntete libre de comentar con #sugerencia",
+    "negative": "Gracias por decirnos. Lamento escuchar eso, si hay algo que podamos hacer para cambiar esto, háganoslo saber",
+    "suggestion": "Su sugerencia ha sido registrada. Si esto es algo que necesitamos para responder ahora mismo, simplemente comente \"ayuda\""
+  },
+  "fallback": {
+    "any": "Disculpe pero no reconozco \"{{message}}\".",
+    "attachment": "Gracias por enviar este archivo, te podemos conectar con un agente para revisarlo o podemos empezar de nuevo"
+  }
+}

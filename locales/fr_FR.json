@@ -1,0 +1,71 @@
+{
+  "profile": {
+    "greeting": "Bienvenue sur Original Coast Clothing {{user_first_name}}! Cliquez sur Démarrer pour profiter de notre démo d'expérience de messagerie automatisée. Si vous souhaitez créer une expérience similaire, visitez https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "support": "Support client",
+    "order": "Mes commandes",
+    "help": "Parler à un conseiller",
+    "suggestion": "Recommandations",
+    "shop": "Acheter sur le site",
+    "start_over": "Recommencer"
+  },
+  "get_started": {
+    "welcome": "Bonjour {{userFirstName}}! Bienvenue sur Original Coast Clothing où vous allez trouver des tenues pour toutes les occasions.",
+    "guidance": "A tout moment, vous pouvez utiliser le menu ci-dessous pour naviguer parmi les fonctionnalités",
+    "help": "Comment pouvons-nous vous aider aujourd’hui ?"
+  },
+  "leadgen": {
+    "promo": "Bonjour {{userFirstName}}, trouver de belles tenues est maintenant plus facile et plus pratique.",
+    "title": "Coupon réduction de -50%",
+    "subtitle": "Voici votre coupon",
+    "apply": "Appliquer la réduction",
+    "coupon": "Votre coupon de réduction a été ajouté à cette conversation. Vous pouvez maintenant découvrir la Collection Été à petits prix"
+  },
+  "curation": {
+    "prompt": "Vous cherchez une tenue pour vous ou pour quelqu'un d'autre ?",
+    "occasion": "Super ! Commençons. Premièrement, est ce pour une occasion particulière ?",
+    "price": "Quel est votre budget ?",
+    "me": "Pour moi !",
+    "someone": "Quelqu'un d'autre",
+    "work": "Travail",
+    "dinner": "Diner",
+    "party": "Soirée",
+    "sales": "Parler à un conseiller",
+    "shop": "Acheter ce look",
+    "title": "Collection Été 2019",
+    "subtitle": "Nouveautés",
+    "show": "Un autre look"
+  },
+  "order": {
+    "prompt": "Ravis de pouvoir vous aider. Choisissez parmi les options suivantes:",
+    "search": "Rechercher par numéro de commande",
+    "account": "Associer mon compte client",
+    "dialog": "Fenêtre de dialogue d’association de compte",
+    "searching": "Nous recherchons votre dernière commande...",
+    "number": "Veuillez écrire le numéro de commande",
+    "status": "Votre commande est en cours de préparation. Vous devriez la recevoir dans les 3 prochains jours."
+  },
+  "care": {
+    "prompt": "Pour vous connecter avec la bonne équipe, pouvez me préciser le sujet de votre question ?",
+    "order": "Commandes",
+    "billing": "Factures",
+    "other": "Autre",
+    "issue": "Bonjour {{userFirstName}}, je m’appelle {{agentFirstName}}, je suis ici pour répondre à toutes vos questions au sujet vos {{topic}}.",
+    "default": "Bonjour {{userFirstName}}, je m’appelle {{agentFirstName}}, je suis ici pour répondre à vos questions. Comment puis-je vous aider aujourd'hui ?",
+    "style": "Bonjour {{userFirstName}}, je m’appelle {{agentFirstName}}, je suis ici pour répondre à vos questions sur notre collection d’été",
+    "end": "Vous avez atteint la limite de notre démo. Vous aussi, vous pouvez tirer parti de la puissance de la Plateforme Messenger pour votre entreprise. Rendez-vous sur https://fb.me/get-sample-oc pour apprendre comment créer une expérience similaire.",
+    "help": "Aide"
+  },
+  "survey": {
+    "prompt": "Bonjour, j’aimerai un rapide avis sur votre récente expérience avec {{agentFirstName}}",
+    "positive": "Merci d’avoir partagé votre avis",
+    "neutral": "Merci d’avoir partagé votre avis. Si nous devons améliorer quelque chose en particulier, n'hésitez pas à commenter avec #suggestion",
+    "negative": "Merci d’avoir partagé votre avis. Nous sommes désolé d'apprendre que votre expérience ne répond pas à vos attentes. S'il y a quelque chose que nous pouvons faire pour changer cela, laissez-le nous savoir",
+    "suggestion": "Votre suggestion a été enregistrée et sera revue par notre équipe. S’il s’agit d’un sujet sur lequel nous pouvons vous aider dès à présent, envoyez \"aide\""
+  },
+  "fallback": {
+    "any": "Désolé, mais je ne comprends pas \"{{message}}\".",
+    "attachment": "Merci d’avoir envoyé cette pièce jointe, nous pouvons vous connecter à un conseiller pour la passer en revue ou vous pouvez recommencer l’expérience"
+  }
+}
