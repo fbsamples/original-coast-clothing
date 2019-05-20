@@ -48,7 +48,7 @@ module.exports = class Care {
         );
         break;
       case "CARE_ORDER":
-        // Send using Persona 1 and hand over to agent 1 to handle the conversation via HOP
+        // Send using the Persona for order issues
 
         response = [
           Response.genTextWithPersona(
@@ -68,7 +68,7 @@ module.exports = class Care {
         break;
 
       case "CARE_BILLING":
-        // Send using Persona 2 and hand over to agent 2 to handle the conversation via HOP
+        // Send using the Persona for billing issues
 
         response = [
           Response.genTextWithPersona(
@@ -88,7 +88,7 @@ module.exports = class Care {
         break;
 
       case "CARE_SALES":
-        // Send using Persona 3 and hand over to agent 3 to handle the conversation via HOP
+        // Send using the Persona for sales questions
 
         response = [
           Response.genTextWithPersona(
@@ -107,7 +107,7 @@ module.exports = class Care {
         break;
 
       case "CARE_OTHER":
-        // Send using Persona 4 and hand over to agent 4 to handle the conversation via HOP
+        // Send using the Persona for customer care issues
 
         response = [
           Response.genTextWithPersona(

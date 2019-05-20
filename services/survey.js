@@ -22,15 +22,15 @@ module.exports = class Survey {
       }),
       [
         {
-          title: "😀",
+          title: "\uD83D\uDE00",
           payload: "CSAT_GOOD"
         },
         {
-          title: "🙂",
+          title: "\uD83D\uDE42",
           payload: "CSAT_AVERAGE"
         },
         {
-          title: "🙁",
+          title: "\uD83D\uDE41",
           payload: "CSAT_BAD"
         }
       ]

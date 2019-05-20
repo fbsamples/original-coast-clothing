@@ -163,7 +163,8 @@ app.get("/profile", (req, res) => {
         Profile.setPersonas();
         res.write(`<p>Set Personas for ${config.appId}</p>`);
         res.write(
-          "<p>To persist the personas, add the following variables to your environment variables:</p>"
+          "<p>To persist the personas, add the following variables \
+          to your environment variables:</p>"
         );
         res.write("<ul>");
         res.write(`<li>PERSONA_BILLING = ${config.personaBilling.id}</li>`);

@@ -50,7 +50,8 @@ module.exports = class Receive {
     } catch (error) {
       console.error(error);
       responses = {
-        text: `An error has occured: '${error}'. We have been notified and will fix the issue shortly!`
+        text: `An error has occured: '${error}'. We have been notified and \
+        will fix the issue shortly!`
       };
     }
 
@@ -68,7 +69,7 @@ module.exports = class Receive {
   // Handles messages events with text
   handleTextMessage() {
     console.log(
-      "Recieved text:",
+      "Received text:",
       `${this.webhookEvent.message.text} for ${this.user.psid}`
     );
 
