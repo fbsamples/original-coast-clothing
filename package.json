@@ -4,7 +4,8 @@
   "description": "A sample app to show how to build a great Messenger experience!",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "eslint app.js services/**"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -17,7 +18,7 @@
     "request": "^2.88.0"
   },
   "engines": {
-    "node": ">=10.x"
+    "node": ">=8.x"
   },
   "repository": {
     "url": "https://github.com/fbsamples/original-coast-clothing"
@@ -30,8 +31,8 @@
   ],
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "1.17.0"
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.17.1"
   }
 }
