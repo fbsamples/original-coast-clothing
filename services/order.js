@@ -16,7 +16,7 @@ const Response = require("./response"),
   config = require("./config");
 
 module.exports = class Order {
-  static handlePayload(payload, _senderPsid) {
+  static handlePayload(payload) {
     let response;
 
     switch (payload) {

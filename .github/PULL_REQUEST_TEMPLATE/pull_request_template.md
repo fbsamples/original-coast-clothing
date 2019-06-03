@@ -4,8 +4,7 @@ about: Create a pull request to help us improve
 title: "Short description of the pull request"
 labels: enhancement
 assignees: jorgeluiso, rubycalling
-
- ---
+---
 
 #### Is your pull request related to a problem? Please describe
 A clear and concise description of what the problem is. Ex. I'm always frustrated when ...
