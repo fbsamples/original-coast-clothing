@@ -173,6 +173,10 @@ app.get("/profile", (req, res) => {
         res.write(`<li>PERSONA_SALES = ${config.personaSales.id}</li>`);
         res.write("</ul>");
       }
+      if (mode == "nlp" || mode == "all") {
+        GraphAPi.callNLPConfigsAPI();
+        res.write(`<p>Enable Built-in NLP for Page ${config.pageId}</p>`);
+      }
       res.status(200).end();
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
