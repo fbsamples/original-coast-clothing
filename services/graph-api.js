@@ -250,6 +250,30 @@ module.exports = class GraphAPi {
     });
   }
 
+  static callNLPConfigsAPI() {
+    // Send the HTTP request to the Built-in NLP Configs API
+    // https://developers.facebook.com/docs/graph-api/reference/page/nlp_configs/
+
+    console.log(`Enable Built-in NLP for Page ${config.pageId}`);
+    request(
+      {
+        uri: `${config.mPlatfom}/me/nlp_configs`,
+        qs: {
+          access_token: config.pageAccesToken,
+          nlp_enabled: true
+        },
+        method: "POST"
+      },
+      (error, _res, body) => {
+        if (!error) {
+          console.log("Request sent:", body);
+        } else {
+          console.error("Unable to activate built-in NLP:", error);
+        }
+      }
+    );
+  }
+
   static callFBAEventsAPI(senderPsid, eventName) {
     // Construct the message body
     let requestBody = {
