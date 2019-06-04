@@ -27,7 +27,7 @@ module.exports = class GraphAPi {
         method: "POST",
         json: requestBody
       },
-      (error, _res, body) => {
+      error => {
         if (error) {
           console.error("Unable to send message:", error);
         }
@@ -108,7 +108,7 @@ module.exports = class GraphAPi {
         },
         method: "POST"
       },
-      (error, _res, body) => {
+      error => {
         if (error) {
           console.error("Unable to send message:", error);
         }
@@ -299,7 +299,7 @@ module.exports = class GraphAPi {
         method: "POST",
         form: requestBody
       },
-      (error, res, _body) => {
+      error => {
         if (!error) {
           console.log(`FBA event '${eventName}'`);
         } else {

@@ -4,8 +4,7 @@ about: Create a report to help us improve
 title: "[BUG] Short description of the issue"
 labels: bug
 assignees: jorgeluiso, rubycalling
-
- ---
+---
 
 #### Describe the bug
 A clear and concise description of what the bug is.

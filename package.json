@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "lint": "eslint app.js services/**"
+    "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
     "body-parser": "^1.18.3",
