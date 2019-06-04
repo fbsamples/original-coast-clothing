@@ -1,11 +1,3 @@
----
-name: Pull request
-about: Create a pull request to help us improve
-title: "Short description of the pull request"
-labels: enhancement
-assignees: jorgeluiso, rubycalling
----
-
 #### Is your pull request related to a problem? Please describe
 A clear and concise description of what the problem is. Ex. I'm always frustrated when ...
 
@@ -29,3 +21,6 @@ Also add a link to your own Messenger experience for your reviewer to test the c
 - [ ] I have read the **[CONTRIBUTING](https://github.com/fbsamples/original-coast-clothing/blob/master/CONTRIBUTING.md)** document.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
+- [ ] The title of my pull request is a short description of the requested changes.
+- [ ] I have added @jorgeluiso, @rubycalling as reviewers.
+- [ ] I have added the label **enhancement** to my pull request.
