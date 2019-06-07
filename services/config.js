@@ -101,5 +101,9 @@ module.exports = {
       name: "Daniel",
       id: id
     };
+  },
+
+  get whitelistedDomains() {
+    return [this.appUrl, this.shopUrl];
   }
 };

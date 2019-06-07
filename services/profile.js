@@ -85,6 +85,11 @@ module.exports = class Profile {
     GraphAPi.callMessengerProfileAPI(menuPayload);
   }
 
+  setWhitelistedDomains() {
+    let domainPayload = this.getWhitelistedDomains();
+    GraphAPi.callMessengerProfileAPI(domainPayload);
+  }
+
   getGetStarted() {
     return {
       get_started: {
@@ -174,5 +179,14 @@ module.exports = class Profile {
 
     console.log(localizedMenu);
     return localizedMenu;
+  }
+
+  getWhitelistedDomains() {
+    let whitelistedDomains = {
+      whitelisted_domains: config.whitelistedDomains
+    };
+
+    console.log(whitelistedDomains);
+    return whitelistedDomains;
   }
 };
