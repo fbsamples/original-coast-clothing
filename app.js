@@ -177,6 +177,10 @@ app.get("/profile", (req, res) => {
         GraphAPi.callNLPConfigsAPI();
         res.write(`<p>Enable Built-in NLP for Page ${config.pageId}</p>`);
       }
+      if (mode == "domains" || mode == "all") {
+        Profile.setWhitelistedDomains();
+        res.write(`<p>Whitelisting domains: ${config.whitelistedDomains}</p>`);
+      }
       res.status(200).end();
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
