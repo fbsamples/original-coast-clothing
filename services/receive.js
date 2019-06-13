@@ -148,9 +148,15 @@ module.exports = class Receive {
 
   // Handles postbacks events
   handlePostback() {
-    // Get the payload of the postback
-    let payload = this.webhookEvent.postback.payload;
-
+    let postback = this.webhookEvent.postback;
+    // Check for the special Get Starded with referral
+    let payload;
+    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
+    } else {
+      // Get the payload of the postback
+      payload = postback.payload;
+    }
     return this.handlePayload(payload);
   }
 
