@@ -24,6 +24,7 @@ module.exports = class Care {
 
   handlePayload(payload) {
     let response;
+    let responses;
 
     switch (payload) {
       case "CARE_HELP":
