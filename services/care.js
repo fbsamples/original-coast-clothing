@@ -24,9 +24,10 @@ module.exports = class Care {
 
   handlePayload(payload) {
     let response;
-    let responses;
 
     switch (payload) {
+      case "CARE_ORDERISH":
+        break;
       case "CARE_HELP":
         response = Response.genQuickReply(
           i18n.__("care.prompt", {
