@@ -13,6 +13,7 @@
 // Imports dependencies and set up http server
 const express = require("express"),
   { urlencoded, json } = require("body-parser"),
+  crypto = require("crypto"),
   path = require("path"),
   Receive = require("./services/receive"),
   GraphAPi = require("./services/graph-api"),
@@ -30,8 +31,8 @@ app.use(
   })
 );
 
-// Parse application/json
-app.use(json());
+// Parse application/json. Verify that callback came from Facebook
+app.use(json({ verify: verifyRequestSignature }));
 
 // Serving static files in Express
 app.use(express.static(path.join(path.resolve(), "public")));
@@ -191,6 +192,25 @@ app.get("/profile", (req, res) => {
     res.sendStatus(404);
   }
 });
+
+// Verify that the callback came from Facebook.
+function verifyRequestSignature(req, res, buf) {
+  var signature = req.headers["x-hub-signature"];
+
+  if (!signature) {
+    console.log("Couldn't validate the signature.");
+  } else {
+    var elements = signature.split("=");
+    var signatureHash = elements[1];
+    var expectedHash = crypto
+      .createHmac("sha1", config.appSecret)
+      .update(buf)
+      .digest("hex");
+    if (signatureHash != expectedHash) {
+      throw new Error("Couldn't validate the request signature.");
+    }
+  }
+}
 
 // listen for requests :)
 var listener = app.listen(config.port, function() {
