@@ -37,7 +37,7 @@ app.use(json({ verify: verifyRequestSignature }));
 // Serving static files in Express
 app.use(express.static(path.join(path.resolve(), "public")));
 
-// Set template emgine in Express
+// Set template engine in Express
 app.set("view engine", "ejs");
 
 // Respond with index file when a GET request is made to the homepage
