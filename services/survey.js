@@ -36,7 +36,7 @@ module.exports = class Survey {
       ]
     );
 
-    // This is only triggered 1 min after talking with an agent
+    // This is triggered 4 sec after comming back from talking with an agent
     response.delay = "4000";
 
     return response;
