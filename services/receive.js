@@ -157,7 +157,7 @@ module.exports = class Receive {
       // Get the payload of the postback
       payload = postback.payload;
     }
-    return this.handlePayload(payload);
+    return this.handlePayload(payload.toUpperCase());
   }
 
   // Handles referral events
