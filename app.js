@@ -229,8 +229,24 @@ function checkEnvVariables() {
         "WARNING: Your configuration file is missing " +
           key.replace(/([a-zA-Z])(?=[A-Z])/g, "$1_").toUpperCase()
       );
+    } else {
+      // Check that urls use https
+      if (["appUrl", "shopUrl"].includes(key)) {
+        checkHttpsUrl(key);
+      }
     }
   });
+}
+
+function checkHttpsUrl(key) {
+  var url = config[key];
+  if (!url.startsWith("https://")) {
+    console.log(
+      "WARNING: Your " +
+        key.replace(/([a-zA-Z])(?=[A-Z])/g, "$1_").toUpperCase() +
+        ' does not begin with "https://"'
+    );
+  }
 }
 
 checkEnvVariables();
