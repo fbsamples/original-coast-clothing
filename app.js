@@ -225,7 +225,7 @@ var listener = app.listen(config.port, function() {
       "Is this the first time running?\n" +
         "Make sure to set the both the Messenger profile, persona and webhook by visiting:\n" +
         config.appUrl +
-        "?profile?mode=all&verify_token=" +
+        "/profile?mode=all&verify_token=" +
         config.verifyToken
     );
   }
