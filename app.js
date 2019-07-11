@@ -212,6 +212,29 @@ function verifyRequestSignature(req, res, buf) {
   }
 }
 
+// Check if all environment variables are set
+function checkEnvVariables() {
+  var keys = [
+    "pageId",
+    "appId",
+    "pageAccesToken",
+    "appSecret",
+    "verifyToken",
+    "appUrl",
+    "shopUrl"
+  ];
+  keys.forEach(function(key) {
+    if (!config[key]) {
+      console.log(
+        "WARNING: Your configuration file is missing " +
+          key.replace(/([a-zA-Z])(?=[A-Z])/g, "$1_").toUpperCase()
+      );
+    }
+  });
+}
+
+checkEnvVariables();
+
 // listen for requests :)
 var listener = app.listen(config.port, function() {
   console.log("Your app is listening on port " + listener.address().port);
