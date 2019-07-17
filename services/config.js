@@ -11,7 +11,7 @@
 "use strict";
 
 // Use dotenv to read .env vars into Node
-const config = require("dotenv").config();
+require("dotenv").config();
 
 module.exports = {
   // Messenger Platform API
@@ -108,16 +108,6 @@ module.exports = {
   },
 
   checkEnvVariables: function() {
-    if (config.error) {
-      if (config.error.code == "ENOENT") {
-        console.log("WARNING: Your .env file is missing.");
-      } else {
-        console.dir(config.error);
-      }
-      process.exit(1);
-    }
-
-    const parsedVariables = config.parsed;
     var keys = [
       "PAGE_ID",
       "APP_ID",
@@ -128,12 +118,12 @@ module.exports = {
       "SHOP_URL"
     ];
     keys.forEach(function(key) {
-      if (!parsedVariables[key]) {
+      if (!process.env[key]) {
         console.log("WARNING: Your .env file is missing " + key);
       } else {
         // Check that urls use https
         if (["APP_URL", "SHOP_URL"].includes(key)) {
-          const url = parsedVariables[key];
+          const url = process.env[key];
           if (!url.startsWith("https://")) {
             console.log(
               "WARNING: Your " + key + ' does not begin with "https://"'
