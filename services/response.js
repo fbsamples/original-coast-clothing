@@ -117,7 +117,8 @@ module.exports = class Response {
     let response = {
       type: "web_url",
       title: title,
-      url: url
+      url: url,
+      messenger_extensions: true
     };
 
     return response;
