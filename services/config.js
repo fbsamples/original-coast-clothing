@@ -13,6 +13,17 @@
 // Use dotenv to read .env vars into Node
 require("dotenv").config();
 
+// Required environment variables
+const ENV_VARS = [
+  "PAGE_ID",
+  "APP_ID",
+  "PAGE_ACCESS_TOKEN",
+  "APP_SECRET",
+  "VERIFY_TOKEN",
+  "APP_URL",
+  "SHOP_URL"
+];
+
 module.exports = {
   // Messenger Platform API
   mPlatformDomain: "https://graph.facebook.com",
@@ -108,18 +119,9 @@ module.exports = {
   },
 
   checkEnvVariables: function() {
-    var keys = [
-      "PAGE_ID",
-      "APP_ID",
-      "PAGE_ACCESS_TOKEN",
-      "APP_SECRET",
-      "VERIFY_TOKEN",
-      "APP_URL",
-      "SHOP_URL"
-    ];
-    keys.forEach(function(key) {
+    ENV_VARS.forEach(function(key) {
       if (!process.env[key]) {
-        console.log("WARNING: Your .env file is missing " + key);
+        console.log("WARNING: Missing the environment variable " + key);
       } else {
         // Check that urls use https
         if (["APP_URL", "SHOP_URL"].includes(key)) {
