@@ -26,26 +26,6 @@ module.exports = class Curation {
     let outfit;
 
     switch (payload) {
-      case "F8-2019":
-        response = [
-          Response.genText(
-            i18n.__("get_started.f8-welcome", {
-              userFirstName: this.user.firstName
-            })
-          ),
-          Response.genText(i18n.__("get_started.f8-guidance")),
-          Response.genQuickReply(i18n.__("get_started.f8-help"), [
-            {
-              title: i18n.__("menu.suggestion"),
-              payload: "CURATION"
-            },
-            {
-              title: i18n.__("menu.help"),
-              payload: "CARE_HELP"
-            }
-          ])
-        ];
-        break;
       case "SUMMER_COUPON":
         response = [
           Response.genText(
