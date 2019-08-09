@@ -64,6 +64,9 @@
     "negative": "Thanks for telling us. Sorry to hear that, if there something we can do to turn this let us know",
     "suggestion": "Your suggestion has been recorded for future review by the team. If this is something we need to get back to you right now just comment \"help\""
   },
+  "chat_plugin": {
+    "prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
+  },
   "fallback": {
     "any": "Sorry, but I don’t recognize \"{{message}}\".",
     "attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
