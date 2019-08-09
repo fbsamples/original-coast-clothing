@@ -207,8 +207,8 @@ module.exports = class Receive {
             payload: "CARE_BILLING"
           },
           {
-            title: i18n.__("menu.help"),
-            payload: "CARE_HELP"
+            title: i18n.__("care.other"),
+            payload: "CARE_OTHER"
           }
         ])
       ];
