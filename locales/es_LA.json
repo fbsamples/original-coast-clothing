@@ -1,71 +1,74 @@
-{
+﻿{
   "profile": {
-    "greeting": "Te damos la bienvenida a Original Coast Clothing {{user_first_name}}! Haga clic en comenzar para disfrutar de nuestra experiencia de mensajería automatizada de muestra. Si desea crear uno similar, visite https://fb.me/get-sample-oc"
+    "greeting": "¡Te damos la bienvenida a Original Coast Clothing, {{user_first_name}}! Haz clic para empezar a disfrutar de nuestra experiencia de mensajes automáticos de muestra. Si quieres crear una experiencia similar, visita https://fb.me/get-sample-oc"
   },
   "menu": {
-    "support": "Servicio al cliente",
-    "order": "Estado de Órdenes",
+    "support": "Servicio de atención al cliente",
+    "order": "Actualizaciones del pedido",
     "help": "Hablar con un agente",
-    "suggestion": "Estilos sugeridos",
-    "shop": "Tienda",
-    "start_over": "Empezar de nuevo"
+    "suggestion": "Sugerencias de ropa",
+    "shop": "Comprar",
+    "start_over": "Volver a empezar"
   },
   "get_started": {
-    "welcome": "Hola {{userFirstName}}! Te damos la bienvenida a Original Coast Clothing donde encontrarás estilos para cada ocasión.",
-    "guidance": "En cualquier momento, utilize el menú para iniciar cualquiera de las funciones",
-    "help": "¿Qué podemos hacer para ayudarte hoy?"
+    "welcome": "¡Hola, {{userFirstName}}! Te damos la bienvenida a Original Coast Clothing, donde encontrarás estilos para toda ocasión.",
+    "guidance": "Puedes usar el menú a continuación para navegar por las funciones en cualquier momento.",
+    "help": "¿Cómo podemos ayudarte hoy?"
   },
   "leadgen": {
-    "promo": "Hola, {{userFirstName}}, ahora es más fácil y más conveniente encontrar estilos.",
-    "title": "Cupón de 50%",
-    "subtitle": "Aqui esta tu cupón",
+    "promo": "Hola, {{userFirstName}}. Ahora encontrar ropa genial es más fácil y conveniente.",
+    "title": "Cupón de 50% de descuento",
+    "subtitle": "Aquí está tu cupón",
     "apply": "Aplicar descuento",
-    "coupon": "Agregamos este cupón a la conversación, ahora puede ver la colección de verano con descuento"
+    "coupon": "Se agregó tu cupón a esta conversación; ahora puedes echarle un vistazo a la colección de verano con descuento"
   },
   "curation": {
-    "prompt": "¿Estás buscando ropa para ti o para alguien más?",
-    "occasion": "¡Genial! Primero, ¿tienes alguna ocasión en mente?",
-    "price": "¿Cuanto quieres gastar?",
-    "me": "¡Para mi!",
-    "someone": "Alguien mas",
+    "prompt": "¿Estás buscando ropa para ti u otra persona?",
+    "occasion": "¡Genial! Empecemos. Primero, ¿buscas ropa para alguna ocasión en especial?",
+    "price": "¿Cuánto quieres gastar?",
+    "me": "¡Para mí!",
+    "someone": "Para otra persona",
     "work": "Trabajo",
     "dinner": "Cena",
-    "party": "Celebración",
-    "sales": "Hablar con ventas",
-    "shop": "Compra este estilo",
-    "title": "Colección de Verano 2019",
-    "subtitle": "Estilo destacado",
-    "show": "Otro estilo"
+    "party": "Fiesta",
+    "sales": "Hablar con el equipo de ventas",
+    "shop": "Comprar este look",
+    "title": "Colección verano 2019",
+    "subtitle": "Ropa destacada",
+    "show": "Otro look"
   },
   "order": {
-    "prompt": "Estaremos encantados de ayudarle. Seleccione entre los siguientes",
-    "search": "Búsqueda por número de pedido",
+    "prompt": "Estaremos encantados de ayudarte. Selecciona una de las siguientes opciones",
+    "search": "Buscar por número del pedido",
     "account": "Vincular mi cuenta",
-    "dialog": "Diálogo de vinculación de cuenta",
+    "dialog": "Diálogo de vinculación de cuentas",
     "searching": "Buscando tu último pedido...",
-    "number": "Claro, por favor escriba el número de pedido",
-    "status": "Su pedido está en camino, espere recibirlo en 3 días."
+    "number": "Por supuesto, escribe el número del pedido",
+    "status": "Tu pedido está en camino, espera recibirlo en tres días."
   },
   "care": {
-    "prompt": "Para conectarte con el equipo correcto, por favor, dime de qué se trata tu consulta",
-    "order": "Consultas de pedidos",
+    "prompt": "Para conectarte con el equipo correcto, dime de qué se trata.",
+    "order": "Consultas sobre pedidos",
     "billing": "Problemas de facturación",
-    "other": "Otro",
-    "issue": "Hola {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para ayudarte con cualquier pregunta que puedas tener sobre {{topic}}.",
-    "default": "Hola, {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para ayudarte. ¿Como puedo ayudarte?",
-    "style": "Hola, {{userFirstName}}, mi nombre es {{agentFirstName}}, estoy aquí para responder las preguntas que puedas tener sobre nuestros estilos de verano.",
-    "end": "Hasta aqui llega este demo. Aproveche el poder de la plataforma de Messenger para su negocio. Vea https://fb.me/get-sample-oc para aprender cómo construir una experiencia similar",
+    "other": "Otro tema",
+    "issue": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para ayudarte con cualquier pregunta que tengas sobre {{topic}}.",
+    "default": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para ofrecerte asistencia. ¿Cómo te puedo ayudar?",
+    "style": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para responder cualquier pregunta que puedas tener sobre nuestros estilos de verano.",
+    "end": "Aquí termina la demo. Aprovecha la eficacia de la plataforma de Messenger para tu negocio. Visita https://fb.me/get-sample-oc para aprender a crear una experiencia similar",
     "help": "Ayuda"
   },
   "survey": {
-    "prompt": "Hola, queremos tu opinión sobre tu experiencia reciente con {{agentFirstName}}",
-    "positive": "Gracias por la respuesta",
-    "neutral": "Gracias por la respuesta, Si hay algo que deberíamos mejorar, siéntete libre de comentar con #sugerencia",
-    "negative": "Gracias por decirnos. Lamento escuchar eso, si hay algo que podamos hacer para cambiar esto, háganoslo saber",
-    "suggestion": "Su sugerencia ha sido registrada. Si esto es algo que necesitamos para responder ahora mismo, simplemente comente \"ayuda\""
+    "prompt": "Hola, quiero conocer tu opinión sobre tu experiencia reciente con {{agentFirstName}}",
+    "positive": "Gracias por tu opinión",
+    "neutral": "Gracias por tu opinión; si crees que hay algo que deberíamos mejorar, envíanos un comentario con el hashtag #sugerencia",
+    "negative": "Gracias por avisarnos. Lamentamos lo sucedido, dinos si hay algo que podamos hacer para mejorar la situación",
+    "suggestion": "Recibimos tu sugerencia y el equipo la revisará pronto. Si necesitas recibir una respuesta sobre esto ahora, envía un comentario con la palabra \"ayuda\""
+  },
+  "chat_plugin": {
+    "prompt": "Gracias por visitar nuestra tienda, asegúrese de ver todos los excelentes estilos que tenemos en la sección de verano."
   },
   "fallback": {
-    "any": "Disculpe pero no reconozco \"{{message}}\".",
-    "attachment": "Gracias por enviar este archivo, te podemos conectar con un agente para revisarlo o podemos empezar de nuevo"
+    "any": "Lo siento, pero no reconozco \"{{message}}\".",
+    "attachment": "Gracias por enviar este archivo adjunto; ahora podemos comunicarte con un agente para que lo revise o puedes volver a empezar"
   }
 }
