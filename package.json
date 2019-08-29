@@ -8,17 +8,17 @@
     "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "camelcase": "^5.2.0",
-    "dotenv": "^6.2.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "body-parser": "^1.19.0",
+    "camelcase": "^5.3.1",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
     "i18n": "^0.8.3",
     "path": "^0.12.7",
     "request": "^2.88.0"
   },
   "engines": {
-    "node": ">=8.x"
+    "node": "^8.10.0 || ^10.13.0 || >=11.10.1"
   },
   "repository": {
     "url": "https://github.com/fbsamples/original-coast-clothing"
@@ -30,9 +30,9 @@
     "webhook"
   ],
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "prettier": "^1.17.1"
+    "prettier": "^1.18.2"
   }
 }
