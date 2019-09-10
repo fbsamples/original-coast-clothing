@@ -47,7 +47,7 @@
     "status": "Your order is on it’s way, expect to have it in 3 days."
   },
   "care": {
-    "prompt": "To connect you with the right team please let me know what this is about?",
+    "prompt": "Para poder ayudarte necesitamos que nos indiques un tema?",
     "order": "Order Inquiries",
     "billing": "Billing Issues",
     "other": "Other",
@@ -65,7 +65,7 @@
     "suggestion": "Your suggestion has been recorded for future review by the team. If this is something we need to get back to you right now just comment \"help\""
   },
   "chat_plugin": {
-    "prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
+    "prompt": "Bienvenidos al chat de SP1."
   },
   "fallback": {
     "any": "Sorry, but I don’t recognize \"{{message}}\".",
