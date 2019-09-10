@@ -51,7 +51,7 @@
     "order": "Order Inquiries",
     "billing": "Billing Issues",
     "other": "Other",
-    "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
+    "issue": "Hola {{userFirstName}}, yo soy {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
     "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
     "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
     "end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
