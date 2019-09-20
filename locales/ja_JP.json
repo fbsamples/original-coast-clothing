@@ -1,4 +1,4 @@
-﻿{
+{
   "profile": {
     "greeting": "{{user_first_name}}さん、Original Coast Clothingへようこそ！[スタート]をクリックして、サンプルの自動メッセージングサービスをお試しください。同様のサービスを構築する場合はhttps://fb.me/get-sample-ocをご覧ください。"
   },
