@@ -11,9 +11,24 @@
     "start_over": "Start over"
   },
   "get_started": {
-    "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
-    "guidance": "At any time, use the menu below to navigate through the features",
-    "help": "What we can do to help you today?"
+    "welcome": "Hi {{userFirstName}}! Welcome to nARrative, an interative text based AR game where you get to decide how the story unfolds.",
+    "guidance": "At any time, use the menu below to navigate through the story",
+    "prompt": "You wake up a in a dimly lit room on a bed frame. You see a door to your left. What do you do?",
+    "help": "get_started.help"
+  },
+  "room_start": {
+    "open_door": "Open the door."
+  },
+  "step1": {
+    "prompt": "You open the door and enter the room. You see a staircase on the left going up, and a staricase going down on the right. Which staircase do you take? Choose wisely.",
+    "go_downstairs": "Go downstairs"
+  },
+  "step2": {
+    "prompt": "You go downstars, and follow the hallway to a basement. There is a bookshelf in front of a tunnel, a window to the left, a storm drain in the middle of the room.",
+    "go_through_tunnel": "Enter tunnel"
+  },
+  "step3": {
+    "prompt": "You go through the tunnel, and it gets darker the deeper you go. When as you keep going you eventually see a light at the end of the tunnel. You escape."
   },
   "leadgen": {
     "promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",

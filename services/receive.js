@@ -8,15 +8,16 @@
  * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
  */
 
-"use strict";
+'use strict';
 
-const Curation = require("./curation"),
-  Order = require("./order"),
-  Response = require("./response"),
-  Care = require("./care"),
-  Survey = require("./survey"),
-  GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config");
+const Step1 = require('./step1'),
+  Step2 = require('./step2'),
+  Step3 = require('./step3'),
+  Response = require('./response'),
+  Care = require('./care'),
+  Survey = require('./survey'),
+  GraphAPi = require('./graph-api'),
+  i18n = require('../i18n.config');
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -51,7 +52,7 @@ module.exports = class Receive {
       console.error(error);
       responses = {
         text: `An error has occured: '${error}'. We have been notified and \
-        will fix the issue shortly!`
+        will fix the issue shortly!`,
       };
     }
 
@@ -69,12 +70,12 @@ module.exports = class Receive {
   // Handles messages events with text
   handleTextMessage() {
     console.log(
-      "Received text:",
+      'Received text:',
       `${this.webhookEvent.message.text} for ${this.user.psid}`
     );
 
     // check greeting is here and is confident
-    let greeting = this.firstEntity(this.webhookEvent.message.nlp, "greetings");
+    let greeting = this.firstEntity(this.webhookEvent.message.nlp, 'greetings');
 
     let message = this.webhookEvent.message.text.trim().toLowerCase();
 
@@ -82,34 +83,32 @@ module.exports = class Receive {
 
     if (
       (greeting && greeting.confidence > 0.8) ||
-      message.includes("start over")
+      message.includes('start over')
     ) {
       response = Response.genNuxMessage(this.user);
-    } else if (Number(message)) {
-      response = Order.handlePayload("ORDER_NUMBER");
-    } else if (message.includes("#")) {
-      response = Survey.handlePayload("CSAT_SUGGESTION");
-    } else if (message.includes(i18n.__("care.help").toLowerCase())) {
+    } else if (message.includes('#')) {
+      response = Survey.handlePayload('CSAT_SUGGESTION');
+    } else if (message.includes(i18n.__('care.help').toLowerCase())) {
       let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload("CARE_HELP");
+      response = care.handlePayload('CARE_HELP');
     } else {
       response = [
         Response.genText(
-          i18n.__("fallback.any", {
-            message: this.webhookEvent.message.text
+          i18n.__('fallback.any', {
+            message: this.webhookEvent.message.text,
           })
         ),
-        Response.genText(i18n.__("get_started.guidance")),
-        Response.genQuickReply(i18n.__("get_started.help"), [
+        Response.genText(i18n.__('get_started.guidance')),
+        Response.genQuickReply(i18n.__('get_started.help'), [
           {
-            title: i18n.__("menu.suggestion"),
-            payload: "CURATION"
+            title: i18n.__('menu.suggestion'),
+            payload: 'CURATION',
           },
           {
-            title: i18n.__("menu.help"),
-            payload: "CARE_HELP"
-          }
-        ])
+            title: i18n.__('menu.help'),
+            payload: 'CARE_HELP',
+          },
+        ]),
       ];
     }
 
@@ -122,17 +121,17 @@ module.exports = class Receive {
 
     // Get the attachment
     let attachment = this.webhookEvent.message.attachments[0];
-    console.log("Received attachment:", `${attachment} for ${this.user.psid}`);
+    console.log('Received attachment:', `${attachment} for ${this.user.psid}`);
 
-    response = Response.genQuickReply(i18n.__("fallback.attachment"), [
+    response = Response.genQuickReply(i18n.__('fallback.attachment'), [
       {
-        title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        title: i18n.__('menu.help'),
+        payload: 'CARE_HELP',
       },
       {
-        title: i18n.__("menu.start_over"),
-        payload: "GET_STARTED"
-      }
+        title: i18n.__('menu.start_over'),
+        payload: 'GET_STARTED',
+      },
     ]);
 
     return response;
@@ -151,7 +150,7 @@ module.exports = class Receive {
     let postback = this.webhookEvent.postback;
     // Check for the special Get Starded with referral
     let payload;
-    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+    if (postback.referral && postback.referral.type == 'OPEN_THREAD') {
       payload = postback.referral.ref;
     } else {
       // Get the payload of the postback
@@ -169,7 +168,7 @@ module.exports = class Receive {
   }
 
   handlePayload(payload) {
-    console.log("Received Payload:", `${payload} for ${this.user.psid}`);
+    console.log('Received Payload:', `${payload} for ${this.user.psid}`);
 
     // Log CTA event in FBA
     GraphAPi.callFBAEventsAPI(this.user.psid, payload);
@@ -178,43 +177,42 @@ module.exports = class Receive {
 
     // Set the response based on the payload
     if (
-      payload === "GET_STARTED" ||
-      payload === "DEVDOCS" ||
-      payload === "GITHUB"
+      payload === 'GET_STARTED' ||
+      payload === 'DEVDOCS' ||
+      payload === 'GITHUB'
     ) {
       response = Response.genNuxMessage(this.user);
-    } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
-      let curation = new Curation(this.user, this.webhookEvent);
-      response = curation.handlePayload(payload);
-    } else if (payload.includes("CARE")) {
-      let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload(payload);
-    } else if (payload.includes("ORDER")) {
-      response = Order.handlePayload(payload);
-    } else if (payload.includes("CSAT")) {
-      response = Survey.handlePayload(payload);
-    } else if (payload.includes("CHAT-PLUGIN")) {
+    } else if (payload.includes('OPEN_DOOR')) {
+      let step1 = new Step1(this.user, this.webhookEvent);
+      response = step1.handlePayload(payload);
+    } else if (payload.includes('GO_DOWNSTAIRS')) {
+      let step2 = new Step2(this.user, this.webhookEvent);
+      response = step2.handlePayload(payload);
+    } else if (payload.includes('ENTER_TUNNEL')) {
+      let step3 = new Step3(this.user, this.webhookEvent);
+      response = step3.handlePayload(payload);
+    } else if (payload.includes('CHAT-PLUGIN')) {
       response = [
-        Response.genText(i18n.__("chat_plugin.prompt")),
-        Response.genText(i18n.__("get_started.guidance")),
-        Response.genQuickReply(i18n.__("get_started.help"), [
+        Response.genText(i18n.__('chat_plugin.prompt')),
+        Response.genText(i18n.__('get_started.guidance')),
+        Response.genQuickReply(i18n.__('get_started.help'), [
           {
-            title: i18n.__("care.order"),
-            payload: "CARE_ORDER"
+            title: i18n.__('care.order'),
+            payload: 'CARE_ORDER',
           },
           {
-            title: i18n.__("care.billing"),
-            payload: "CARE_BILLING"
+            title: i18n.__('care.billing'),
+            payload: 'CARE_BILLING',
           },
           {
-            title: i18n.__("care.other"),
-            payload: "CARE_OTHER"
-          }
-        ])
+            title: i18n.__('care.other'),
+            payload: 'CARE_OTHER',
+          },
+        ]),
       ];
     } else {
       response = {
-        text: `This is a default postback message for payload: ${payload}!`
+        text: `This is a default postback message for payload: ${payload}!`,
       };
     }
 
@@ -223,30 +221,30 @@ module.exports = class Receive {
 
   sendMessage(response, delay = 0) {
     // Check if there is delay in the response
-    if ("delay" in response) {
-      delay = response["delay"];
-      delete response["delay"];
+    if ('delay' in response) {
+      delay = response['delay'];
+      delete response['delay'];
     }
 
     // Construct the message body
     let requestBody = {
       recipient: {
-        id: this.user.psid
+        id: this.user.psid,
       },
-      message: response
+      message: response,
     };
 
     // Check if there is persona id in the response
-    if ("persona_id" in response) {
-      let persona_id = response["persona_id"];
-      delete response["persona_id"];
+    if ('persona_id' in response) {
+      let persona_id = response['persona_id'];
+      delete response['persona_id'];
 
       requestBody = {
         recipient: {
-          id: this.user.psid
+          id: this.user.psid,
         },
         message: response,
-        persona_id: persona_id
+        persona_id: persona_id,
       };
     }
 
