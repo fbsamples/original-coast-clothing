@@ -13,11 +13,12 @@
 const Step1 = require('./step1'),
   Step2 = require('./step2'),
   Step3 = require('./step3'),
-  Response = require('./response'),
-  Care = require('./care'),
-  Survey = require('./survey'),
-  GraphAPi = require('./graph-api'),
-  i18n = require('../i18n.config');
+  Step4 = require('./step4'),
+(Response = require('./response')),
+  (Care = require('./care')),
+  (Survey = require('./survey')),
+  (GraphAPi = require('./graph-api')),
+  (i18n = require('../i18n.config'));
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -173,6 +174,13 @@ module.exports = class Receive {
     // Log CTA event in FBA
     GraphAPi.callFBAEventsAPI(this.user.psid, payload);
     const enter_step_2 = ['GO_DOWNSTAIRS', 'GO_UPSTAIRS'];
+    const enter_step_3 = [
+      'EXAMINE_ROPE',
+      'EXAMINE_BACKPACK',
+      'GO_THROUGH_TUNNEL',
+      'BREAK_THE_WINDOW',
+    ];
+    const enter_step_4 = ['USE_BACKPACK', 'USE_ROPE'];
     let response;
 
     // Set the response based on the payload
@@ -185,32 +193,15 @@ module.exports = class Receive {
     } else if (payload.includes('OPEN_DOOR')) {
       let step1 = new Step1(this.user, this.webhookEvent);
       response = step1.handlePayload(payload);
-      // } else if (payload.includes('GO_DOWNSTAIRS')) {
     } else if (enter_step_2.includes(payload)) {
       let step2 = new Step2(this.user, this.webhookEvent);
       response = step2.handlePayload(payload);
-    } else if (payload.includes('ENTER_TUNNEL')) {
+    } else if (enter_step_3.includes(payload)) {
       let step3 = new Step3(this.user, this.webhookEvent);
       response = step3.handlePayload(payload);
-    } else if (payload.includes('CHAT-PLUGIN')) {
-      response = [
-        Response.genText(i18n.__('chat_plugin.prompt')),
-        Response.genText(i18n.__('get_started.guidance')),
-        Response.genQuickReply(i18n.__('get_started.help'), [
-          {
-            title: i18n.__('care.order'),
-            payload: 'CARE_ORDER',
-          },
-          {
-            title: i18n.__('care.billing'),
-            payload: 'CARE_BILLING',
-          },
-          {
-            title: i18n.__('care.other'),
-            payload: 'CARE_OTHER',
-          },
-        ]),
-      ];
+    } else if (enter_step_4.includes(payload)) {
+      let step4 = new Step4(this.user, this.webhookEvent);
+      response = step4.handlePayload(payload);
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`,

@@ -24,7 +24,7 @@ module.exports = class Curation {
           Response.genQuickReply(i18n.__('step2down.prompt'), [
             {
               title: i18n.__('step2down.go_through_tunnel'),
-              payload: 'EXAMINE_ROPE',
+              payload: 'GO_THROUGH_TUNNEL',
             },
             {
               title: i18n.__('step2down.break_the_window'),

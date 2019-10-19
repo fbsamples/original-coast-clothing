@@ -13,20 +13,23 @@ module.exports = class Curation {
 
   handlePayload(payload) {
     let response;
-    // let outfit;
 
     switch (payload) {
-      case 'OPEN_DOOR':
+      case 'USE_ROPE':
         response = [
-          // Response.genText(i18n.__('room_1_prompt.prompt')),
-          Response.genQuickReply(i18n.__('room_1_prompt.prompt'), [
-            {
-              title: i18n.__('room_1_prompt.go_downstairs'),
-              payload: 'GO_DOWNSTAIRS',
-            },
-          ]),
+          Response.genMediaTemplate(
+            `https://www.facebook.com/watch/?v=450460632258216`
+          ),
+          Response.genText(i18n.__('step4rope.prompt')),
         ];
         break;
+      case 'USE_BACKPACK':
+        response = [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/watch/?v=407595293487241`
+          ),
+          Response.genText(i18n.__('step4rope.prompt')),
+        ];
     }
 
     return response;

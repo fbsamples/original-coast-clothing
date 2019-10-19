@@ -13,16 +13,28 @@ module.exports = class Curation {
 
   handlePayload(payload) {
     let response;
-    // let outfit;
 
     switch (payload) {
       case 'ENTER_TUNNEL':
-        response = [Response.genText(i18n.__('step3.prompt'))];
-        break;
-      case 'USE_ROPE':
         response = [
           Response.genMediaTemplate(
-            `https://www.facebook.com/107683150653553/videos/559838591439616/`
+            `https://www.facebook.com/107683150653553/videos/407595293487241/`
+          ),
+          Response.genText(i18n.__('step3tunnel.prompt')),
+        ];
+        break;
+      case 'BREAK_WINDOW':
+        response = [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/watch/?v=450460632258216`
+          ),
+          Response.genText(i18n.__('step3window.prompt')),
+        ];
+        break;
+      case 'EXAMINE_ROPE':
+        response = [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/watch/?v=559838591439616`
           ),
           Response.genText(i18n.__('step3rope.prompt'), [
             {
@@ -36,12 +48,17 @@ module.exports = class Curation {
           ]),
         ];
         break;
-      case 'USE_BACKPACK':
+      case 'EXAMINE_BACKPACK':
         response = [
           Response.genMediaTemplate(
-            `https://www.facebook.com/107683150653553/videos/407595293487241/`
+            `https://www.facebook.com/watch/?v=559838591439616`
           ),
-          Response.genText(i18n.__('step3backpack.prompt')),
+          Response.genText(i18n.__('step3backpack.prompt'), [
+            {
+              title: i18n.__('step3backpack.use_backpack'),
+              payload: 'USE_BACKPACK',
+            },
+          ]),
         ];
     }
 
