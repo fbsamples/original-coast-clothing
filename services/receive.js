@@ -172,7 +172,7 @@ module.exports = class Receive {
 
     // Log CTA event in FBA
     GraphAPi.callFBAEventsAPI(this.user.psid, payload);
-
+    const enter_step_2 = ['GO_DOWNSTAIRS', 'GO_UPSTAIRS'];
     let response;
 
     // Set the response based on the payload
@@ -185,7 +185,8 @@ module.exports = class Receive {
     } else if (payload.includes('OPEN_DOOR')) {
       let step1 = new Step1(this.user, this.webhookEvent);
       response = step1.handlePayload(payload);
-    } else if (payload.includes('GO_DOWNSTAIRS')) {
+      // } else if (payload.includes('GO_DOWNSTAIRS')) {
+    } else if (enter_step_2.includes(payload)) {
       let step2 = new Step2(this.user, this.webhookEvent);
       response = step2.handlePayload(payload);
     } else if (payload.includes('ENTER_TUNNEL')) {

@@ -1,89 +1,105 @@
 {
-  "profile": {
-    "greeting": "Welcome to Original Coast Clothing {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
-  },
-  "menu": {
-    "support": "Customer Support",
-    "order": "Order updates",
-    "help": "Talk to an agent",
-    "suggestion": "Outfit suggestions",
-    "shop": "Shop now",
-    "start_over": "Start over"
-  },
-  "get_started": {
-    "welcome": "Hi {{userFirstName}}! Welcome to nARrative, an interative text based AR game where you get to decide how the story unfolds.",
-    "guidance": "At any time, use the menu below to navigate through the story",
-    "prompt": "You wake up a in a dimly lit room on a bed frame. You see a door to your left. What do you do?",
-    "help": "get_started.help"
-  },
-  "room_start": {
-    "open_door": "Open the door."
-  },
-  "step1": {
-    "prompt": "You open the door and enter the room. You see a staircase on the left going up, and a staricase going down on the right. Which staircase do you take? Choose wisely.",
-    "go_downstairs": "Go downstairs"
-  },
-  "step2": {
-    "prompt": "You go downstars, and follow the hallway to a basement. There is a bookshelf in front of a tunnel, a window to the left, a storm drain in the middle of the room.",
-    "go_through_tunnel": "Enter tunnel"
-  },
-  "step3": {
-    "prompt": "You go through the tunnel, and it gets darker the deeper you go. When as you keep going you eventually see a light at the end of the tunnel. You escape."
-  },
-  "leadgen": {
-    "promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",
-    "title": "50% Coupon",
-    "subtitle": "Here is your coupon",
-    "apply": "Apply discount",
-    "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
-  },
-  "curation": {
-    "prompt": "Are you looking for an outfit for yourself or someone else?",
-    "occasion": "Great! Let's get started. First, is there an occasion in mind?",
-    "price": "How much are you looking to spend?",
-    "me": "For me!",
-    "someone": "Someone else",
-    "work": "Work",
-    "dinner": "Dinner",
-    "party": "Party",
-    "sales": "Talk to sales",
-    "shop": "Shop this look",
-    "title": "Summer collection 2019",
-    "subtitle": "Featured outfit",
-    "show": "Another look"
-  },
-  "order": {
-    "prompt": "We'll be happy to help you. Select from the following",
-    "search": "Search by order number",
-    "account": "Link my Account",
-    "dialog": "Account linking dialog",
-    "searching": "Searching for your last order...",
-    "number": "Sure, please write the order number",
-    "status": "Your order is on it’s way, expect to have it in 3 days."
-  },
-  "care": {
-    "prompt": "To connect you with the right team please let me know what this is about?",
-    "order": "Order Inquiries",
-    "billing": "Billing Issues",
-    "other": "Other",
-    "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
-    "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
-    "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
-    "end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
-    "help": "Help"
-  },
-  "survey": {
-    "prompt": "Hi, want to get quick feedback on your recent experience with {{agentFirstName}}",
-    "positive": "Thanks for the feedback",
-    "neutral": "Thanks for the feedback, if there something we should improve feel free to comment with #suggestion",
-    "negative": "Thanks for telling us. Sorry to hear that, if there something we can do to turn this let us know",
-    "suggestion": "Your suggestion has been recorded for future review by the team. If this is something we need to get back to you right now just comment \"help\""
-  },
-  "chat_plugin": {
-    "prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
-  },
-  "fallback": {
-    "any": "Sorry, but I don’t recognize \"{{message}}\".",
-    "attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
-  }
+	"profile": {
+		"greeting": "Welcome to Original Coast Clothing {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
+	},
+	"menu": {
+		"support": "Customer Support",
+		"order": "Order updates",
+		"help": "Talk to an agent",
+		"suggestion": "Outfit suggestions",
+		"shop": "Shop now",
+		"start_over": "Start over"
+	},
+	"get_started": {
+		"welcome": "Hi {{userFirstName}}! Welcome to nARrative, an interative text based AR game where you get to decide how the story unfolds.",
+		"guidance": "At any time, use the menu below to navigate through the story",
+		"prompt": "You wake up a in a dimly lit room on a bed frame. You see a door to your left. What do you do?",
+		"help": "get_started.help"
+	},
+	"room_start": {
+		"open_door": "Open the door."
+	},
+	"step1": {
+		"prompt": "You open the door and enter the room. You see a staircase on the left going up, and a staricase going down on the right. Which staircase do you take? Choose wisely.",
+		"go_downstairs": "Go downstairs",
+		"go_upstairs": "Go upstairs",
+		"examine_backpack": "step1.examine_backpack"
+	},
+	"step2down": {
+		"prompt": "You go downstars, and follow the hallway to a basement. What? There are dead plants here! You are upset no one bothered to water the plants! There is a bookshelf in front of a tunnel, a window to the left, a storm drain in the middle of the room.",
+		"go_through_tunnel": "Enter tunnel",
+		"break_the_window": "Break the window"
+	},
+	"step2up": {
+		"prompt": "You go up stairs, and exit upon a roof. And the door shuts behind you. You turn around and try to open the door, but it doesn't budge. You see a rope on the left and a backpack on the right. What do you do?",
+		"examine_rope": "Examine rope",
+		"examine_backpack": "Examine backpack"
+	},
+	"step3down": {
+		"prompt": "You go through the tunnel, and it gets darker the deeper you go. When as you keep going you eventually see a light at the end of the tunnel. You escape."
+	},
+	"step3rope": {
+		"prompt": "You examine the rope and see that it's sturdy, but it's too short to reach the bottom of the building. Do you still want to use it?",
+		"use_rope": "Use rope anyway",
+		"examine_backpack": "Examine backpack instead"
+	},
+	"step3backpack": {
+		"prompt": "You examine the backpack. Oh wait, it's not just a backpack, it's a parachute! You jump off with confidence and parachute down to the ground level. Congrats! You escaped!"
+	},
+	"leadgen": {
+		"promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",
+		"title": "50% Coupon",
+		"subtitle": "Here is your coupon",
+		"apply": "Apply discount",
+		"coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
+	},
+	"curation": {
+		"prompt": "Are you looking for an outfit for yourself or someone else?",
+		"occasion": "Great! Let's get started. First, is there an occasion in mind?",
+		"price": "How much are you looking to spend?",
+		"me": "For me!",
+		"someone": "Someone else",
+		"work": "Work",
+		"dinner": "Dinner",
+		"party": "Party",
+		"sales": "Talk to sales",
+		"shop": "Shop this look",
+		"title": "Summer collection 2019",
+		"subtitle": "Featured outfit",
+		"show": "Another look"
+	},
+	"order": {
+		"prompt": "We'll be happy to help you. Select from the following",
+		"search": "Search by order number",
+		"account": "Link my Account",
+		"dialog": "Account linking dialog",
+		"searching": "Searching for your last order...",
+		"number": "Sure, please write the order number",
+		"status": "Your order is on it’s way, expect to have it in 3 days."
+	},
+	"care": {
+		"prompt": "To connect you with the right team please let me know what this is about?",
+		"order": "Order Inquiries",
+		"billing": "Billing Issues",
+		"other": "Other",
+		"issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
+		"default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
+		"style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
+		"end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
+		"help": "Help"
+	},
+	"survey": {
+		"prompt": "Hi, want to get quick feedback on your recent experience with {{agentFirstName}}",
+		"positive": "Thanks for the feedback",
+		"neutral": "Thanks for the feedback, if there something we should improve feel free to comment with #suggestion",
+		"negative": "Thanks for telling us. Sorry to hear that, if there something we can do to turn this let us know",
+		"suggestion": "Your suggestion has been recorded for future review by the team. If this is something we need to get back to you right now just comment \"help\""
+	},
+	"chat_plugin": {
+		"prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
+	},
+	"fallback": {
+		"any": "Sorry, but I don’t recognize \"{{message}}\".",
+		"attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
+	}
 }

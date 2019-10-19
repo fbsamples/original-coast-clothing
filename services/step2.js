@@ -18,11 +18,34 @@ module.exports = class Curation {
     switch (payload) {
       case 'GO_DOWNSTAIRS':
         response = [
-          // Response.genText(i18n.__('room_1_prompt.prompt')),
-          Response.genQuickReply(i18n.__('step2.prompt'), [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/107683150653553/videos/527278891393794/`
+          ),
+          Response.genQuickReply(i18n.__('step2down.prompt'), [
             {
-              title: i18n.__('step2.go_through_tunnel'),
-              payload: 'ENTER_TUNNEL',
+              title: i18n.__('step2down.go_through_tunnel'),
+              payload: 'EXAMINE_ROPE',
+            },
+            {
+              title: i18n.__('step2down.break_the_window'),
+              payload: 'BREAK_THE_WINDOW',
+            },
+          ]),
+        ];
+        break;
+      case 'GO_UPSTAIRS':
+        response = [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/107683150653553/videos/402155497389970/?modal=admin_todo_tour`
+          ),
+          Response.genQuickReply(i18n.__('step2up.prompt'), [
+            {
+              title: i18n.__('step2up.examine_rope'),
+              payload: 'EXAMINE_ROPE',
+            },
+            {
+              title: i18n.__('step1.examine_backpack'),
+              payload: 'EXAMINE_BACKPACK',
             },
           ]),
         ];

@@ -17,11 +17,32 @@ module.exports = class Curation {
 
     switch (payload) {
       case 'ENTER_TUNNEL':
+        response = [Response.genText(i18n.__('step3.prompt'))];
+        break;
+      case 'USE_ROPE':
         response = [
-          // Response.genText(i18n.__('room_1_prompt.prompt')),
-          Response.genText(i18n.__('step3.prompt')),
+          Response.genMediaTemplate(
+            `https://www.facebook.com/107683150653553/videos/559838591439616/`
+          ),
+          Response.genText(i18n.__('step3rope.prompt'), [
+            {
+              title: i18n.__('step3rope.use_rope'),
+              payload: 'USE_ROPE',
+            },
+            {
+              title: i18n.__('step3rope.examine_backpack'),
+              payload: 'EXAMINE_BACKPACK',
+            },
+          ]),
         ];
         break;
+      case 'USE_BACKPACK':
+        response = [
+          Response.genMediaTemplate(
+            `https://www.facebook.com/107683150653553/videos/407595293487241/`
+          ),
+          Response.genText(i18n.__('step3backpack.prompt')),
+        ];
     }
 
     return response;

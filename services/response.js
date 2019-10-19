@@ -71,6 +71,25 @@ module.exports = class Response {
     return response;
   }
 
+  static genMediaTemplate(media_url) {
+    let response = {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'media',
+          elements: [
+            {
+              media_type: 'video',
+              url: media_url,
+            },
+          ],
+        },
+      },
+    };
+
+    return response;
+  }
+
   static genButtonTemplate(title, buttons) {
     let response = {
       attachment: {

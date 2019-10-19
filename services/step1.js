@@ -18,48 +18,22 @@ module.exports = class Curation {
     switch (payload) {
       case 'OPEN_DOOR':
         response = [
-          // Response.genText(i18n.__('room_1_prompt.prompt')),
+          Response.genMediaTemplate(
+            `https://www.facebook.com/107683150653553/videos/559838591439616/?modal=admin_todo_tour`
+          ),
           Response.genQuickReply(i18n.__('step1.prompt'), [
             {
               title: i18n.__('step1.go_downstairs'),
               payload: 'GO_DOWNSTAIRS',
             },
+            {
+              title: i18n.__('step1.go_upstairs'),
+              payload: 'GO_UPSTAIRS',
+            },
           ]),
         ];
         break;
     }
-
-    return response;
-  }
-
-  genCurationResponse(payload) {
-    let occasion = payload.split('_')[3].toLowerCase();
-    let budget = payload.split('_')[2].toLowerCase();
-    let outfit = `${this.user.gender}-${occasion}`;
-
-    let buttons = [
-      Response.genWebUrlButton(
-        i18n.__('curation.shop'),
-        `${config.shopUrl}/products/${outfit}`
-      ),
-      Response.genPostbackButton(
-        i18n.__('curation.show'),
-        'CURATION_OTHER_STYLE'
-      ),
-    ];
-
-    if (budget === '50') {
-      buttons.push(
-        Response.genPostbackButton(i18n.__('curation.sales'), 'CARE_SALES')
-      );
-    }
-
-    let response = Response.genGenericTemplate(
-      `${config.appUrl}/styles/${outfit}.jpg`,
-      i18n.__('curation.title'),
-      i18n.__('curation.subtitle'),
-      buttons
-    );
 
     return response;
   }
