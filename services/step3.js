@@ -23,7 +23,7 @@ module.exports = class Curation {
           Response.genText(i18n.__('step3tunnel.prompt')),
         ];
         break;
-      case 'BREAK_WINDOW':
+      case 'BREAK_THE_WINDOW':
         response = [
           Response.genMediaTemplate(
             `https://www.facebook.com/watch/?v=450460632258216`
@@ -36,7 +36,7 @@ module.exports = class Curation {
           Response.genMediaTemplate(
             `https://www.facebook.com/watch/?v=559838591439616`
           ),
-          Response.genText(i18n.__('step3rope.prompt'), [
+          Response.genQuickReply(i18n.__('step3rope.prompt'), [
             {
               title: i18n.__('step3rope.use_rope'),
               payload: 'USE_ROPE',
@@ -53,7 +53,7 @@ module.exports = class Curation {
           Response.genMediaTemplate(
             `https://www.facebook.com/watch/?v=559838591439616`
           ),
-          Response.genText(i18n.__('step3backpack.prompt'), [
+          Response.genQuickReply(i18n.__('step3backpack.prompt'), [
             {
               title: i18n.__('step3backpack.use_backpack'),
               payload: 'USE_BACKPACK',

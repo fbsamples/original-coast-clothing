@@ -177,7 +177,7 @@ module.exports = class Receive {
     const enter_step_3 = [
       'EXAMINE_ROPE',
       'EXAMINE_BACKPACK',
-      'GO_THROUGH_TUNNEL',
+      'ENTER_TUNNEL',
       'BREAK_THE_WINDOW',
     ];
     const enter_step_4 = ['USE_BACKPACK', 'USE_ROPE'];

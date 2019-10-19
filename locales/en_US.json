@@ -46,7 +46,7 @@
   },
   "step3backpack": {
     "prompt": "You examine the backpack. Oh wait, it's not just a backpack, it's a parachute!",
-    "use_backpack": "USE_BACKPACK"
+    "use_backpack": "Use Backpack"
   },
   "step4backpack": {
     "prompt": "You jump off with confidence and parachute down to the ground level. Congrats! You escaped!"
