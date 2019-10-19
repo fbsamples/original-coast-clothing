@@ -14,11 +14,11 @@ const Step1 = require('./step1'),
   Step2 = require('./step2'),
   Step3 = require('./step3'),
   Step4 = require('./step4'),
-(Response = require('./response')),
-  (Care = require('./care')),
-  (Survey = require('./survey')),
-  (GraphAPi = require('./graph-api')),
-  (i18n = require('../i18n.config'));
+  Response = require('./response'),
+  Care = require('./care'),
+  Survey = require('./survey'),
+  GraphAPi = require('./graph-api'),
+  i18n = require('../i18n.config');
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
