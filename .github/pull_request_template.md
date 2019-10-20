@@ -22,5 +22,4 @@ Also add a link to your own Messenger experience for your reviewer to test the c
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
 - [ ] The title of my pull request is a short description of the requested changes.
-- [ ] I have added @jorgeluiso, @rubycalling as reviewers.
 - [ ] I have added the label **enhancement** to my pull request.
