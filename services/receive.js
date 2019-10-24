@@ -221,6 +221,32 @@ module.exports = class Receive {
     return response;
   }
 
+  handlePrivateReply(type,object_id) {
+    let welcomeMessage = i18n.__("get_started.welcome") + " " +
+      i18n.__("get_started.guidance") + ". " +
+      i18n.__("get_started.help");
+
+    let response = Response.genQuickReply(welcomeMessage, [
+      {
+        title: i18n.__("menu.suggestion"),
+        payload: "CURATION"
+      },
+      {
+        title: i18n.__("menu.help"),
+        payload: "CARE_HELP"
+      }
+    ]);
+
+    let requestBody = {
+      recipient: {
+        [type]: object_id
+      },
+      message: response
+    };
+
+    GraphAPi.callSendAPI(requestBody);
+  }
+
   sendMessage(response, delay = 0) {
     // Check if there is delay in the response
     if ("delay" in response) {

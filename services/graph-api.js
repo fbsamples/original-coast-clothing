@@ -58,7 +58,7 @@ module.exports = class GraphAPi {
     );
   }
 
-  static callSubscriptionsAPI() {
+  static callSubscriptionsAPI(customFields) {
     // Send the HTTP request to the Subscriptions Edge to configure your webhook
     // You can use the Graph API's /{app-id}/subscriptions edge to configure and
     // manage your app's Webhooks product
@@ -66,6 +66,16 @@ module.exports = class GraphAPi {
     console.log(
       `Setting app ${config.appId} callback url to ${config.webhookUrl}`
     );
+
+    let fields = "messages, messaging_postbacks, messaging_optins, \
+      message_deliveries, messaging_referrals";
+
+    if (customFields !== undefined) {
+      fields = fields + ", " + customFields;
+    }
+
+    console.log(fields);
+
     request(
       {
         uri: `${config.mPlatfom}/${config.appId}/subscriptions`,
@@ -74,9 +84,7 @@ module.exports = class GraphAPi {
           object: "page",
           callback_url: config.webhookUrl,
           verify_token: config.verifyToken,
-          fields:
-            "messages, messaging_postbacks, messaging_optins, \
-          message_deliveries, messaging_referrals ",
+          fields: fields,
           include_values: "true"
         },
         method: "POST"
@@ -91,20 +99,28 @@ module.exports = class GraphAPi {
     );
   }
 
-  static callSubscribedApps() {
+  static callSubscribedApps(customFields) {
     // Send the HTTP request to subscribe an app for Webhooks for Pages
     // You can use the Graph API's /{page-id}/subscribed_apps edge to configure
     // and manage your pages subscriptions
     // https://developers.facebook.com/docs/graph-api/reference/page/subscribed_apps
     console.log(`Subscribing app ${config.appId} to page ${config.pageId}`);
+
+    let fields = "messages, messaging_postbacks, messaging_optins, \
+      message_deliveries, messaging_referrals";
+
+    if (customFields !== undefined) {
+      fields = fields + ", " + customFields;
+    }
+
+    console.log(fields);
+
     request(
       {
         uri: `${config.mPlatfom}/${config.pageId}/subscribed_apps`,
         qs: {
           access_token: config.pageAccesToken,
-          subscribed_fields:
-            "messages, messaging_postbacks, messaging_optins, \
-          message_deliveries, messaging_referrals "
+          subscribed_fields: fields
         },
         method: "POST"
       },

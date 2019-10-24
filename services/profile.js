@@ -22,6 +22,11 @@ module.exports = class Profile {
     GraphAPi.callSubscribedApps();
   }
 
+  setPageFeedWebhook() {
+    GraphAPi.callSubscriptionsAPI("feed");
+    GraphAPi.callSubscribedApps("feed");
+  }
+
   setThread() {
     let profilePayload = {
       ...this.getGetStarted(),
