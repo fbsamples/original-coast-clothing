@@ -1,29 +1,234 @@
+
 <% include header %>
 
-<div class="container">
-  <h1>Original Coast Clothing</h1>
-  <img src="/logo.png" />
-  <p class="lead">
-    We’re open 7 days, so start your shopping experience now!
-  </p>
-  <p>
-    This site is part of the Sample Messenger Bot experience of Original Coast
-    Clothing
-  </p>
-  <ul>
-    <li>
-      <a href="https://www.originalcoastclothing.com/"
-        >Original Coast Clothing Website</a
-      >
-    </li>
-    <li>
-      Wan't to build your own?
-      <a
-        href="https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing"
-        >DevDocs</a
-      >
-    </li>
-  </ul>
+<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v6.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+
+      <!-- Your customer chat code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="102761464663369"
+  theme_color="#fa3c4c"
+  logged_in_greeting="We are here for you all the time! We care about you :) "
+  logged_out_greeting="Log in and let's have an exciting conversation! :) ">
+      </div>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Donate</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Contact</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">More <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">More</a>
+        <a href="#" class="w3-bar-item w3-button">More</a>
+        <a href="#" class="w3-bar-item w3-button">More</a>
+      </div>
+    </div>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+  </div>
 </div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://wallpapercave.com/wp/70naapi.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <p><b>We had the best time with you!</b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://wallpapercave.com/wp/70naapi.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <p><b>You are so important to us!</b></p>    
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://wallpapercave.com/wp/70naapi.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <p><b>The world will be better only with you!</b></p>    
+    </div>
+  </div>
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide">About us</h2>
+    <p class="w3-opacity"><i>We care about everyone!</i></p>
+    <p class="w3-justify">You can start changing the world from here. The world will bee better when we build confident and show everyone that they are loved and important!</p>
+    <div class="w3-row w3-padding-32">
+	<h3 class="w3-bold">Our Team</h2>
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
+      </div>
+    </div>
+  </div>
+
+ <!-- The Tour Section -->
+  <div class="w3-red" id="tour">
+    <div class="w3-container w3-red w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Donations</h2>
+      <p class="w3-opacity w3-center"><i>A little donation could help!</i></p><br>
+
+
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+<center>
+          <div class="w3-container w3-white">
+            <p><b>$50</b></p>
+            <p>A little donation could help!</p>
+            <button class="w3-button w3-red w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Donate</button>
+<center>         
+ </div>
+        </div>
+       
+ <div class="w3-third w3-margin-bottom">
+          <div class="w3-container w3-white">
+<center>
+            <p><b>$100</b></p>
+            <p>A little donation could help!</p>
+            <button class="w3-button w3-red w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Donate</button>
+</center>         
+ </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+<center>
+          <div class="w3-container w3-white">
+            <p><b>$200</b></p>
+            <p>A little donation could help!</p>
+            <button class="w3-button w3-red w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Donate</button>
+</center>          
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Modal -->
+  <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container  w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Donations</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart" style="color:red"></i> Donate</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user" style="color:red"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <button class="w3-button w3-block w3-red w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-red">help?</a></p>
+      </div>
+    </div>
+  </div>
+
+ <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px; color:red"></i> New York, US<br>
+        <i class="fa fa-envelope" style="width:30px; color:red"> </i> Email: info@talktomecenter.com.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-red w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Image of location/map -->
+<img src="https://wallpapercave.com/wp/70naapi.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+
+
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
 <% include footer %>

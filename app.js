@@ -44,6 +44,10 @@ app.set("view engine", "ejs");
 app.get("/", function(_req, res) {
   res.render("index");
 });
+// Respond with index file when a GET request is made to the homepage
+app.get("/tt", function(_req, res) {
+  res.render("ttindex");
+});
 
 // Adds support for GET requests to our webhook
 app.get("/webhook", (req, res) => {
@@ -243,6 +247,11 @@ function verifyRequestSignature(req, res, buf) {
 
 // Check if all environment variables are set
 config.checkEnvVariables();
+
+
+
+
+
 
 // listen for requests :)
 var listener = app.listen(config.port, function() {
