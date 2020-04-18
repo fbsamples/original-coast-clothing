@@ -11,9 +11,9 @@
 "use strict";
 
 // Imports dependencies
-const Response = require("./response"),
-  i18n = require("../i18n.config"),
-  config = require("./config");
+const API = require("../api/api"),
+  i18n = require("../i18n/i18n.config"),
+  config = require("../config/config");
 
 module.exports = class Order {
   static handlePayload(payload) {
@@ -21,7 +21,7 @@ module.exports = class Order {
 
     switch (payload) {
       case "TRACK_ORDER":
-        response = Response.genQuickReply(i18n.__("order.prompt"), [
+        response = API.genQuickReply(i18n.__("order.prompt"), [
           {
             title: i18n.__("order.account"),
             payload: "LINK_ORDER"
@@ -38,22 +38,22 @@ module.exports = class Order {
         break;
 
       case "SEARCH_ORDER":
-        response = Response.genText(i18n.__("order.number"));
+        response = API.genText(i18n.__("order.number"));
         break;
 
       case "ORDER_NUMBER":
-        response = Response.genImageTemplate(
-          `${config.appUrl}/order.png`,
+        response = API.genImageTemplate(
+          `${Config.appUrl}/order.png`,
           i18n.__("order.status")
         );
         break;
 
       case "LINK_ORDER":
         response = [
-          Response.genText(i18n.__("order.dialog")),
-          Response.genText(i18n.__("order.searching")),
-          Response.genImageTemplate(
-            `${config.appUrl}/order.png`,
+          API.genText(i18n.__("order.dialog")),
+          API.genText(i18n.__("order.searching")),
+          API.genImageTemplate(
+            `${Config.appUrl}/order.png`,
             i18n.__("order.status")
           )
         ];

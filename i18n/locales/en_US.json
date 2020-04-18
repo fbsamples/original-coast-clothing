@@ -1,26 +1,27 @@
 {
   "profile": {
-    "greeting": "Welcome to Original Coast Clothing {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
+    "greeting": "Welcome to Cologne 🐶"
   },
   "menu": {
     "support": "Customer Support",
     "order": "Order updates",
     "help": "Talk to an agent",
-    "suggestion": "Outfit suggestions",
+    "suggestion": "View products",
     "shop": "Shop now",
-    "start_over": "Start over"
+    "start_over": "Start over",
+    "menu": "Show menu"
   },
   "get_started": {
-    "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
+    "welcome": "Hi {{userFirstName}}! Welcome to Cologne 🐶 where we specialize in deodorants and topicals",
     "guidance": "At any time, use the menu below to navigate through the features",
     "help": "What we can do to help you today?"
   },
   "leadgen": {
-    "promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",
+    "promo": "Hi {{userFirstName}}, check out our mammalian beauty and care products",
     "title": "50% Coupon",
     "subtitle": "Here is your coupon",
     "apply": "Apply discount",
-    "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
+    "coupon": "Added your coupon to this thread, you can now check out items from our store"
   },
   "curation": {
     "prompt": "Are you looking for an outfit for yourself or someone else?",
@@ -68,7 +69,7 @@
     "prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
   },
   "fallback": {
-    "any": "Sorry, but I don’t recognize \"{{message}}\".",
+    "any": "Sorry, I don’t recognize \"{{message}}\".",
     "attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
   }
 }

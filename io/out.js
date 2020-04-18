@@ -11,13 +11,13 @@
 "use strict";
 
 // Imports dependencies
-const Response = require("./response"),
-  config = require("./config"),
-  i18n = require("../i18n.config");
+const API = require("../api/api"),
+  config = require("../config/config"),
+  i18n = require("../i18n/i18n.config");
 
-module.exports = class Curation {
-  constructor(user, webhookEvent) {
-    this.user = user;
+module.exports = class Out {
+  constructor(client, webhookEvent) {
+    this.client = client;
     this.webhookEvent = webhookEvent;
   }
 
@@ -28,39 +28,39 @@ module.exports = class Curation {
     switch (payload) {
       case "SUMMER_COUPON":
         response = [
-          Response.genText(
+          API.genText(
             i18n.__("leadgen.promo", {
-              userFirstName: this.user.firstName
+              userFirstName: this.client.f
             })
           ),
-          Response.genGenericTemplate(
-            `${config.appUrl}/coupon.png`,
+          API.genGenericTemplate(
+            `${Config.appUrl}/coupon.png`,
             i18n.__("leadgen.title"),
             i18n.__("leadgen.subtitle"),
-            [Response.genPostbackButton(i18n.__("leadgen.apply"), "COUPON_50")]
+            [API.genPostbackButton(i18n.__("leadgen.apply"), "COUPON_50")]
           )
         ];
         break;
 
       case "COUPON_50":
-        outfit = `${this.user.gender}-${this.randomOutfit()}`;
+        outfit = `neutral-${this.randomOutfit()}`;
 
         response = [
-          Response.genText(i18n.__("leadgen.coupon")),
-          Response.genGenericTemplate(
-            `${config.appUrl}/styles/${outfit}.jpg`,
+          API.genText(i18n.__("leadgen.coupon")),
+          API.genGenericTemplate(
+            `${Config.appUrl}/styles/${outfit}.jpg`,
             i18n.__("curation.title"),
             i18n.__("curation.subtitle"),
             [
-              Response.genWebUrlButton(
+              API.genWebUrlButton(
                 i18n.__("curation.shop"),
-                `${config.shopUrl}/products/${outfit}`
+                `${Config.shopUrl}/products/${outfit}`
               ),
-              Response.genPostbackButton(
+              API.genPostbackButton(
                 i18n.__("curation.show"),
                 "CURATION_OTHER_STYLE"
               ),
-              Response.genPostbackButton(
+              API.genPostbackButton(
                 i18n.__("curation.sales"),
                 "CARE_SALES"
               )
@@ -70,21 +70,21 @@ module.exports = class Curation {
         break;
 
       case "CURATION":
-        response = Response.genQuickReply(i18n.__("curation.prompt"), [
+        response = API.genQuickReply(i18n.__("curation.prompt"), [
           {
             title: i18n.__("curation.me"),
-            payload: "CURATION_FOR_ME"
+            payload: "CURATION_DEODORANTS"
           },
           {
             title: i18n.__("curation.someone"),
-            payload: "CURATION_SOMEONE_ELSE"
+            payload: "CURATION_BIOCOSMETICALS"
           }
         ]);
         break;
 
-      case "CURATION_FOR_ME":
-      case "CURATION_SOMEONE_ELSE":
-        response = Response.genQuickReply(i18n.__("curation.occasion"), [
+      case "CURATION_DEODORANTS":
+      case "CURATION_BIOCOSMETICALS":
+        response = API.genQuickReply(i18n.__("curation.occasion"), [
           {
             title: i18n.__("curation.work"),
             payload: "CURATION_OCASION_WORK"
@@ -106,7 +106,7 @@ module.exports = class Curation {
 
       case "CURATION_OCASION_WORK":
         // Store the user budget preference here
-        response = Response.genQuickReply(i18n.__("curation.price"), [
+        response = API.genQuickReply(i18n.__("curation.price"), [
           {
             title: "~ $20",
             payload: "CURATION_BUDGET_20_WORK"
@@ -124,7 +124,7 @@ module.exports = class Curation {
 
       case "CURATION_OCASION_DINNER":
         // Store the user budget preference here
-        response = Response.genQuickReply(i18n.__("curation.price"), [
+        response = API.genQuickReply(i18n.__("curation.price"), [
           {
             title: "~ $20",
             payload: "CURATION_BUDGET_20_DINNER"
@@ -142,7 +142,7 @@ module.exports = class Curation {
 
       case "CURATION_OCASION_PARTY":
         // Store the user budget preference here
-        response = Response.genQuickReply(i18n.__("curation.price"), [
+        response = API.genQuickReply(i18n.__("curation.price"), [
           {
             title: "~ $20",
             payload: "CURATION_BUDGET_20_PARTY"
@@ -172,18 +172,18 @@ module.exports = class Curation {
 
       case "CURATION_OTHER_STYLE":
         // Build the recommendation logic here
-        outfit = `${this.user.gender}-${this.randomOutfit()}`;
+        outfit = `neutral-${this.randomOutfit()}`;
 
-        response = Response.genGenericTemplate(
-          `${config.appUrl}/styles/${outfit}.jpg`,
+        response = API.genGenericTemplate(
+          `${Config.appUrl}/styles/${outfit}.jpg`,
           i18n.__("curation.title"),
           i18n.__("curation.subtitle"),
           [
-            Response.genWebUrlButton(
+            API.genWebUrlButton(
               i18n.__("curation.shop"),
-              `${config.shopUrl}/products/${outfit}`
+              `${Config.shopUrl}/products/${outfit}`
             ),
-            Response.genPostbackButton(
+            API.genPostbackButton(
               i18n.__("curation.show"),
               "CURATION_OTHER_STYLE"
             )
@@ -198,14 +198,14 @@ module.exports = class Curation {
   genCurationResponse(payload) {
     let occasion = payload.split("_")[3].toLowerCase();
     let budget = payload.split("_")[2].toLowerCase();
-    let outfit = `${this.user.gender}-${occasion}`;
+    let outfit = `neutral-${occasion}`;
 
     let buttons = [
-      Response.genWebUrlButton(
+      API.genWebUrlButton(
         i18n.__("curation.shop"),
-        `${config.shopUrl}/products/${outfit}`
+        `${Config.shopUrl}/products/${outfit}`
       ),
-      Response.genPostbackButton(
+      API.genPostbackButton(
         i18n.__("curation.show"),
         "CURATION_OTHER_STYLE"
       )
@@ -213,12 +213,12 @@ module.exports = class Curation {
 
     if (budget === "50") {
       buttons.push(
-        Response.genPostbackButton(i18n.__("curation.sales"), "CARE_SALES")
+        API.genPostbackButton(i18n.__("curation.sales"), "CARE_SALES")
       );
     }
 
-    let response = Response.genGenericTemplate(
-      `${config.appUrl}/styles/${outfit}.jpg`,
+    let response = API.genGenericTemplate(
+      `${Config.appUrl}/styles/${outfit}.jpg`,
       i18n.__("curation.title"),
       i18n.__("curation.subtitle"),
       buttons

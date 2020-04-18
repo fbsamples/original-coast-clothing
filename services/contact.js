@@ -11,14 +11,14 @@
 "use strict";
 
 // Imports dependencies
-const Response = require("./response"),
-  Survey = require("./survey"),
-  config = require("./config"),
-  i18n = require("../i18n.config");
+const API = require("../api/api"),
+  Survey = require("../survey/survey"),
+  Config = require("../config/config"),
+  i18n = require("../i18n/i18n.config");
 
-module.exports = class Care {
-  constructor(user, webhookEvent) {
-    this.user = user;
+module.exports = class Contact {
+  constructor(client, webhookEvent) {
+    this.client = client;
     this.webhookEvent = webhookEvent;
   }
 
@@ -26,10 +26,11 @@ module.exports = class Care {
     let response;
 
     switch (payload) {
+      
       case "CARE_HELP":
-        response = Response.genQuickReply(
+        response = API.genQuickReply(
           i18n.__("care.prompt", {
-            userFirstName: this.user.firstName
+            userFirstName: this.client.f
           }),
           [
             {
@@ -47,81 +48,78 @@ module.exports = class Care {
           ]
         );
         break;
+      
       case "CARE_ORDER":
         // Send using the Persona for order issues
-
         response = [
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.issue", {
-              userFirstName: this.user.firstName,
-              agentFirstName: config.personaOrder.name,
+              userFirstName: this.client.f,
+              agentFirstName: Config.personaOrder.name,
               topic: i18n.__("care.order")
             }),
-            config.personaOrder.id
+            Config.personaOrder.id
           ),
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaOrder.id
+            Config.personaOrder.id
           ),
-          Survey.genAgentRating(config.personaOrder.name)
+          Survey.genAgentRating(Config.personaOrder.name)
         ];
         break;
 
       case "CARE_BILLING":
         // Send using the Persona for billing issues
-
         response = [
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.issue", {
-              userFirstName: this.user.firstName,
-              agentFirstName: config.personaBilling.name,
+              userFirstName: this.client.f,
+              agentFirstName: Config.personaBilling.name,
               topic: i18n.__("care.billing")
             }),
-            config.personaBilling.id
+            Config.personaBilling.id
           ),
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaBilling.id
+            Config.personaBilling.id
           ),
-          Survey.genAgentRating(config.personaBilling.name)
+          Survey.genAgentRating(Config.personaBilling.name)
         ];
         break;
 
       case "CARE_SALES":
         // Send using the Persona for sales questions
-
         response = [
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.style", {
-              userFirstName: this.user.firstName,
-              agentFirstName: config.personaSales.name
+              userFirstName: this.client.f,
+              agentFirstName: Config.personaSales.name
             }),
-            config.personaSales.id
+            Config.personaSales.id
           ),
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaSales.id
+            Config.personaSales.id
           ),
-          Survey.genAgentRating(config.personaSales.name)
+          Survey.genAgentRating(Config.personaSales.name)
         ];
         break;
 
       case "CARE_OTHER":
         // Send using the Persona for customer care issues
-
         response = [
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.default", {
-              userFirstName: this.user.firstName,
-              agentFirstName: config.personaCare.name
+              userFirstName: this.client.f,
+              agentFirstName: Config.personaCare.name
             }),
-            config.personaCare.id
+            Config.personaCare.id
           ),
-          Response.genTextWithPersona(
+          API.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaCare.id
+            Config.personaCare.id
           ),
-          Survey.genAgentRating(config.personaCare.name)
+          Survey.genAgentRating(Config.personaCare.name)
         ];
         break;
     }

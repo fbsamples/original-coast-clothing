@@ -10,42 +10,38 @@
 
 "use strict";
 
-const Curation = require("./curation"),
-  Order = require("./order"),
-  Response = require("./response"),
-  Care = require("./care"),
-  Survey = require("./survey"),
-  GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config");
+const Out = require("./out"),
+  Order = require("../services/order"),
+  API = require("../api/api"),
+  Menu = require("../services/menu"),
+  Survey = require("../survey/survey"),
+  GraphAPi = require("../api/core/graph-api"),
+  i18n = require("../i18n/i18n.config");
 
-module.exports = class Receive {
-  constructor(user, webhookEvent) {
-    this.user = user;
+module.exports = class In {
+  constructor(client, webhookEvent) {
+    this.client = client;
     this.webhookEvent = webhookEvent;
   }
 
-  // Check if the event is a message or postback and
-  // call the appropriate handler function
-  handleMessage() {
+  triageMessage() {
     let event = this.webhookEvent;
-
-    let responses;
+    let message = event.message;
+    let responses = null;
 
     try {
       if (event.message) {
-        let message = event.message;
-
         if (message.quick_reply) {
-          responses = this.handleQuickReply();
+          responses = this.QuickReply();
         } else if (message.attachments) {
-          responses = this.handleAttachmentMessage();
+          // responses = this.GetAttachment();
         } else if (message.text) {
-          responses = this.handleTextMessage();
+          responses = this.MessageIn();
         }
       } else if (event.postback) {
-        responses = this.handlePostback();
+        responses = this.Postback();
       } else if (event.referral) {
-        responses = this.handleReferral();
+        responses = this.Referral();
       }
     } catch (error) {
       console.error(error);
@@ -67,44 +63,38 @@ module.exports = class Receive {
   }
 
   // Handles messages events with text
-  handleTextMessage() {
+  MessageIn() {
     console.log(
       "Received text:",
-      `${this.webhookEvent.message.text} for ${this.user.psid}`
+      `${this.webhookEvent.message.text} for ${this.client.psid}`
     );
 
-    let event = this.webhookEvent;
-
-    // format message, sent back to operator if no match
-    let message = event.message.text.trim().toLowerCase();
-
-    // check greeting is here and is confident
+    let event = this.webhookEvent
     let greeting = this.firstEntity(event.message.nlp, "greetings");
-
-    let response;
-
+    let message = event.message.text.trim().toLowerCase();
+    let response = null;
     if (
       (greeting && greeting.confidence > 0.8) ||
       message.includes("start over")
     ) {
-      response = Response.genNuxMessage(this.user);
+      response = API.genNuxMessage(this.client);
     } else if (Number(message)) {
       response = Order.handlePayload("ORDER_NUMBER");
     } else if (message.includes("#")) {
       response = Survey.handlePayload("CSAT_SUGGESTION");
     } else if (message.includes(i18n.__("care.help").toLowerCase())) {
-      let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload("CARE_HELP");
+      let menu = new Menu(this.client, event);
+      response = menu.handlePayload("CARE_HELP");
     } else {
-      // default response with original input, shows menu options
+      // default handler
       response = [
-        Response.genText(
+        API.genText(
           i18n.__("fallback.any", {
-            message: event.message.text
+            message: message
           })
         ),
-        Response.genText(i18n.__("get_started.guidance")),
-        Response.genQuickReply(i18n.__("get_started.help"), [
+        API.genText(i18n.__("get_started.guidance")),
+        API.genQuickReply(i18n.__("get_started.help"), [
           {
             title: i18n.__("menu.suggestion"),
             payload: "CURATION"
@@ -121,14 +111,14 @@ module.exports = class Receive {
   }
 
   // Handles mesage events with attachments
-  handleAttachmentMessage() {
+  GetAttachment() {
     let response;
 
     // Get the attachment
     let attachment = this.webhookEvent.message.attachments[0];
-    console.log("Received attachment:", `${attachment} for ${this.user.psid}`);
+    console.log("Received attachment:", `${attachment} for ${this.client.psid}`);
 
-    response = Response.genQuickReply(i18n.__("fallback.attachment"), [
+    response = API.genQuickReply(i18n.__("fallback.attachment"), [
       {
         title: i18n.__("menu.help"),
         payload: "CARE_HELP"
@@ -143,15 +133,14 @@ module.exports = class Receive {
   }
 
   // Handles mesage events with quick replies
-  handleQuickReply() {
+  QuickReply() {
     // Get the payload of the quick reply
     let payload = this.webhookEvent.message.quick_reply.payload;
-
     return this.handlePayload(payload);
   }
 
   // Handles postbacks events
-  handlePostback() {
+  Postback() {
     let postback = this.webhookEvent.postback;
     // Check for the special Get Starded with referral
     let payload;
@@ -165,7 +154,7 @@ module.exports = class Receive {
   }
 
   // Handles referral events
-  handleReferral() {
+  Referral() {
     // Get the payload of the postback
     let payload = this.webhookEvent.referral.ref.toUpperCase();
 
@@ -173,12 +162,12 @@ module.exports = class Receive {
   }
 
   handlePayload(payload) {
-    console.log("Received Payload:", `${payload} for ${this.user.psid}`);
+    console.log("Received Payload:", `${payload} for ${this.client.psid}`);
 
     // Log CTA event in FBA
-    GraphAPi.callFBAEventsAPI(this.user.psid, payload);
+    GraphAPi.callFBAEventsAPI(this.client.psid, payload);
 
-    let response;
+    let response = null;
 
     // Set the response based on the payload
     if (
@@ -186,22 +175,22 @@ module.exports = class Receive {
       payload === "DEVDOCS" ||
       payload === "GITHUB"
     ) {
-      response = Response.genNuxMessage(this.user);
+      response = API.genNuxMessage(this.client);
     } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
-      let curation = new Curation(this.user, this.webhookEvent);
-      response = curation.handlePayload(payload);
+      let out = new Out(this.client, this.webhookEvent);
+      response = out.handlePayload(payload);
     } else if (payload.includes("CARE")) {
-      let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload(payload);
+      let menu = new Menu(this.client, this.webhookEvent);
+      response = menu.handlePayload(payload);
     } else if (payload.includes("ORDER")) {
       response = Order.handlePayload(payload);
     } else if (payload.includes("CSAT")) {
       response = Survey.handlePayload(payload);
     } else if (payload.includes("CHAT-PLUGIN")) {
       response = [
-        Response.genText(i18n.__("chat_plugin.prompt")),
-        Response.genText(i18n.__("get_started.guidance")),
-        Response.genQuickReply(i18n.__("get_started.help"), [
+        API.genText(i18n.__("chat_plugin.prompt")),
+        API.genText(i18n.__("get_started.guidance")),
+        API.genQuickReply(i18n.__("get_started.help"), [
           {
             title: i18n.__("care.order"),
             payload: "CARE_ORDER"
@@ -230,7 +219,7 @@ module.exports = class Receive {
       i18n.__("get_started.guidance") + ". " +
       i18n.__("get_started.help");
 
-    let response = Response.genQuickReply(welcomeMessage, [
+    let response = API.genQuickReply(welcomeMessage, [
       {
         title: i18n.__("menu.suggestion"),
         payload: "CURATION"
@@ -261,7 +250,7 @@ module.exports = class Receive {
     // Construct the message body
     let requestBody = {
       recipient: {
-        id: this.user.psid
+        id: this.client.psid
       },
       message: response
     };
@@ -273,7 +262,7 @@ module.exports = class Receive {
 
       requestBody = {
         recipient: {
-          id: this.user.psid
+          id: this.client.psid
         },
         message: response,
         persona_id: persona_id

@@ -15,11 +15,12 @@ const express = require("express"),
   { urlencoded, json } = require("body-parser"),
   crypto = require("crypto"),
   path = require("path"),
-  Receive = require("./services/receive"),
-  GraphAPi = require("./services/graph-api"),
-  User = require("./services/user"),
-  config = require("./services/config"),
-  i18n = require("./i18n.config"),
+  In = require("./io/in"),
+  Core = require("./api/core/graph-api"),
+  Client = require("./api/client"),
+  Profile = require("./api/profile"),
+  Config = require("./config/config"),
+  i18n = require("./i18n/i18n.config"),
   app = express();
 
 var users = {};
@@ -55,7 +56,7 @@ app.get("/webhook", (req, res) => {
   // Checks if a token and mode is in the query string of the request
   if (mode && token) {
     // Checks the mode and token sent is correct
-    if (mode === "subscribe" && token === config.verifyToken) {
+    if (mode === "subscribe" && token === Config.verifyToken) {
       // Responds with the challenge token from the request
       console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
@@ -123,7 +124,7 @@ app.post("/webhook", (req, res) => {
       if (!(senderPsid in users)) {
         let user = new User(senderPsid);
 
-        GraphAPi.getUserProfile(senderPsid)
+        Core.getUserProfile(senderPsid)
           .then(userProfile => {
             user.setProfile(userProfile);
           })
@@ -141,7 +142,7 @@ app.post("/webhook", (req, res) => {
               i18n.getLocale()
             );
             let receiveMessage = new Receive(users[senderPsid], webhookEvent);
-            return receiveMessage.handleMessage();
+            return receiveMessage.triageMessage();
           });
       } else {
         i18n.setLocale(users[senderPsid].locale);
@@ -152,7 +153,7 @@ app.post("/webhook", (req, res) => {
           i18n.getLocale()
         );
         let receiveMessage = new Receive(users[senderPsid], webhookEvent);
-        return receiveMessage.handleMessage();
+        return receiveMessage.triageMessage();
       }
     });
   } else {
@@ -166,7 +167,7 @@ app.get("/profile", (req, res) => {
   let token = req.query["verify_token"];
   let mode = req.query["mode"];
 
-  if (!config.webhookUrl.startsWith("https://")) {
+  if (!Config.webhookUrl.startsWith("https://")) {
     res.status(200).send("ERROR - Need a proper API_URL in the .env file");
   }
   var Profile = require("./services/profile.js");
@@ -174,38 +175,38 @@ app.get("/profile", (req, res) => {
 
   // Checks if a token and mode is in the query string of the request
   if (mode && token) {
-    if (token === config.verifyToken) {
+    if (token === Config.verifyToken) {
       if (mode == "webhook" || mode == "all") {
         Profile.setWebhook();
         res.write(
-          `<p>Set app ${config.appId} call to ${config.webhookUrl}</p>`
+          `<p>Set app ${Config.appId} call to ${Config.webhookUrl}</p>`
         );
       }
       if (mode == "profile" || mode == "all") {
         Profile.setThread();
-        res.write(`<p>Set Messenger Profile of Page ${config.pageId}</p>`);
+        res.write(`<p>Set Messenger Profile of Page ${Config.pageId}</p>`);
       }
       if (mode == "personas" || mode == "all") {
         Profile.setPersonas();
-        res.write(`<p>Set Personas for ${config.appId}</p>`);
+        res.write(`<p>Set Personas for ${Config.appId}</p>`);
         res.write(
           "<p>To persist the personas, add the following variables \
           to your environment variables:</p>"
         );
         res.write("<ul>");
-        res.write(`<li>PERSONA_BILLING = ${config.personaBilling.id}</li>`);
-        res.write(`<li>PERSONA_CARE = ${config.personaCare.id}</li>`);
-        res.write(`<li>PERSONA_ORDER = ${config.personaOrder.id}</li>`);
-        res.write(`<li>PERSONA_SALES = ${config.personaSales.id}</li>`);
+        res.write(`<li>PERSONA_BILLING = ${Config.personaBilling.id}</li>`);
+        res.write(`<li>PERSONA_CARE = ${Config.personaCare.id}</li>`);
+        res.write(`<li>PERSONA_ORDER = ${Config.personaOrder.id}</li>`);
+        res.write(`<li>PERSONA_SALES = ${Config.personaSales.id}</li>`);
         res.write("</ul>");
       }
       if (mode == "nlp" || mode == "all") {
-        GraphAPi.callNLPConfigsAPI();
-        res.write(`<p>Enable Built-in NLP for Page ${config.pageId}</p>`);
+        Core.callNLPConfigsAPI();
+        res.write(`<p>Enable Built-in NLP for Page ${Config.pageId}</p>`);
       }
       if (mode == "domains" || mode == "all") {
         Profile.setWhitelistedDomains();
-        res.write(`<p>Whitelisting domains: ${config.whitelistedDomains}</p>`);
+        res.write(`<p>Whitelisting domains: ${Config.whitelistedDomains}</p>`);
       }
       if (mode == "private-reply") {
         Profile.setPageFeedWebhook();
@@ -232,7 +233,7 @@ function verifyRequestSignature(req, res, buf) {
     var elements = signature.split("=");
     var signatureHash = elements[1];
     var expectedHash = crypto
-      .createHmac("sha1", config.appSecret)
+      .createHmac("sha1", Config.appSecret)
       .update(buf)
       .digest("hex");
     if (signatureHash != expectedHash) {
@@ -242,29 +243,29 @@ function verifyRequestSignature(req, res, buf) {
 }
 
 // Check if all environment variables are set
-config.checkEnvVariables();
+Config.checkEnvVariables();
 
 // listen for requests :)
-var listener = app.listen(config.port, function() {
+var listener = app.listen(Config.port, function() {
   console.log("Your app is listening on port " + listener.address().port);
 
   if (
-    Object.keys(config.personas).length == 0 &&
-    config.appUrl &&
-    config.verifyToken
+    Object.keys(Config.personas).length == 0 &&
+    Config.appUrl &&
+    Config.verifyToken
   ) {
     console.log(
       "Is this the first time running?\n" +
-        "Make sure to set the both the Messenger profile, persona " +
-        "and webhook by visiting:\n" +
-        config.appUrl +
-        "/profile?mode=all&verify_token=" +
-        config.verifyToken
+      "Make sure to set the both the Messenger profile, persona " +
+      "and webhook by visiting:\n" +
+      Config.appUrl +
+      "/profile?mode=all&verify_token=" +
+      Config.verifyToken
     );
   }
 
-  if (config.pageId) {
+  if (Config.pageId) {
     console.log("Test your app by messaging:");
-    console.log("https://m.me/" + config.pageId);
+    console.log("https://m.me/" + Config.pageId);
   }
 });

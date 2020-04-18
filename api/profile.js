@@ -11,9 +11,9 @@
 "use strict";
 
 // Imports dependencies
-const GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config"),
-  config = require("./config"),
+const GraphAPi = require("./core/graph-api"),
+  i18n = require("../i18n/i18n.config"),
+  config = require("../config/config"),
   locales = i18n.getLocales();
 
 module.exports = class Profile {
@@ -38,29 +38,29 @@ module.exports = class Profile {
   }
 
   setPersonas() {
-    let newPersonas = config.newPersonas;
+    let newPersonas = Config.newPersonas;
 
     GraphAPi.getPersonaAPI()
       .then(personas => {
         for (let persona of personas) {
-          config.pushPersona({
+          Config.pushPersona({
             name: persona.name,
             id: persona.id
           });
         }
-        console.log(config.personas);
-        return config.personas;
+        console.log(Config.personas);
+        return Config.personas;
       })
       .then(existingPersonas => {
         for (let persona of newPersonas) {
           if (!(persona.name in existingPersonas)) {
             GraphAPi.postPersonaAPI(persona.name, persona.picture)
               .then(personaId => {
-                config.pushPersona({
+                Config.pushPersona({
                   name: persona.name,
                   id: personaId
                 });
-                console.log(config.personas);
+                console.log(Config.personas);
               })
               .catch(error => {
                 console.log("Creation failed:", error);
@@ -176,7 +176,7 @@ module.exports = class Profile {
         {
           type: "web_url",
           title: i18n.__("menu.shop"),
-          url: config.shopUrl,
+          url: Config.shopUrl,
           webview_height_ratio: "full"
         }
       ]
@@ -188,7 +188,7 @@ module.exports = class Profile {
 
   getWhitelistedDomains() {
     let whitelistedDomains = {
-      whitelisted_domains: config.whitelistedDomains
+      whitelisted_domains: Config.whitelistedDomains
     };
 
     console.log(whitelistedDomains);

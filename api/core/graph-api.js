@@ -13,16 +13,16 @@
 // Imports dependencies
 const request = require("request"),
   camelCase = require("camelcase"),
-  config = require("./config");
+  config = require("../../config/config");
 
 module.exports = class GraphAPi {
   static callSendAPI(requestBody) {
     // Send the HTTP request to the Messenger Platform
     request(
       {
-        uri: `${config.mPlatfom}/me/messages`,
+        uri: `${Config.mPlatfom}/me/messages`,
         qs: {
-          access_token: config.pageAccesToken
+          access_token: Config.pageAccesToken
         },
         method: "POST",
         json: requestBody
@@ -38,12 +38,12 @@ module.exports = class GraphAPi {
   static callMessengerProfileAPI(requestBody) {
     // Send the HTTP request to the Messenger Profile API
 
-    console.log(`Setting Messenger Profile for app ${config.appId}`);
+    console.log(`Setting Messenger Profile for app ${Config.appId}`);
     request(
       {
-        uri: `${config.mPlatfom}/me/messenger_profile`,
+        uri: `${Config.mPlatfom}/me/messenger_profile`,
         qs: {
-          access_token: config.pageAccesToken
+          access_token: Config.pageAccesToken
         },
         method: "POST",
         json: requestBody
@@ -64,7 +64,7 @@ module.exports = class GraphAPi {
     // manage your app's Webhooks product
     // https://developers.facebook.com/docs/graph-api/webhooks/subscriptions-edge
     console.log(
-      `Setting app ${config.appId} callback url to ${config.webhookUrl}`
+      `Setting app ${Config.appId} callback url to ${Config.webhookUrl}`
     );
 
     let fields = "messages, messaging_postbacks, messaging_optins, \
@@ -78,12 +78,12 @@ module.exports = class GraphAPi {
 
     request(
       {
-        uri: `${config.mPlatfom}/${config.appId}/subscriptions`,
+        uri: `${Config.mPlatfom}/${Config.appId}/subscriptions`,
         qs: {
-          access_token: config.appId + "|" + config.appSecret,
+          access_token: Config.appId + "|" + Config.appSecret,
           object: "page",
-          callback_url: config.webhookUrl,
-          verify_token: config.verifyToken,
+          callback_url: Config.webhookUrl,
+          verify_token: Config.verifyToken,
           fields: fields,
           include_values: "true"
         },
@@ -104,7 +104,7 @@ module.exports = class GraphAPi {
     // You can use the Graph API's /{page-id}/subscribed_apps edge to configure
     // and manage your pages subscriptions
     // https://developers.facebook.com/docs/graph-api/reference/page/subscribed_apps
-    console.log(`Subscribing app ${config.appId} to page ${config.pageId}`);
+    console.log(`Subscribing app ${Config.appId} to page ${Config.pageId}`);
 
     let fields = "messages, messaging_postbacks, messaging_optins, \
       message_deliveries, messaging_referrals";
@@ -117,9 +117,9 @@ module.exports = class GraphAPi {
 
     request(
       {
-        uri: `${config.mPlatfom}/${config.pageId}/subscribed_apps`,
+        uri: `${Config.mPlatfom}/${Config.pageId}/subscribed_apps`,
         qs: {
-          access_token: config.pageAccesToken,
+          access_token: Config.pageAccesToken,
           subscribed_fields: fields
         },
         method: "POST"
@@ -155,9 +155,9 @@ module.exports = class GraphAPi {
 
       // Send the HTTP request to the Graph API
       request({
-        uri: `${config.mPlatfom}/${senderPsid}`,
+        uri: `${Config.mPlatfom}/${senderPsid}`,
         qs: {
-          access_token: config.pageAccesToken,
+          access_token: Config.pageAccesToken,
           fields: "first_name, last_name, gender, locale, timezone"
         },
         method: "GET"
@@ -190,12 +190,12 @@ module.exports = class GraphAPi {
       let body = [];
 
       // Send the POST request to the Personas API
-      console.log(`Fetching personas for app ${config.appId}`);
+      console.log(`Fetching personas for app ${Config.appId}`);
 
       request({
-        uri: `${config.mPlatfom}/me/personas`,
+        uri: `${Config.mPlatfom}/me/personas`,
         qs: {
-          access_token: config.pageAccesToken
+          access_token: Config.pageAccesToken
         },
         method: "GET"
       })
@@ -227,7 +227,7 @@ module.exports = class GraphAPi {
 
     return new Promise(function(resolve, reject) {
       // Send the POST request to the Personas API
-      console.log(`Creating a Persona for app ${config.appId}`);
+      console.log(`Creating a Persona for app ${Config.appId}`);
 
       let requestBody = {
         name: name,
@@ -235,9 +235,9 @@ module.exports = class GraphAPi {
       };
 
       request({
-        uri: `${config.mPlatfom}/me/personas`,
+        uri: `${Config.mPlatfom}/me/personas`,
         qs: {
-          access_token: config.pageAccesToken
+          access_token: Config.pageAccesToken
         },
         method: "POST",
         json: requestBody
@@ -270,12 +270,12 @@ module.exports = class GraphAPi {
     // Send the HTTP request to the Built-in NLP Configs API
     // https://developers.facebook.com/docs/graph-api/reference/page/nlp_configs/
 
-    console.log(`Enable Built-in NLP for Page ${config.pageId}`);
+    console.log(`Enable Built-in NLP for Page ${Config.pageId}`);
     request(
       {
-        uri: `${config.mPlatfom}/me/nlp_configs`,
+        uri: `${Config.mPlatfom}/me/nlp_configs`,
         qs: {
-          access_token: config.pageAccesToken,
+          access_token: Config.pageAccesToken,
           nlp_enabled: true
         },
         method: "POST"
@@ -304,14 +304,14 @@ module.exports = class GraphAPi {
       advertiser_tracking_enabled: 1,
       application_tracking_enabled: 1,
       extinfo: JSON.stringify(["mb1"]),
-      page_id: config.pageId,
+      page_id: Config.pageId,
       page_scoped_user_id: senderPsid
     };
 
     // Send the HTTP request to the Activities API
     request(
       {
-        uri: `${config.mPlatfom}/${config.appId}/activities`,
+        uri: `${Config.mPlatfom}/${Config.appId}/activities`,
         method: "POST",
         form: requestBody
       },

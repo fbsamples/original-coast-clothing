@@ -11,12 +11,12 @@
 "use strict";
 
 // Imports dependencies
-const Response = require("./response"),
-  i18n = require("../i18n.config");
+const API = require("../api/api"),
+  i18n = require("../i18n/i18n.config");
 
 module.exports = class Survey {
   static genAgentRating(agent) {
-    let response = Response.genQuickReply(
+    let response = API.genQuickReply(
       i18n.__("survey.prompt", {
         agentFirstName: agent
       }),
@@ -43,19 +43,18 @@ module.exports = class Survey {
   }
 
   static handlePayload(payload) {
-    let response;
-
+    let response = null;
     switch (payload) {
       case "CSAT_GOOD":
-        response = Response.genText(i18n.__("survey.positive"));
+        response = API.genText(i18n.__("survey.positive"));
         break;
 
       case "CSAT_AVERAGE":
-        response = Response.genText(i18n.__("survey.neutral"));
+        response = API.genText(i18n.__("survey.neutral"));
         break;
 
       case "CSAT_BAD":
-        response = Response.genQuickReply(i18n.__("survey.negative"), [
+        response = API.genQuickReply(i18n.__("survey.negative"), [
           {
             title: i18n.__("menu.help"),
             payload: "CARE_HELP"
@@ -64,7 +63,7 @@ module.exports = class Survey {
         break;
 
       case "CSAT_SUGGESTION":
-        response = Response.genText(i18n.__("survey.suggestion"));
+        response = API.genText(i18n.__("survey.suggestion"));
         break;
     }
 

@@ -10,9 +10,21 @@
 
 "use strict";
 
-const i18n = require("../i18n.config");
+const i18n = require("../i18n/i18n.config");
 
-module.exports = class Response {
+module.exports = class API {
+  /*
+  text:
+    { 
+      text: 'What we can do to help you today?', quick_replies: [] 
+    }, 
+
+  quickReplies:
+    [
+      { title: 'Outfit suggestions', payload: 'CURATION' },
+      { title: 'Talk to an agent', payload: 'CARE_HELP' }
+    ]
+  */
   static genQuickReply(text, quickReplies) {
     let response = {
       text: text,
@@ -86,11 +98,11 @@ module.exports = class Response {
     return response;
   }
 
+  // text response from input request
   static genText(text) {
     let response = {
       text: text
     };
-
     return response;
   }
 
@@ -132,7 +144,6 @@ module.exports = class Response {
     );
 
     let guide = this.genText(i18n.__("get_started.guidance"));
-
     let curation = this.genQuickReply(i18n.__("get_started.help"), [
       {
         title: i18n.__("menu.suggestion"),
