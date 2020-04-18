@@ -73,10 +73,13 @@ module.exports = class Receive {
       `${this.webhookEvent.message.text} for ${this.user.psid}`
     );
 
-    // check greeting is here and is confident
-    let greeting = this.firstEntity(this.webhookEvent.message.nlp, "greetings");
+    let event = this.webhookEvent;
 
-    let message = this.webhookEvent.message.text.trim().toLowerCase();
+    // format message, sent back to operator if no match
+    let message = event.message.text.trim().toLowerCase();
+
+    // check greeting is here and is confident
+    let greeting = this.firstEntity(event.message.nlp, "greetings");
 
     let response;
 
@@ -93,10 +96,11 @@ module.exports = class Receive {
       let care = new Care(this.user, this.webhookEvent);
       response = care.handlePayload("CARE_HELP");
     } else {
+      // default response with original input, shows menu options
       response = [
         Response.genText(
           i18n.__("fallback.any", {
-            message: this.webhookEvent.message.text
+            message: event.message.text
           })
         ),
         Response.genText(i18n.__("get_started.guidance")),
