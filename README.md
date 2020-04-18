@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Cologne-Dog/messenger-commerce-bot.svg?branch=master)](https://travis-ci.com/Cologne-Dog/messenger-commerce-bot)
+
 # Cologne.Dog Messenger Commerce Bot
 
 

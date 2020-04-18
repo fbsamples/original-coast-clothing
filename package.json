@@ -1,7 +1,7 @@
 {
-  "name": "original-coast-clothing",
+  "name": "messenger-commerce-bot",
   "version": "1.0.0",
-  "description": "A sample app to show how to build a great Messenger experience!",
+  "description": "Facebook Messenger bot for NLP and e-commerce. https://m.me/colognedog",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -21,13 +21,15 @@
     "node": "^8.10.0 || ^10.13.0 || >=11.10.1"
   },
   "repository": {
-    "url": "https://github.com/fbsamples/original-coast-clothing"
+    "url": "https://github.com/Cologne-Dog/original-coast-clothing.git"
   },
-  "author": "Facebook",
+  "author": "Cologne.Dog",
   "license": "ISC",
   "keywords": [
     "messenger",
-    "webhook"
+    "webhook",
+    "api",
+    "colognedog"
   ],
   "devDependencies": {
     "eslint": "^6.2.2",
