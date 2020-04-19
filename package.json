@@ -2,9 +2,9 @@
   "name": "messenger-commerce-bot",
   "version": "1.0.0",
   "description": "Facebook Messenger bot for NLP and e-commerce. https://m.me/colognedog",
-  "main": "app.js",
+  "main": "bin/app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node bin/app.js",
     "test": "echo 'test'&&exit 0;"
   },
   "dependencies": {
