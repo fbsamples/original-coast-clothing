@@ -13,13 +13,13 @@ Create your environment with a `.env` file formatted as below:
 # store your secrets and config variables in here
 # only invited collaborators will be able to see your .env values
 
-# Page and Application information
-PAGE_ID=
+# Your App secret can be found in App Dashboard -> Settings -> Basic
 APP_ID=
-PAGE_ACCESS_TOKEN=
-
-# Your App secret can be found in App Dashboard -> Seetings -> Basic
 APP_SECRET=
+
+# Page id & token info in App Dashboard -> Messenger -> Settings
+PAGE_ID=
+PAGE_ACCESS_TOKEN=
 
 # Random string for webhook verification
 # ex: COLOGNEDOG

@@ -122,26 +122,26 @@ app.post("/webhook", (req, res) => {
       let senderPsid = webhookEvent.sender.id;
 
       if (!(senderPsid in users)) {
-        let user = new User(senderPsid);
+        let client = new Client(senderPsid);
 
         Core.getUserProfile(senderPsid)
           .then(userProfile => {
-            user.setProfile(userProfile);
+            client.setProfile(userProfile);
           })
           .catch(error => {
             // The profile is unavailable
             console.log("Profile is unavailable:", error);
           })
           .finally(() => {
-            users[senderPsid] = user;
-            i18n.setLocale(user.locale);
+            users[senderPsid] = client;
+            i18n.setLocale(client.ll);
             console.log(
               "New Profile PSID:",
               senderPsid,
               "with locale:",
               i18n.getLocale()
             );
-            let receiveMessage = new Receive(users[senderPsid], webhookEvent);
+            let receiveMessage = new In(users[senderPsid], webhookEvent);
             return receiveMessage.triageMessage();
           });
       } else {
@@ -152,7 +152,7 @@ app.post("/webhook", (req, res) => {
           "with locale:",
           i18n.getLocale()
         );
-        let receiveMessage = new Receive(users[senderPsid], webhookEvent);
+        let receiveMessage = new In(users[senderPsid], webhookEvent);
         return receiveMessage.triageMessage();
       }
     });
@@ -170,24 +170,23 @@ app.get("/profile", (req, res) => {
   if (!Config.webhookUrl.startsWith("https://")) {
     res.status(200).send("ERROR - Need a proper API_URL in the .env file");
   }
-  var Profile = require("./services/profile.js");
-  Profile = new Profile();
+  let profile = new Profile();
 
   // Checks if a token and mode is in the query string of the request
   if (mode && token) {
     if (token === Config.verifyToken) {
       if (mode == "webhook" || mode == "all") {
-        Profile.setWebhook();
+        profile.setWebhook();
         res.write(
           `<p>Set app ${Config.appId} call to ${Config.webhookUrl}</p>`
         );
       }
       if (mode == "profile" || mode == "all") {
-        Profile.setThread();
+        profile.setThread();
         res.write(`<p>Set Messenger Profile of Page ${Config.pageId}</p>`);
       }
       if (mode == "personas" || mode == "all") {
-        Profile.setPersonas();
+        profile.setPersonas();
         res.write(`<p>Set Personas for ${Config.appId}</p>`);
         res.write(
           "<p>To persist the personas, add the following variables \
@@ -205,11 +204,11 @@ app.get("/profile", (req, res) => {
         res.write(`<p>Enable Built-in NLP for Page ${Config.pageId}</p>`);
       }
       if (mode == "domains" || mode == "all") {
-        Profile.setWhitelistedDomains();
+        profile.setWhitelistedDomains();
         res.write(`<p>Whitelisting domains: ${Config.whitelistedDomains}</p>`);
       }
       if (mode == "private-reply") {
-        Profile.setPageFeedWebhook();
+        profile.setPageFeedWebhook();
         res.write(`<p>Set Page Feed Webhook for Private Replies.</p>`);
       }
       res.status(200).end();

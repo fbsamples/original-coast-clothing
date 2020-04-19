@@ -44,7 +44,6 @@ module.exports = class Out {
 
       case "COUPON_50":
         outfit = `neutral-${this.randomOutfit()}`;
-
         response = [
           API.genText(i18n.__("leadgen.coupon")),
           API.genGenericTemplate(
@@ -158,6 +157,8 @@ module.exports = class Out {
         ]);
         break;
 
+
+      // $NAME_$LIMIT_$TYPE
       case "CURATION_BUDGET_20_WORK":
       case "CURATION_BUDGET_30_WORK":
       case "CURATION_BUDGET_50_WORK":
