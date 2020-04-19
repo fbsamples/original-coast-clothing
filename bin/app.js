@@ -133,7 +133,6 @@ app.post("/webhook", (req, res) => {
             console.log("Profile is unavailable:", error);
           })
           .finally(() => {
-            users[senderPsid] = client;
             i18n.setLocale(client.ll);
             console.log(
               "New Profile PSID:",
@@ -141,19 +140,19 @@ app.post("/webhook", (req, res) => {
               "with locale:",
               i18n.getLocale()
             );
-            let receiveMessage = new In(users[senderPsid], webhookEvent);
-            return receiveMessage.triageMessage();
+            let messageFromMessenger = new In(client, webhookEvent);
+            return messageFromMessenger.triageMessage();
           });
       } else {
-        i18n.setLocale(users[senderPsid].locale);
+        i18n.setLocale(client.locale);
         console.log(
           "Profile already exists PSID:",
           senderPsid,
           "with locale:",
           i18n.getLocale()
         );
-        let receiveMessage = new In(users[senderPsid], webhookEvent);
-        return receiveMessage.triageMessage();
+        let messageFromMessenger = new In(client, webhookEvent);
+        return messageFromMessenger.triageMessage();
       }
     });
   } else {

@@ -5,7 +5,7 @@
   "menu": {
     "support": "Customer Support",
     "order": "Order updates",
-    "help": "Talk to an agent",
+    "help": "Get support",
     "suggestion": "View products",
     "shop": "Shop now",
     "start_over": "Start over",
@@ -13,7 +13,7 @@
   },
   "get_started": {
     "welcome": "Hi {{userFirstName}}! Welcome to Cologne 🐶 where we specialize in deodorants and topicals",
-    "guidance": "At any time, use the menu below to navigate through the features",
+    "guidance": "Please use the menu options below to navigate",
     "help": "What we can do to help you today?"
   },
   "leadgen": {
@@ -24,11 +24,11 @@
     "coupon": "Added your coupon to this thread, you can now check out items from our store"
   },
   "curation": {
-    "prompt": "Are you looking for an outfit for yourself or someone else?",
+    "prompt": "Are you looking for cleansing deodorants or topical cosmeticals?",
     "occasion": "Great! Let's get started. First, is there an occasion in mind?",
     "price": "How much are you looking to spend?",
-    "me": "For me!",
-    "someone": "Someone else",
+    "deodorants": "Deodorants",
+    "biocosmeticals": "Skin health",
     "work": "Work",
     "dinner": "Dinner",
     "party": "Party",

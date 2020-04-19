@@ -13,6 +13,7 @@
 const Out = require("./out"),
   Order = require("../services/order"),
   API = require("../api/api"),
+  Contact = require("../services/contact"),
   Menu = require("../services/menu"),
   Survey = require("../survey/survey"),
   GraphAPi = require("../api/core/graph-api"),
@@ -30,11 +31,11 @@ module.exports = class In {
     let responses = null;
 
     try {
-      if (event.message) {
+      if (message) {
         if (message.quick_reply) {
           responses = this.QuickReply();
         } else if (message.attachments) {
-          // responses = this.GetAttachment();
+          responses = this.GetAttachment();
         } else if (message.text) {
           responses = this.MessageIn();
         }
@@ -93,8 +94,7 @@ module.exports = class In {
             message: message
           })
         ),
-        API.genText(i18n.__("get_started.guidance")),
-        API.genQuickReply(i18n.__("get_started.help"), [
+        API.genQuickReply(i18n.__("get_started.guidance"), [
           {
             title: i18n.__("menu.suggestion"),
             payload: "CURATION"
@@ -180,6 +180,9 @@ module.exports = class In {
       let out = new Out(this.client, this.webhookEvent);
       response = out.handlePayload(payload);
     } else if (payload.includes("CARE")) {
+      let contact = new Contact(this.client, this.webhookEvent);
+      response = contact.handlePayload(payload);
+    } else if (payload.includes("MENU")) {
       let menu = new Menu(this.client, this.webhookEvent);
       response = menu.handlePayload(payload);
     } else if (payload.includes("ORDER")) {

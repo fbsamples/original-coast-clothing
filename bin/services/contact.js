@@ -24,6 +24,7 @@ module.exports = class Contact {
 
   handlePayload(payload) {
     let response;
+    console.log('in contacts handlePayload')
 
     switch (payload) {
       

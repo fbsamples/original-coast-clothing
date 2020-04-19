@@ -12,7 +12,7 @@
 
 // Imports dependencies
 const API = require("../api/api"),
-  config = require("../config/config"),
+  Config = require("../config/config"),
   i18n = require("../i18n/i18n.config");
 
 module.exports = class Out {
@@ -71,11 +71,11 @@ module.exports = class Out {
       case "CURATION":
         response = API.genQuickReply(i18n.__("curation.prompt"), [
           {
-            title: i18n.__("curation.me"),
+            title: i18n.__("curation.deodorants"),
             payload: "CURATION_DEODORANTS"
           },
           {
-            title: i18n.__("curation.someone"),
+            title: i18n.__("curation.biocosmeticals"),
             payload: "CURATION_BIOCOSMETICALS"
           }
         ]);
