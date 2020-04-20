@@ -15,6 +15,11 @@ const API = require("../api/api"),
   i18n = require("../i18n/i18n.config");
 
 module.exports = class Survey {
+  constructor(client, webhookEvent) {
+    this.client = client;
+    this.webhookEvent = webhookEvent;
+  }
+
   static genAgentRating(agent) {
     let response = API.genQuickReply(
       i18n.__("survey.prompt", {
@@ -42,8 +47,9 @@ module.exports = class Survey {
     return response;
   }
 
-  static handlePayload(payload) {
+  handlePayload(payload) {
     let response = null;
+    
     switch (payload) {
       case "CSAT_GOOD":
         response = API.genText(i18n.__("survey.positive"));
@@ -57,7 +63,7 @@ module.exports = class Survey {
         response = API.genQuickReply(i18n.__("survey.negative"), [
           {
             title: i18n.__("menu.help"),
-            payload: "CARE_HELP"
+            payload: "SUPPORT_HELP"
           }
         ]);
         break;

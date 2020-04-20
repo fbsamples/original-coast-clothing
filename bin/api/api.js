@@ -1,11 +1,12 @@
 /**
+ * Copyright 2020, Cologne.Dog, Inc. All rights reserved.
  * Copyright 2019-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
+ * Messenger For Cologne.Dog
+ * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
@@ -13,18 +14,7 @@
 const i18n = require("../i18n/i18n.config");
 
 module.exports = class API {
-  /*
-  text:
-    { 
-      text: 'What we can do to help you today?', quick_replies: [] 
-    }, 
 
-  quickReplies:
-    [
-      { title: 'Outfit suggestions', payload: 'CURATION' },
-      { title: 'Talk to an agent', payload: 'CARE_HELP' }
-    ]
-  */
   static genQuickReply(text, quickReplies) {
     let response = {
       text: text,
@@ -147,11 +137,11 @@ module.exports = class API {
     let curation = this.genQuickReply(i18n.__("get_started.help"), [
       {
         title: i18n.__("menu.suggestion"),
-        payload: "CURATION"
+        payload: "MENU"
       },
       {
         title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        payload: "SUPPORT_HELP"
       }
     ]);
 

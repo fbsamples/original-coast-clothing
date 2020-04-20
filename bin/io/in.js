@@ -1,21 +1,19 @@
 /**
+ * Copyright 2020, Cologne.Dog, Inc. All rights reserved.
  * Copyright 2019-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
+ * Messenger For Cologne.Dog
+ * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
 
 const Out = require("./out"),
-  Order = require("../services/order"),
   API = require("../api/api"),
-  Contact = require("../services/contact"),
-  Menu = require("../services/menu"),
-  Survey = require("../survey/survey"),
+  Survey = require("../services/survey"),
   GraphAPi = require("../api/core/graph-api"),
   i18n = require("../i18n/i18n.config");
 
@@ -28,38 +26,38 @@ module.exports = class In {
   triageMessage() {
     let event = this.webhookEvent;
     let message = event.message;
-    let responses = null;
+    let response = null;
 
     try {
       if (message) {
         if (message.quick_reply) {
-          responses = this.QuickReply();
+          response = this.QuickReply();
         } else if (message.attachments) {
-          responses = this.GetAttachment();
+          response = this.GetAttachment();
         } else if (message.text) {
-          responses = this.MessageIn();
+          response = this.MessageIn();
         }
       } else if (event.postback) {
-        responses = this.Postback();
+        response = this.Postback();
       } else if (event.referral) {
-        responses = this.Referral();
+        response = this.Referral();
       }
     } catch (error) {
       console.error(error);
-      responses = {
+      response = {
         text: `An error has occured: '${error}'. We have been notified and \
         will fix the issue shortly!`
       };
     }
 
-    if (Array.isArray(responses)) {
+    if (Array.isArray(response)) {
       let delay = 0;
-      for (let response of responses) {
-        this.sendMessage(response, delay * 2000);
+      for (let resp of response) {
+        this.sendMessage(resp, delay * 2000);
         delay++;
       }
     } else {
-      this.sendMessage(responses);
+      this.sendMessage(response);
     }
   }
 
@@ -80,12 +78,8 @@ module.exports = class In {
     ) {
       response = API.genNuxMessage(this.client);
     } else if (Number(message)) {
+      let menu = new Out.Order(this.client, event);
       response = Order.handlePayload("ORDER_NUMBER");
-    } else if (message.includes("#")) {
-      response = Survey.handlePayload("CSAT_SUGGESTION");
-    } else if (message.includes(i18n.__("care.help").toLowerCase())) {
-      let menu = new Menu(this.client, event);
-      response = menu.handlePayload("CARE_HELP");
     } else {
       // default handler
       response = [
@@ -97,11 +91,11 @@ module.exports = class In {
         API.genQuickReply(i18n.__("get_started.guidance"), [
           {
             title: i18n.__("menu.suggestion"),
-            payload: "CURATION"
+            payload: "MENU"
           },
           {
             title: i18n.__("menu.help"),
-            payload: "CARE_HELP"
+            payload: "SUPPORT_HELP"
           }
         ])
       ];
@@ -121,7 +115,7 @@ module.exports = class In {
     response = API.genQuickReply(i18n.__("fallback.attachment"), [
       {
         title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        payload: "SUPPORT_HELP"
       },
       {
         title: i18n.__("menu.start_over"),
@@ -176,42 +170,30 @@ module.exports = class In {
       payload === "GITHUB"
     ) {
       response = API.genNuxMessage(this.client);
-    } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
-      let out = new Out(this.client, this.webhookEvent);
-      response = out.handlePayload(payload);
-    } else if (payload.includes("CARE")) {
-      let contact = new Contact(this.client, this.webhookEvent);
-      response = contact.handlePayload(payload);
-    } else if (payload.includes("MENU")) {
-      let menu = new Menu(this.client, this.webhookEvent);
-      response = menu.handlePayload(payload);
-    } else if (payload.includes("ORDER")) {
-      response = Order.handlePayload(payload);
-    } else if (payload.includes("CSAT")) {
-      response = Survey.handlePayload(payload);
-    } else if (payload.includes("CHAT-PLUGIN")) {
-      response = [
-        API.genText(i18n.__("chat_plugin.prompt")),
-        API.genText(i18n.__("get_started.guidance")),
-        API.genQuickReply(i18n.__("get_started.help"), [
-          {
-            title: i18n.__("care.order"),
-            payload: "CARE_ORDER"
-          },
-          {
-            title: i18n.__("care.billing"),
-            payload: "CARE_BILLING"
-          },
-          {
-            title: i18n.__("care.other"),
-            payload: "CARE_OTHER"
-          }
-        ])
-      ];
     } else {
-      response = {
-        text: `This is a default postback message for payload: ${payload}!`
-      };
+      let model = null;
+      if (payload.includes("MENU")) {
+        model = Out.Menu
+      } else if (payload.includes("SUPPORT")) {
+        model = Out.Support
+      } else if (payload.includes("PRODUCTS")) {
+        model = Out.Products
+      } else if (payload.includes("FEATURES")) {
+        model = Out.Features
+      } else if (payload.includes("ORDER")) {
+        model = Out.Order
+      } else if (payload.includes("CSAT")) {
+        model = Out.Survey
+      }
+
+      if (model) {
+        response = new model(
+          this.client, this.webhookEvent).handlePayload(payload);
+      } else {
+        response = {
+          text: `Could not compute message for payload: ${payload}!`
+        };
+      }
     }
 
     return response;
@@ -225,11 +207,11 @@ module.exports = class In {
     let response = API.genQuickReply(welcomeMessage, [
       {
         title: i18n.__("menu.suggestion"),
-        payload: "CURATION"
+        payload: "MENU"
       },
       {
         title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        payload: "SUPPORT_HELP"
       }
     ]);
 

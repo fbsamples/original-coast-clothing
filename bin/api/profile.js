@@ -1,11 +1,12 @@
 /**
+ * Copyright 2020, Cologne.Dog, Inc. All rights reserved.
  * Copyright 2019-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
+ * Messenger For Cologne.Dog
+ * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
@@ -13,7 +14,7 @@
 // Imports dependencies
 const GraphAPi = require("./core/graph-api"),
   i18n = require("../i18n/i18n.config"),
-  config = require("../config/config"),
+  Config = require("../config/config"),
   locales = i18n.getLocales();
 
 module.exports = class Profile {
@@ -164,14 +165,14 @@ module.exports = class Profile {
             {
               title: i18n.__("menu.help"),
               type: "postback",
-              payload: "CARE_HELP"
+              payload: "SUPPORT_HELP"
             }
           ]
         },
         {
           title: i18n.__("menu.suggestion"),
           type: "postback",
-          payload: "CURATION"
+          payload: "MENU"
         },
         {
           type: "web_url",

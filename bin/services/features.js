@@ -16,8 +16,8 @@ const API = require("../api/api"),
   i18n = require("../i18n/i18n.config");
 
 module.exports = class Menu {
-  constructor(client, webhookEvent) {
-    this.client = client;
+  constructor(user, webhookEvent) {
+    this.user = user;
     this.webhookEvent = webhookEvent;
   }
 
@@ -25,24 +25,17 @@ module.exports = class Menu {
     let response = null
 
     switch (payload) {
-      case "MENU_ALL":
-        break;
+      case "SOLVENTFREE_INFO":
+        break
 
-      case "MENU":
-        response = API.genQuickReply(i18n.__("menu.prompt"), [
-          {
-            title: i18n.__("menu.deodorants"),
-            payload: "PRODUCTS_DEODORANTS"
-          },
-          {
-            title: i18n.__("menu.biocosmeticals"),
-            payload: "PRODUCTS_BIOCOSMETICALS"
-          }
-        ]);
-        break;
+      case "SOLVENTFREE_BENEFITS":
+        break
+
+      case "SOLVENTFREE_INFO":
+        break
+      
     }
 
     return response;
   }
-
 };

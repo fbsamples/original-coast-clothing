@@ -1,11 +1,12 @@
 /**
+ * Copyright 2020, Cologne.Dog, Inc. All rights reserved.
  * Copyright 2019-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
+ * Messenger For Cologne.Dog
+ * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
@@ -193,7 +194,7 @@ app.get("/profile", (req, res) => {
         );
         res.write("<ul>");
         res.write(`<li>PERSONA_BILLING = ${Config.personaBilling.id}</li>`);
-        res.write(`<li>PERSONA_CARE = ${Config.personaCare.id}</li>`);
+        res.write(`<li>PERSONA_SUPPORT = ${Config.personaCare.id}</li>`);
         res.write(`<li>PERSONA_ORDER = ${Config.personaOrder.id}</li>`);
         res.write(`<li>PERSONA_SALES = ${Config.personaSales.id}</li>`);
         res.write("</ul>");
