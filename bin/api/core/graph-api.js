@@ -75,8 +75,6 @@ module.exports = class GraphAPi {
       fields = fields + ", " + customFields;
     }
 
-    console.log(fields);
-
     request(
       {
         uri: `${Config.mPlatfom}/${Config.appId}/subscriptions`,
@@ -113,8 +111,6 @@ module.exports = class GraphAPi {
     if (customFields !== undefined) {
       fields = fields + ", " + customFields;
     }
-
-    console.log(fields);
 
     request(
       {
@@ -164,8 +160,6 @@ module.exports = class GraphAPi {
         method: "GET"
       })
         .on("response", function(response) {
-          // console.log(response.statusCode);
-
           if (response.statusCode !== 200) {
             reject(Error(response.statusCode));
           }
@@ -179,8 +173,6 @@ module.exports = class GraphAPi {
         })
         .on("end", () => {
           body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
           resolve(JSON.parse(body));
         });
     });
@@ -201,8 +193,6 @@ module.exports = class GraphAPi {
         method: "GET"
       })
         .on("response", function(response) {
-          // console.log(response.statusCode);
-
           if (response.statusCode !== 200) {
             reject(Error(response.statusCode));
           }
@@ -216,8 +206,6 @@ module.exports = class GraphAPi {
         })
         .on("end", () => {
           body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
           resolve(JSON.parse(body).data);
         });
     });
@@ -244,7 +232,6 @@ module.exports = class GraphAPi {
         json: requestBody
       })
         .on("response", function(response) {
-          // console.log(response.statusCode);
           if (response.statusCode !== 200) {
             reject(Error(response.statusCode));
           }
@@ -258,8 +245,6 @@ module.exports = class GraphAPi {
         })
         .on("end", () => {
           body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
           resolve(JSON.parse(body).id);
         });
     }).catch(error => {
