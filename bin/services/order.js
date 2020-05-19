@@ -17,7 +17,8 @@ const API = require("../api/api"),
   config = require("../config/config");
 
 module.exports = class Order {
-  static handlePayload(payload) {
+
+  handlePayload(payload) {
     let response = null
 
     switch (payload) {
@@ -59,6 +60,20 @@ module.exports = class Order {
           )
         ];
         break;
+
+      case "ORDER_DEODORANTS_BUY_NOW":
+        let buttons = [
+          API.genWebUrlButton(
+            i18n.__("menu.shop"),
+            `https://cologne.dog/deodorants`
+          )
+        ];
+        response = API.genGenericTemplate(
+          `https://storage.needpix.com/rsynced_images/buy-now-2541975_1280.png`,
+          i18n.__("menu.title"),
+          i18n.__("menu.subtitle"),
+          buttons
+        );
     }
 
     return response;

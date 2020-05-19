@@ -1,6 +1,27 @@
 {
+	"features": {
+		"solventfree": "Solvent Free",
+		"solventfree1": "Solvents such as alcohol damage tissues including the skin and lungs",
+		"solventfree2": "They also damage the cleansing and healing potential of essential oils and other substances",
+		"solventfree3": "Dogs can't stand solvents, it's poison and they can smell the toxicity ☣️ ☠️ 🧪",
+		"benefits": "Bioactivity",
+		"ingredients": "View ingredients",
+		"ingredients.deodorant": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"ingredients.cosmetical": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotine, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"benefits2": "Substances including essential oils have cleansing and healing potentials that are damaged by solvents",
+		"benefits3": "By substituting solvents with our patent-pending lowest toxicity strategy, our products retain the cleansing, healing, and therapeutic potentials of essential oils and substances including vitamins",
+		"science": "Our products were developed and formulated by a N.I.H. trained Ph.D. who specialized in the regeneration of collagen producing cells from the stem cells of adult mammals",
+		"stemcells": "The mammalian ectoderm gives rise to the skin, while the mesoderm gives rise to internal organs and their lining, such as the oral cavity. These tissues are rich in blood supply, and adult stem cells reside there for tissue health and maintenance",
+		"environment": "The manufacturing of solvents is the most polluting process in industry (http://tiny.cc/sm5dpz). Solvent exposure to humans and mammals is linked to systemic disease and cancer. In general, it's agreed that solvents are overused in industry, including the manufacturing of fragrances, cleansing, and health products",
+		"logistics": "All our products are cruelty-free and contain no animal products. We take great measures to offer the most sustainable and responsible manufacturing to benefit you, your loved ones, and the environment",
+		"guarantee": "First-time purchasers: love it or get your money back!"
+	},
 	"profile": {
-		"greeting": "Welcome to Cologne 🐶"
+		"greeting": "Welcome to Cologne.Dog™ 🐶"
+	},
+	"media": {
+		"cosmeticals_highlight_0": "Formulated and preserved by Nature",
+		"cosmeticals_highlight_1": "solvents destroy the cleansing & healing potentials of substances"
 	},
 	"menu": {
 		"prompt": "Are you looking for cleansing deodorants or topical cosmeticals?",
@@ -8,19 +29,17 @@
 		"price": "How much are you looking to spend?",
 		"deodorants": "Deodorants",
 		"biocosmeticals": "Skin health",
-		"work": "Work",
-		"dinner": "Dinner",
-		"party": "Party",
 		"sales": "Talk to sales",
-		"shop": "Shop this look",
+		"shop": "Shop this item",
 		"title": "Summer collection 2019",
-		"subtitle": "Featured outfit",
-		"show": "Another look",
-		"suggestion": "View products",
-		"help": "Talk to an agent"
+		"suggestion": "Shop around",
+		"help": "Talk to an agent",
+		"subtitle": "menu.subtitle",
+		"support": "menu.support",
+		"order": "menu.order"
 	},
 	"get_started": {
-		"welcome": "Hi {{userFirstName}}! Welcome to Cologne 🐶 where we specialize in deodorants and topicals",
+		"welcome": "Hi {{userFirstName}}! Welcome to Cologne.Dog™ 🐶 where we specialize in deodorants, cleansers, and topicals",
 		"guidance": "Please use the menu options below to navigate",
 		"help": "How may I help you today?"
 	},
@@ -32,15 +51,22 @@
 		"coupon": "Added your coupon to this thread, you can now check out items with this promo!"
 	},
 	"products": {
-		"follow": "Would you like to learn more?",
+		"follow": "Select the topic below",
+		"knowledge": "What would you like to know?",
+		"followup": "Please select from the following",
 		"inquiry": "More info",
-		"photos": "Product photos",
+		"photos": "View photos",
 		"buy": "Buy now",
 		"back": "Go back",
-		"deodorants": {
-			"overview": "Cologne.Dog™ eliminates odor with the all-natural anti-microbial and anti-fungal power of essential oils"
+		"reset": "Start over",
+		"overview": {
+			"deodorants": "Our cleansing deodorants eliminates body odor at its source, and nourishes the skin with vitamins, antioxidants, and anti-inflammatory natural ingredients. Body odor is caused by bacteria and fungi, Cologne.Dog™ deodorants eliminates the bugs that cause body odor",
+			"biocosmeticals": "Our Biocosmeticals™ are designed to feed the stem cells of the skin and optimize the body's production of high quality collagen for beautification and healing"
 		},
-		"deodorants_overview": "products.deodorants_overview"
+		"more_photos": "More photos!",
+		"ingredients": {
+			"deodorants": "Our deodorants are made with water, essential oils, therapeutic oils including vitamin E, and < 1% of our patent-pending lowest toxicity emulsifier blend"
+		}
 	},
 	"order": {
 		"prompt": "We'll be happy to help you. Select from the following",
