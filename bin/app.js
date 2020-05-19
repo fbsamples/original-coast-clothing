@@ -36,14 +36,14 @@ fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
         try {
           jsonlint.parse(json)
         } catch(e) {
-          console.log("ERROR detected in i18n JSON file", f)
+          console.log("\nformatting issue detected in i18n JSON file", f)
+          console.error(e)
           process.exit(1)
         }
       }
     })
   }
 })
-
 
 var users = {};
 
