@@ -22,7 +22,28 @@ const express = require("express"),
   Profile = require("./api/profile"),
   Config = require("./config/config"),
   i18n = require("./i18n/i18n.config"),
+  jsonlint = require("jsonlint").parser,
+  fs = require("fs"),
+  assert = require("assert"),
   app = express();
+
+// i18n JSON needs to be perfect
+fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
+  if (files && files.length) {
+    files.forEach(function(f) {
+      if (f.indexOf(".json") > -1) {
+        var json = fs.readFileSync(path.join(__dirname, "i18n", "locales", f)).toString()
+        try {
+          jsonlint.parse(json)
+        } catch(e) {
+          console.log("ERROR detected in i18n JSON file", f)
+          process.exit(1)
+        }
+      }
+    })
+  }
+})
+
 
 var users = {};
 
