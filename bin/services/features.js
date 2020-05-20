@@ -13,33 +13,122 @@
 // Imports dependencies
 const API = require("../api/api"),
   Config = require("../config/config"),
-  i18n = require("../i18n/i18n.config");
+  i18n = require("../i18n/i18n.config"),
+  images = require("../config/images");
+
+var imageMetaFromName = function(name) {
+  name = name.toLowerCase()
+  let response = null
+  switch (name) {
+    case 'DEODORANTS':
+      response = 'lifestyle_closeup'
+      break;
+
+    default:
+      response = 'cosmetical_highlight'
+      break;
+  }
+
+  return response
+}
 
 var benefits = function(name) {
+  let media = imageMetaFromName(name)
   return [
     API.genImageTemplate(
-      'https://dftxjilcwnuew.cloudfront.net/public/cosmeticals_highlight.png',
-      i18n.__("media.cosmeticals_highlight_0"),
-      i18n.__("media.cosmeticals_highlight_1")
+      images[media],
+      i18n.__(`media.${media}.title`),
+      i18n.__(`media.${media}.subtitle`)
     ),
     API.genText(i18n.__("features.benefits2")),
     API.genText(i18n.__("features.benefits3")),
     API.genQuickReply(i18n.__("products.followup"), [
       {
         title: i18n.__("products.inquiry"),
-        payload: "PRODUCTS_BIOCOSMETICALS_MORE_INFO"
+        payload: `PRODUCTS_${name}_MORE_INFO`
       },
       {
         title: i18n.__("products.photos"),
-        payload: "PRODUCTS_BIOCOSMETICALS_PHOTOS"
+        payload: `PRODUCTS_${name}_PHOTOS`
       },
       {
         title: i18n.__("products.buy"),
-        payload: "PRODUCTS_BIOCOSMETICALS_BUY_NOW"
+        payload: `PRODUCTS_${name}_BUY_NOW`
       },
       {
         title: i18n.__("products.back"),
-        payload: name
+        payload: `PRODUCTS_${name}`
+      },
+      {
+        title: i18n.__("products.reset"),
+        payload: "MENU"
+      }
+    ])
+  ]
+}
+
+var toxicity = function(name) {
+  let media = imageMetaFromName(name)
+  return [
+    API.genImageTemplate(
+      images[media],
+      i18n.__(`media.${media}.title`),
+      i18n.__(`media.${media}.subtitle`)
+    ),
+    API.genText(i18n.__("features.benefits2")),
+    API.genText(i18n.__("features.benefits3")),
+    API.genQuickReply(i18n.__("products.followup"), [
+      {
+        title: i18n.__("products.inquiry"),
+        payload: `PRODUCTS_${name}_MORE_INFO`
+      },
+      {
+        title: i18n.__("products.photos"),
+        payload: `PRODUCTS_${name}_PHOTOS`
+      },
+      {
+        title: i18n.__("products.buy"),
+        payload: `PRODUCTS_${name}_BUY_NOW`
+      },
+      {
+        title: i18n.__("products.back"),
+        payload: `PRODUCTS_${name}`
+      },
+      {
+        title: i18n.__("products.reset"),
+        payload: "MENU"
+      }
+    ])
+  ]
+}
+
+var solventFree = function(name) {
+  let media = imageMetaFromName(name)
+  return [
+    API.genImageTemplate(
+      images[media],
+      i18n.__(`media.${media}.title`),
+      i18n.__(`media.${media}.subtitle`)
+    ),
+    API.genText(i18n.__("features.solventfree1")),
+    API.genText(i18n.__("features.solventfree2")),
+    API.genText(i18n.__("features.solventfree3")),
+    API.genQuickReply(i18n.__("products.followup"), [
+      {
+        title: i18n.__("products.inquiry"),
+        payload: `PRODUCTS_${name}_MORE_INFO`
+      },
+      {
+        title: i18n.__("products.photos"),
+        payload: `PRODUCTS_${name}_PHOTOS`
+      },
+      {
+        title: i18n.__("products.buy"),
+        payload: `PRODUCTS_${name}_BUY_NOW`
+      },
+      {
+        title: i18n.__("products.back"),
+        payload: `PRODUCTS_${name}`
       },
       {
         title: i18n.__("products.reset"),
@@ -64,14 +153,27 @@ module.exports = class Menu {
         break
 
       case "FEATURES_BENEFITS_DEODORANTS":
-        response = benefits("PRODUCTS_DEODORANTS")
+        response = benefits("DEODORANTS")
+        break
+
+      case "FEATURES_LOW_TOXICITY_DEODORANTS":
+        response = toxicity("DEODORANTS")
         break
 
       case "FEATURES_BENEFITS_BIOCOSMETICALS":
-        response = benefits("PRODUCTS_BIOCOSMETICALS")
+        response = benefits("BIOCOSMETICALS")
         break
 
-      case "SOLVENTFREE_INFO":
+      case "FEATURES_LOW_TOXICITY_BIOCOSMETICALS":
+        response = toxicity("BIOCOSMETICALS")
+        break
+
+      case "FEATURES_SOLVENT_FREE_DEODORANTS":
+        response = solventFree("DEODORANTS")
+        break
+
+      case "FEATURES_SOLVENT_FREE_BIOCOSMETICALS":
+        response = solventFree("BIOCOSMETICALS")
         break
       
     }

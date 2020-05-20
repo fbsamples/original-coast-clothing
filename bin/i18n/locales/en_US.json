@@ -5,11 +5,16 @@
 		"solventfree2": "They also damage the cleansing and healing potential of essential oils and other substances",
 		"solventfree3": "Dogs can't stand solvents, it's poison and they can smell the toxicity ☣️ ☠️ 🧪",
 		"benefits": "Bioactivity",
+		"toxicity": "Lowest-Toxicity",
 		"ingredients": "View ingredients",
 		"ingredients.deodorant": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
 		"ingredients.cosmetical": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotine, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
 		"benefits2": "Substances including essential oils have cleansing and healing potentials that are damaged by solvents",
 		"benefits3": "By substituting solvents with our patent-pending lowest toxicity strategy, our products retain the cleansing, healing, and therapeutic potentials of essential oils and substances including vitamins",
+		"toxicity1": "Dietary fats are chemically triglycerides.",
+		"toxicity2": "Monoglycerides, diglycerides, and triglycerides are long chain carbon molecules and low or no amount of electron (electrical) imbalance",
+		"toxicity3": "In contrast, solvents are short chain carbon molecules with high electric charge. In fact, ions, electric particles, are more similar to solvents in toxicity than they are fatty acids",
+		"toxicity4": "Cologne.Dog™ invented the formula for producing full oil and water emulsions with the least amount of the lowest toxicity emulsifiers that are most similar to dietary fatty acids",
 		"science": "Our products were developed and formulated by a N.I.H. trained Ph.D. who specialized in the regeneration of collagen producing cells from the stem cells of adult mammals",
 		"stemcells": "The mammalian ectoderm gives rise to the skin, while the mesoderm gives rise to internal organs and their lining, such as the oral cavity. These tissues are rich in blood supply, and adult stem cells reside there for tissue health and maintenance",
 		"environment": "The manufacturing of solvents is the most polluting process in industry (http://tiny.cc/sm5dpz). Solvent exposure to humans and mammals is linked to systemic disease and cancer. In general, it's agreed that solvents are overused in industry, including the manufacturing of fragrances, cleansing, and health products",
@@ -20,8 +25,46 @@
 		"greeting": "Welcome to Cologne.Dog™ 🐶"
 	},
 	"media": {
-		"cosmeticals_highlight_0": "Formulated and preserved by Nature",
-		"cosmeticals_highlight_1": "solvents destroy the cleansing & healing potentials of substances"
+		"biocosmetical": {
+			"title": "10mL Vegan Stem Cell Serum Perfume",
+			"subtitle": "optimized for skin health and nutrient impact"
+		},
+		"cosmetical_highlight": {
+			"title": "Formulated and preserved by Nature",
+			"subtitle": "solvents destroy the cleansing & healing potentials of substances"
+		},
+		"cosmetical_aux": {
+			"title": "Micronutrients in Cologne.Dog™ nanoemulsion",
+			"subtitle": "scientifically purposed for the stem cells of the skin"
+		},
+		"cosmetical_info": {
+			"title": "Support essential stem cell functions",
+			"subtitle": "skin maintenance, healing, and beauty from the inside out"
+		},
+		"cosmetical_ingredients": {
+			"title": "World's highest quality essential oils",
+			"subtitle": "vegan skin stem cell perfume provides all-natural vegan benefits"
+		},
+		"lifestyle": {
+			"title": "Made for dogs, loved by humans™",
+			"subtitle": "we started by helping a friend in need who was a dog"
+		},
+		"lifestyle_closeup": {
+			"title": "15mL Deodorant + Cleanser",
+			"subtitle": "made with cold-pressed USDA certified organic essential oils"
+		},
+		"product_detail": {
+			"title": "Deodorants + Cleansers + Topicals",
+			"subtitle": "one lowest toxicity strategy with many benefits"
+		},
+		"fatty_acids": {
+			"title": "Dietary fatty acids",
+			"subtitle": "these are long carbon chain molecules with low electrical imbalance"
+		},
+		"solvents": {
+			"title": "Solvent molecules",
+			"subtitle": "short carbon chain molecules that are volatile and flammable"
+		}
 	},
 	"menu": {
 		"prompt": "Are you looking for cleansing deodorants or topical cosmeticals?",
