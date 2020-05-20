@@ -29,7 +29,7 @@ module.exports = class Promo {
         response = [
           API.genText(
             i18n.__("leadgen.promo", {
-              userFirstName: this.client.f
+              userFirstName: this.client.firstName
             })
           ),
           API.genGenericTemplate(

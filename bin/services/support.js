@@ -31,12 +31,16 @@ module.exports = class Contact {
       case "SUPPORT_HELP":
         response = API.genQuickReply(
           i18n.__("support.prompt", {
-            userFirstName: this.client.f
+            userFirstName: this.client.firstName
           }),
           [
             {
               title: i18n.__("support.order"),
               payload: "SUPPORT_ORDER"
+            },
+            {
+              title: i18n.__("support.inquiry"),
+              payload: "SUPPORT_INQUIRY"
             },
             {
               title: i18n.__("support.billing"),
@@ -50,22 +54,32 @@ module.exports = class Contact {
         );
         break;
       
+      case "SUPPORT_INQUIRY":
+        // Send using the Persona for order issues
+        response = [
+          API.genTextWithPersona(
+            i18n.__("support.issue", {
+              userFirstName: this.client.firstName,
+              agentFirstName: Config.personaOrder.name,
+              topic: i18n.__("support.order")
+            }),
+            Config.personaOrder.id
+          )
+        ];
+        break;
+
+
       case "SUPPORT_ORDER":
         // Send using the Persona for order issues
         response = [
           API.genTextWithPersona(
             i18n.__("support.issue", {
-              userFirstName: this.client.f,
+              userFirstName: this.client.firstName,
               agentFirstName: Config.personaOrder.name,
               topic: i18n.__("support.order")
             }),
             Config.personaOrder.id
-          ),
-          API.genTextWithPersona(
-            i18n.__("support.end"),
-            Config.personaOrder.id
-          ),
-          Survey.genAgentRating(Config.personaOrder.name)
+          )
         ];
         break;
 
@@ -74,17 +88,12 @@ module.exports = class Contact {
         response = [
           API.genTextWithPersona(
             i18n.__("support.issue", {
-              userFirstName: this.client.f,
+              userFirstName: this.client.firstName,
               agentFirstName: Config.personaBilling.name,
               topic: i18n.__("support.billing")
             }),
             Config.personaBilling.id
-          ),
-          API.genTextWithPersona(
-            i18n.__("support.end"),
-            Config.personaBilling.id
-          ),
-          Survey.genAgentRating(Config.personaBilling.name)
+          )
         ];
         break;
 
@@ -93,16 +102,11 @@ module.exports = class Contact {
         response = [
           API.genTextWithPersona(
             i18n.__("support.style", {
-              userFirstName: this.client.f,
+              userFirstName: this.client.firstName,
               agentFirstName: Config.personaSales.name
             }),
             Config.personaSales.id
-          ),
-          API.genTextWithPersona(
-            i18n.__("support.end"),
-            Config.personaSales.id
-          ),
-          Survey.genAgentRating(Config.personaSales.name)
+          )
         ];
         break;
 
@@ -111,11 +115,17 @@ module.exports = class Contact {
         response = [
           API.genTextWithPersona(
             i18n.__("support.default", {
-              userFirstName: this.client.f,
+              userFirstName: this.client.firstName,
               agentFirstName: Config.personaCare.name
             }),
             Config.personaCare.id
-          ),
+          )
+        ];
+        break;
+
+      case "SUPPORT_END":
+        // Send using the Persona for customer care issues
+        response = [
           API.genTextWithPersona(
             i18n.__("support.end"),
             Config.personaCare.id

@@ -162,11 +162,11 @@ module.exports = class Profile {
               type: "postback",
               payload: "TRACK_ORDER"
             },
-            {
-              title: i18n.__("menu.help"),
-              type: "postback",
-              payload: "SUPPORT_HELP"
-            }
+            // {
+            //   title: i18n.__("menu.help"),
+            //   type: "postback",
+            //   payload: "SUPPORT_HELP"
+            // }
           ]
         },
         {

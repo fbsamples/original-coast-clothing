@@ -67,10 +67,10 @@ var action = function(name) {
         title: i18n.__("products.buy"),
         payload: `ORDER_${name}`
       },
-      {
-        title: i18n.__("menu.help"),
-        payload: "CARE_SALES"
-      }
+      // {
+      //   title: i18n.__("menu.help"),
+      //   payload: "CARE_SALES"
+      // }
     ])
   )
 

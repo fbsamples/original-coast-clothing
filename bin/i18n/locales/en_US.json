@@ -1,9 +1,9 @@
 {
 	"features": {
 		"solventfree": "Solvent Free",
-		"solventfree1": "Solvents such as alcohol damage tissues including the skin and lungs",
-		"solventfree2": "They also damage the cleansing and healing potential of essential oils and other substances",
-		"solventfree3": "Dogs can't stand solvents, it's poison and they can smell the toxicity ☣️ ☠️ 🧪",
+		"solventfree1": "Solvents such as alcohol damage tissues including the skin and lungs. {{userFirstName}}, have you ever felt a burning sensation breathing perfume or drinking alcohol? That's tissue damage",
+		"solventfree2": "Turns out solvents also damage the cleansing and healing potentials of essential oils and other bioactive substances",
+		"solventfree3": "Dogs can't stand solvents, they're just way too intelligent since they can literally smell the toxicity ☣️ ☠️ 🧪",
 		"benefits": "Bioactivity",
 		"toxicity": "Lowest-Toxicity",
 		"ingredients": "View ingredients",
@@ -124,7 +124,8 @@
 	},
 	"support": {
 		"prompt": "To connect you with the right team please let me know what this is about?",
-		"order": "Order Inquiries",
+		"order": "Make an Order",
+		"inquiry": "Order Inquiries",
 		"billing": "Billing Issues",
 		"other": "Other",
 		"issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",

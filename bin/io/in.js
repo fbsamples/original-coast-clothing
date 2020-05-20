@@ -93,10 +93,10 @@ module.exports = class In {
             title: i18n.__("menu.suggestion"),
             payload: "MENU"
           },
-          {
-            title: i18n.__("menu.help"),
-            payload: "SUPPORT_HELP"
-          }
+          // {
+          //   title: i18n.__("menu.help"),
+          //   payload: "SUPPORT_HELP"
+          // }
         ])
       ];
     }
@@ -209,10 +209,10 @@ module.exports = class In {
         title: i18n.__("menu.suggestion"),
         payload: "MENU"
       },
-      {
-        title: i18n.__("menu.help"),
-        payload: "SUPPORT_HELP"
-      }
+      // {
+      //   title: i18n.__("menu.help"),
+      //   payload: "SUPPORT_HELP"
+      // }
     ]);
 
     let requestBody = {

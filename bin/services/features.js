@@ -104,7 +104,7 @@ var toxicity = function(name) {
   ]
 }
 
-var solvents = function(name) {
+var solvents = function(name, that) {
   let media = imageMetaFromName(name, "solvents")
   return [
     API.genImageTemplate(
@@ -112,7 +112,9 @@ var solvents = function(name) {
       i18n.__(`media.${media}.title`),
       i18n.__(`media.${media}.subtitle`)
     ),
-    API.genText(i18n.__("features.solventfree1")),
+    API.genText(i18n.__("features.solventfree1", {
+      userFirstName: that.user.firstName
+    })),
     API.genText(i18n.__("features.solventfree2")),
     API.genText(i18n.__("features.solventfree3")),
     API.genQuickReply(i18n.__("products.followup"), [
@@ -154,10 +156,10 @@ var ingredients = function(name) {
       title: i18n.__("products.reset"),
       payload: "MENU"
     },
-    {
-      title: i18n.__("menu.help"),
-      payload: "CARE_SALES"
-    }
+    // {
+    //   title: i18n.__("menu.help"),
+    //   payload: "CARE_SALES"
+    // }
   ])
 }
 
@@ -189,11 +191,11 @@ module.exports = class Menu {
         break
 
       case "FEATURES_SOLVENT_FREE_DEODORANTS":
-        response = solvents("DEODORANTS")
+        response = solvents("DEODORANTS", this)
         break
 
       case "FEATURES_SOLVENT_FREE_BIOCOSMETICALS":
-        response = solvents("BIOCOSMETICALS")
+        response = solvents("BIOCOSMETICALS", this)
         break
 
       case "FEATURES_DEODORANTS_INGREDIENTS":
