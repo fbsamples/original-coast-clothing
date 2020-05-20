@@ -61,18 +61,12 @@ module.exports = class Order {
         ];
         break;
 
-      case "ORDER_DEODORANTS_BUY_NOW":
-        let buttons = [
-          API.genWebUrlButton(
-            i18n.__("menu.shop"),
-            `https://cologne.dog/deodorants`
-          )
-        ];
+      case "ORDER_BUY_NOW":
         response = API.genGenericTemplate(
           `https://storage.needpix.com/rsynced_images/buy-now-2541975_1280.png`,
           i18n.__("menu.title"),
           i18n.__("menu.subtitle"),
-          buttons
+          API.genWebButton()
         );
     }
 

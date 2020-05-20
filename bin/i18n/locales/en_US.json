@@ -11,10 +11,10 @@
 		"ingredients_cosmetical": "Our Biocosmeticals™ are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Skin Stem Cell Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotin, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
 		"benefits2": "Substances including essential oils have cleansing and healing potentials that are damaged by solvents",
 		"benefits3": "By substituting solvents with our patent-pending lowest toxicity strategy, our products retain the cleansing, healing, and therapeutic potentials of essential oils and substances including vitamins",
-		"toxicity1": "Dietary fats are chemically triglycerides.",
-		"toxicity2": "Monoglycerides, diglycerides, and triglycerides are long chain carbon molecules and low or no amount of electron (electrical) imbalance",
-		"toxicity3": "In contrast, solvents are short chain carbon molecules with high electric charge. In fact, ions, electric particles, are more similar to solvents in toxicity than they are fatty acids",
-		"toxicity4": "Cologne.Dog™ invented the formula for producing full oil and water emulsions with the least amount of the lowest toxicity emulsifiers that are most similar to dietary fatty acids",
+		"toxicity1": "Dietary fats are chemically triglycerides. These chemicals are the baseline of safety, because they normally reside in mammalian development, anatomy, and physiology",
+		"toxicity2": "Monoglycerides, diglycerides, and triglycerides are long chain carbon molecules with low or no amount of electron (electrical) imbalance. These properties make it safe",
+		"toxicity3": "In contrast, solvents are short chain carbon molecules with high electric charge. In fact, ions, electrically bonded molecules, are more similar to solvents in toxicity than they are to fatty acids",
+		"toxicity4": "At Cologne.Dog™, we developed a novel formula for producing full oil and water emulsions by using the least amount of the lowest toxicity emulsifier blends who are most similar to dietary fatty acids",
 		"science": "Our products were developed and formulated by a N.I.H. trained Ph.D. who specialized in the regeneration of collagen producing cells from the stem cells of adult mammals",
 		"stemcells": "The mammalian ectoderm gives rise to the skin, while the mesoderm gives rise to internal organs and their lining, such as the oral cavity. These tissues are rich in blood supply, and adult stem cells reside there for tissue health and maintenance",
 		"environment": "The manufacturing of solvents is the most polluting process in industry (http://tiny.cc/sm5dpz). Solvent exposure to humans and mammals is linked to systemic disease and cancer. In general, it's agreed that solvents are overused in industry, including the manufacturing of fragrances, cleansing, and health products",
@@ -75,18 +75,18 @@
 		"occasion": "Great! Let's get started. First, is there an occasion in mind?",
 		"price": "How much are you looking to spend?",
 		"deodorants": "Deodorants",
-		"biocosmeticals": "Skin health",
+		"biocosmeticals": "Biocosmeticals™",
 		"sales": "Talk to sales",
 		"shop": "Shop this item",
-		"title": "Summer collection 2019",
-		"suggestion": "Shop around",
+		"title": "Deodorants & Topicals",
+		"suggestion": "Browse our catalog",
 		"help": "Talk to an agent",
-		"subtitle": "menu.subtitle",
-		"support": "menu.support",
-		"order": "menu.order"
+		"subtitle": "unispecies. unisex. made for mammals",
+		"support": "Select an option",
+		"order": "Buy now"
 	},
 	"get_started": {
-		"welcome": "Hi {{userFirstName}}! Welcome to Cologne.Dog™ 🐶 where we specialize in deodorants, cleansers, and topicals",
+		"welcome": "Hi {{userFirstName}}! Welcome to Cologne.Dog™ 🐶 where we specialize in unisex and unispecies deodorants, cleansers, and topicals",
 		"guidance": "Please use the menu options below to navigate",
 		"help": "How may I help you today?"
 	},
@@ -98,7 +98,7 @@
 		"coupon": "Added your coupon to this thread, you can now check out items with this promo!"
 	},
 	"products": {
-		"follow": "Select the topic below",
+		"follow": "Please select one of the following options",
 		"knowledge": "What would you like to know?",
 		"followup": "Please select from the following",
 		"inquiry": "More info",
@@ -108,9 +108,10 @@
 		"back": "Go back",
 		"reset": "Start over",
 		"overview": {
-			"deodorants": "Our cleansing deodorants eliminates body odor at its source, and nourishes the skin with vitamins, antioxidants, and anti-inflammatory natural ingredients. Body odor is caused by bacteria and fungi, Cologne.Dog™ deodorants eliminates the bugs that cause body odor",
-			"biocosmeticals": "Our Biocosmeticals™ are designed to feed the stem cells of the skin and optimize the body's production of high quality collagen for beautification and healing"
-		}
+			"deodorants": "Our Deodorant + Cleanser eliminates body odor at its source, and nourishes the skin with vitamins, antioxidants, and anti-inflammatory natural ingredients. Body odor is caused by bacteria and fungi, Cologne.Dog™ deodorants eliminate the bugs that cause body odor",
+			"biocosmeticals": "Our Biocosmeticals™ are designed to feed the stem cells of mammalian skin and optimizes the body's production of high quality collagen for beautification and healthy ectoderm"
+		},
+		"unispecies": "Mammals love the scents of high quality natural essential oils, mammals generate body odor, and mammalian skin stem cells behave almost identically. We figured, why not unispecies personal care for all genders and ages, so we did it"
 	},
 	"order": {
 		"prompt": "We'll be happy to help you. Select from the following",

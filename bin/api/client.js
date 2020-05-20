@@ -17,9 +17,9 @@ module.exports = class Client {
   }
 
   setProfile(profile) {
-    this.f = profile.firstName;
-    this.l = profile.lastName;
-    this.ll = profile.locale; // i18n: defaults en-uss
-    this.tz = profile.timezone;
+    this.firstName = profile.firstName;
+    this.lastName = profile.lastName;
+    this.locale = profile.locale; // i18n: defaults en-uss
+    this.timezone = profile.timezone;
   }
 };

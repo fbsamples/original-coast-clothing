@@ -61,7 +61,7 @@ var benefits = function(name) {
       },
       {
         title: i18n.__("products.buy"),
-        payload: `PRODUCTS_${name}_BUY_NOW`
+        payload: "ORDER_BUY_NOW"
       },
       {
         title: i18n.__("products.reset"),
@@ -94,7 +94,7 @@ var toxicity = function(name) {
       },
       {
         title: i18n.__("products.buy"),
-        payload: `PRODUCTS_${name}_BUY_NOW`
+        payload: "ORDER_BUY_NOW"
       },
       {
         title: i18n.__("products.reset"),
@@ -126,7 +126,7 @@ var solvents = function(name) {
       },
       {
         title: i18n.__("products.buy"),
-        payload: `PRODUCTS_${name}_BUY_NOW`
+        payload: "ORDER_BUY_NOW"
       },
       {
         title: i18n.__("products.back"),

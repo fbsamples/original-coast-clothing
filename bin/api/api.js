@@ -120,10 +120,20 @@ module.exports = class API {
       type: "web_url",
       title: title,
       url: url,
-      messenger_extensions: true
+      messenger_extensions: true,
+      webview_height_ratio: 'compact'
     };
 
     return response;
+  }
+
+  static genWebButton() {
+    return [
+      API.genWebUrlButton(
+        i18n.__("menu.shop"),
+        `https://cologne.dog/products`
+      )
+    ]
   }
 
   static genNuxMessage(user) {
@@ -142,6 +152,10 @@ module.exports = class API {
       {
         title: i18n.__("menu.help"),
         payload: "SUPPORT_HELP"
+      },
+      {
+        title: i18n.__("products.buy"),
+        payload: "ORDER_BUY_NOW"
       }
     ]);
 

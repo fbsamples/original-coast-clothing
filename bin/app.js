@@ -155,7 +155,7 @@ app.post("/webhook", (req, res) => {
             console.log("Profile is unavailable:", error);
           })
           .finally(() => {
-            i18n.setLocale(client.ll);
+            i18n.setLocale(client.locale);
             console.log(
               "New Profile PSID:",
               senderPsid,

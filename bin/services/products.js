@@ -40,20 +40,21 @@ var imageMetaFromName = function(name, mod) {
   return response[mod]
 }
 
-var photos = function(name) {
+var action = function(name) {
   let media = imageMetaFromName(name, 'photos')
-  return [
-    API.genImageTemplate(
-      images[media[0]],
-      i18n.__(`media.${media[0]}.title`),
-      i18n.__(`media.${media[0]}.subtitle`)
-    ),
-    API.genImageTemplate(
-      images[media[1]],
-      i18n.__(`media.${media[1]}.title`),
-      i18n.__(`media.${media[1]}.subtitle`)
-    ),
-    API.genQuickReply(i18n.__("products.follow"), [
+  let response = []
+  media.forEach(function(m) {
+    response.push(
+      API.genImageTemplate(
+        images[m],
+        i18n.__(`media.${m}.title`),
+        i18n.__(`media.${m}.subtitle`)
+      )
+    )
+  })
+
+  response.push(
+    API.genQuickReply(i18n.__("products.followup"), [
       {
         title: i18n.__("features.ingredients"),
         payload: `FEATURES_${name}_INGREDIENTS`
@@ -71,41 +72,9 @@ var photos = function(name) {
         payload: "CARE_SALES"
       }
     ])
-  ]
-}
+  )
 
-var more = function(name) {
-  let media = imageMetaFromName(name, 'more')
-  return [
-    API.genImageTemplate(
-      images[media[0]],
-      i18n.__(`media.${media[0]}.title`),
-      i18n.__(`media.${media[0]}.subtitle`)
-    ),
-    API.genImageTemplate(
-      images[media[1]],
-      i18n.__(`media.${media[1]}.title`),
-      i18n.__(`media.${media[1]}.subtitle`)
-    ),
-    API.genQuickReply(i18n.__("products.followup"), [
-      {
-        title: i18n.__("features.ingredients"),
-        payload: `FEATURES_${name}_INGREDIENTS`
-      },
-      {
-        title: i18n.__("products.buy"),
-        payload: `ORDER_${name}`
-      },
-      {
-        title: i18n.__("products.inquiry"),
-        payload: `PRODUCTS_${name}_MORE_INFO`
-      },
-      {
-        title: i18n.__("products.reset"),
-        payload: "MENU"
-      }
-    ])
-  ]
+  return response
 }
 
 var products = function(name) {
@@ -116,7 +85,8 @@ var products = function(name) {
       i18n.__(`media.${media}.title`),
       i18n.__(`media.${media}.subtitle`)
     ),
-    API.genText(i18n.__("products.overview.deodorants")),
+    API.genText(i18n.__("products.unispecies")),
+    API.genText(i18n.__(`products.overview.${name.toLowerCase()}`)),
     API.genQuickReply(i18n.__("products.follow"), [
       {
         title: i18n.__("products.inquiry"),
@@ -154,7 +124,7 @@ var info = function(name) {
     },
     {
       title: i18n.__("products.back"),
-      payload: "ORDER_BUY_NOW"
+      payload: "MENU"
     }
   ])
 }
@@ -173,34 +143,32 @@ module.exports = class Products {
         response = products("DEODORANTS")
         break;
 
-      case "PRODUCTS_DEODORANTS_MORE_INFO":
-        response = info("DEODORANTS")
-        break;
-
-      case "PRODUCTS_DEODORANTS_PHOTOS":
-        response = photos("DEODORANTS")
-        break;
-
-      case "PRODUCTS_BIOCOSMETICALS_PHOTOS":
-        response = photos("BIOCOSMETICALS")
-        break;
-
       case "PRODUCTS_BIOCOSMETICALS":
         response = products("BIOCOSMETICALS")
+        break;
+
+      case "PRODUCTS_DEODORANTS_MORE_INFO":
+        response = info("DEODORANTS")
         break;
 
       case "PRODUCTS_BIOCOSMETICALS_MORE_INFO":
         response = info("BIOCOSMETICALS")
         break;
 
+      case "PRODUCTS_DEODORANTS_PHOTOS":
+        response = action("DEODORANTS")
+        break;
 
+      case "PRODUCTS_BIOCOSMETICALS_PHOTOS":
+        response = action("BIOCOSMETICALS")
+        break;
 
       case "PRODUCTS_MORE_PHOTOS_DEODORANTS":
-        response = more("DEODORANTS")
+        response = action("DEODORANTS")
         break;
 
       case "PRODUCTS_MORE_PHOTOS_BIOCOSMETICALS":
-        response = more("BIOCOSMETICALS")
+        response = action("BIOCOSMETICALS")
         break;
 
     }
