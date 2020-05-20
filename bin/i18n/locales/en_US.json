@@ -7,8 +7,8 @@
 		"benefits": "Bioactivity",
 		"toxicity": "Lowest-Toxicity",
 		"ingredients": "View ingredients",
-		"ingredients.deodorant": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
-		"ingredients.cosmetical": "water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotine, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"ingredients_deodorant": "Our deodorants are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"ingredients_cosmetical": "Our Biocosmeticals™ are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Skin Stem Cell Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotin, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
 		"benefits2": "Substances including essential oils have cleansing and healing potentials that are damaged by solvents",
 		"benefits3": "By substituting solvents with our patent-pending lowest toxicity strategy, our products retain the cleansing, healing, and therapeutic potentials of essential oils and substances including vitamins",
 		"toxicity1": "Dietary fats are chemically triglycerides.",
@@ -64,6 +64,10 @@
 		"solvents": {
 			"title": "Solvent molecules",
 			"subtitle": "short carbon chain molecules that are volatile and flammable"
+		},
+		"solvent_free": {
+			"title": "No irritation. No damage",
+			"subtitle": "no damage to live tissues and bioactive substances"
 		}
 	},
 	"menu": {
@@ -99,16 +103,13 @@
 		"followup": "Please select from the following",
 		"inquiry": "More info",
 		"photos": "View photos",
+		"more_photos": "More photos!",
 		"buy": "Buy now",
 		"back": "Go back",
 		"reset": "Start over",
 		"overview": {
 			"deodorants": "Our cleansing deodorants eliminates body odor at its source, and nourishes the skin with vitamins, antioxidants, and anti-inflammatory natural ingredients. Body odor is caused by bacteria and fungi, Cologne.Dog™ deodorants eliminates the bugs that cause body odor",
 			"biocosmeticals": "Our Biocosmeticals™ are designed to feed the stem cells of the skin and optimize the body's production of high quality collagen for beautification and healing"
-		},
-		"more_photos": "More photos!",
-		"ingredients": {
-			"deodorants": "Our deodorants are made with water, essential oils, therapeutic oils including vitamin E, and < 1% of our patent-pending lowest toxicity emulsifier blend"
 		}
 	},
 	"order": {

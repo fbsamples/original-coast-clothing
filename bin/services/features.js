@@ -16,24 +16,32 @@ const API = require("../api/api"),
   i18n = require("../i18n/i18n.config"),
   images = require("../config/images");
 
-var imageMetaFromName = function(name) {
+var imageMetaFromName = function(name, mod) {
   name = name.toLowerCase()
   let response = null
   switch (name) {
-    case 'DEODORANTS':
-      response = 'lifestyle_closeup'
+    case "DEODORANTS":
+      response = {
+        "benefits": "cosmetical_highlight",
+        "toxicity": "product_detail",
+        "solvents": "solvent_free"
+      }
       break;
 
     default:
-      response = 'cosmetical_highlight'
+      response = {
+        "benefits": "cosmetical_highlight",
+        "toxicity": "product_detail",
+        "solvents": "solvent_free"
+      }
       break;
   }
 
-  return response
+  return response[mod]
 }
 
 var benefits = function(name) {
-  let media = imageMetaFromName(name)
+  let media = imageMetaFromName(name, "benefits")
   return [
     API.genImageTemplate(
       images[media],
@@ -54,10 +62,6 @@ var benefits = function(name) {
       {
         title: i18n.__("products.buy"),
         payload: `PRODUCTS_${name}_BUY_NOW`
-      },
-      {
-        title: i18n.__("products.back"),
-        payload: `PRODUCTS_${name}`
       },
       {
         title: i18n.__("products.reset"),
@@ -68,15 +72,17 @@ var benefits = function(name) {
 }
 
 var toxicity = function(name) {
-  let media = imageMetaFromName(name)
+  let media = imageMetaFromName(name, "toxicity")
   return [
     API.genImageTemplate(
       images[media],
       i18n.__(`media.${media}.title`),
       i18n.__(`media.${media}.subtitle`)
     ),
-    API.genText(i18n.__("features.benefits2")),
-    API.genText(i18n.__("features.benefits3")),
+    API.genText(i18n.__("features.toxicity1")),
+    API.genText(i18n.__("features.toxicity2")),
+    API.genText(i18n.__("features.toxicity3")),
+    API.genText(i18n.__("features.toxicity4")),
     API.genQuickReply(i18n.__("products.followup"), [
       {
         title: i18n.__("products.inquiry"),
@@ -91,10 +97,6 @@ var toxicity = function(name) {
         payload: `PRODUCTS_${name}_BUY_NOW`
       },
       {
-        title: i18n.__("products.back"),
-        payload: `PRODUCTS_${name}`
-      },
-      {
         title: i18n.__("products.reset"),
         payload: "MENU"
       }
@@ -102,8 +104,8 @@ var toxicity = function(name) {
   ]
 }
 
-var solventFree = function(name) {
-  let media = imageMetaFromName(name)
+var solvents = function(name) {
+  let media = imageMetaFromName(name, "solvents")
   return [
     API.genImageTemplate(
       images[media],
@@ -128,7 +130,7 @@ var solventFree = function(name) {
       },
       {
         title: i18n.__("products.back"),
-        payload: `PRODUCTS_${name}`
+        payload: `PRODUCTS_${name}_MORE_INFO`
       },
       {
         title: i18n.__("products.reset"),
@@ -136,6 +138,27 @@ var solventFree = function(name) {
       }
     ])
   ]
+}
+
+var ingredients = function(name) {
+  return API.genQuickReply(i18n.__("features.ingredients_deodorant"), [
+    {
+      title: i18n.__("products.inquiry"),
+      payload: `PRODUCTS_${name}_MORE_INFO`
+    },
+    {
+      title: i18n.__("products.buy"),
+      payload: `ORDER_${name}`
+    },
+    {
+      title: i18n.__("products.reset"),
+      payload: "MENU"
+    },
+    {
+      title: i18n.__("menu.help"),
+      payload: "CARE_SALES"
+    }
+  ])
 }
 
 module.exports = class Menu {
@@ -148,9 +171,6 @@ module.exports = class Menu {
     let response = null
 
     switch (payload) {
-      case "FEATURES_DEODORANTS_INGREDIENTS":
-        response = API.genText(i18n.__("products.ingredients.deodorant"))
-        break
 
       case "FEATURES_BENEFITS_DEODORANTS":
         response = benefits("DEODORANTS")
@@ -169,13 +189,21 @@ module.exports = class Menu {
         break
 
       case "FEATURES_SOLVENT_FREE_DEODORANTS":
-        response = solventFree("DEODORANTS")
+        response = solvents("DEODORANTS")
         break
 
       case "FEATURES_SOLVENT_FREE_BIOCOSMETICALS":
-        response = solventFree("BIOCOSMETICALS")
+        response = solvents("BIOCOSMETICALS")
         break
-      
+
+      case "FEATURES_DEODORANTS_INGREDIENTS":
+        response = ingredients("DEODORANTS")
+        break
+
+      case "FEATURES_BIOCOSMETICALS_INGREDIENTS":
+        response = ingredients("BIOCOSMETICALS")
+        break
+
     }
 
     return response;
