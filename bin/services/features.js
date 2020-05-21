@@ -143,7 +143,7 @@ var solvents = function(name, that) {
 }
 
 var ingredients = function(name) {
-  return API.genQuickReply(i18n.__("features.ingredients_deodorant"), [
+  return API.genQuickReply(i18n.__(`features.ingredients_${name}`), [
     {
       title: i18n.__("products.inquiry"),
       payload: `PRODUCTS_${name}_MORE_INFO`

@@ -7,8 +7,8 @@
 		"benefits": "Bioactivity",
 		"toxicity": "Lowest-Toxicity",
 		"ingredients": "View ingredients",
-		"ingredients_deodorant": "Our deodorants are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
-		"ingredients_cosmetical": "Our Biocosmeticals™ are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Skin Stem Cell Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotin, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"ingredients_deodorants": "Our deodorants are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
+		"ingredients_biocosmeticals": "Our Biocosmeticals™ are made with water, oils (vitamin D and E, avocado, carrot), essential oils (cedarwood, clary sage, jasmine, bergamot), Cologne.Dog Vegan Skin Stem Cell Serum™ (l-acetate, matrix glycoproteins, riboflavin, pyridoxine, biotin, folate, cobalamine, retinoil acid, pantothenic acid), 0.2% total weight food-safe Cologne.Dog Emulsifier Blend™",
 		"benefits2": "Substances including essential oils have cleansing and healing potentials that are damaged by solvents",
 		"benefits3": "By substituting solvents with our patent-pending lowest toxicity strategy, our products retain the cleansing, healing, and therapeutic potentials of essential oils and substances including vitamins",
 		"toxicity1": "Dietary fats are chemically triglycerides. These chemicals are the baseline of safety, because they normally reside in mammalian development, anatomy, and physiology",
@@ -79,11 +79,11 @@
 		"sales": "Talk to sales",
 		"shop": "Shop this item",
 		"title": "Deodorants & Topicals",
-		"suggestion": "Browse our catalog",
 		"help": "Talk to an agent",
 		"subtitle": "unispecies. unisex. made for mammals",
 		"support": "Select an option",
-		"order": "Buy now"
+		"suggestion": "View Products",
+		"order": "Buy Now"
 	},
 	"get_started": {
 		"welcome": "Hi {{userFirstName}}! Welcome to Cologne.Dog™ 🐶 where we specialize in unisex and unispecies deodorants, cleansers, and topicals",
