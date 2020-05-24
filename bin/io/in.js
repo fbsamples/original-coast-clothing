@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
@@ -32,8 +32,6 @@ module.exports = class In {
       if (message) {
         if (message.quick_reply) {
           response = this.QuickReply();
-        } else if (message.attachments) {
-          response = this.GetAttachment();
         } else if (message.text) {
           response = this.MessageIn();
         }
@@ -45,8 +43,7 @@ module.exports = class In {
     } catch (error) {
       console.error(error);
       response = {
-        text: `An error has occured: '${error}'. We have been notified and \
-        will fix the issue shortly!`
+        text: "An error has occured. Please email us or try again!"
       };
     }
 
@@ -77,9 +74,6 @@ module.exports = class In {
       message.includes("start over")
     ) {
       response = API.genNuxMessage(this.client);
-    } else if (Number(message)) {
-      let menu = new Out.Order(this.client, event);
-      response = Order.handlePayload("ORDER_NUMBER");
     } else {
       // default handler
       response = [
@@ -92,36 +86,10 @@ module.exports = class In {
           {
             title: i18n.__("menu.suggestion"),
             payload: "MENU"
-          },
-          // {
-          //   title: i18n.__("menu.help"),
-          //   payload: "SUPPORT_HELP"
-          // }
+          }
         ])
       ];
     }
-
-    return response;
-  }
-
-  // Handles mesage events with attachments
-  GetAttachment() {
-    let response;
-
-    // Get the attachment
-    let attachment = this.webhookEvent.message.attachments[0];
-    console.log("Received attachment:", `${attachment} for ${this.client.psid}`);
-
-    response = API.genQuickReply(i18n.__("fallback.attachment"), [
-      {
-        title: i18n.__("menu.help"),
-        payload: "SUPPORT_HELP"
-      },
-      {
-        title: i18n.__("menu.start_over"),
-        payload: "GET_STARTED"
-      }
-    ]);
 
     return response;
   }
@@ -162,58 +130,30 @@ module.exports = class In {
     GraphAPi.callFBAEventsAPI(this.client.psid, payload);
 
     let response = null;
+    let model = Out.Navigation;
 
-    // Set the response based on the payload
-    if (
-      payload === "GET_STARTED" ||
-      payload === "DEVDOCS" ||
-      payload === "GITHUB"
-    ) {
-      response = API.genNuxMessage(this.client);
-    } else {
-      let model = null;
-      if (payload.includes("MENU")) {
-        model = Out.Menu
-      } else if (payload.includes("SUPPORT")) {
-        model = Out.Support
-      } else if (payload.includes("PRODUCTS")) {
-        model = Out.Products
-      } else if (payload.includes("FEATURES")) {
-        model = Out.Features
-      } else if (payload.includes("ORDER")) {
-        model = Out.Order
-      } else if (payload.includes("CSAT")) {
-        model = Out.Survey
-      }
-
-      if (model) {
-        response = new model(
-          this.client, this.webhookEvent).handlePayload(payload);
-      } else {
-        response = {
-          text: `Could not compute message for payload: ${payload}!`
-        };
-      }
-    }
-
+    response = new model(this.client, this.webhookEvent).handlePayload(payload);
     return response;
   }
 
-  handlePrivateReply(type,object_id) {
+  handleWelcomeReply(type,object_id) {
     let welcomeMessage = i18n.__("get_started.welcome") + " " +
       i18n.__("get_started.guidance") + ". " +
       i18n.__("get_started.help");
 
-    let response = API.genQuickReply(welcomeMessage, [
-      {
-        title: i18n.__("menu.suggestion"),
-        payload: "MENU"
-      },
-      // {
-      //   title: i18n.__("menu.help"),
-      //   payload: "SUPPORT_HELP"
-      // }
-    ]);
+    // let response = API.genQuickReply(welcomeMessage, [
+    //   {
+    //     title: i18n.__("menu.suggestion"),
+    //     payload: "MENU"
+    //   },
+    //   // {
+    //   //   title: i18n.__("menu.help"),
+    //   //   payload: "SUPPORT_HELP"
+    //   // }
+    // ]);
+
+    // build welcome response
+    // let response = generateResponse()
 
     let requestBody = {
       recipient: {

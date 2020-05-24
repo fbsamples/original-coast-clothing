@@ -5,13 +5,14 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
 
-const i18n = require("../i18n/i18n.config");
+const i18n = require("../i18n/i18n.config"),
+      Config = require("../config/config");
 
 module.exports = class API {
 
@@ -127,11 +128,11 @@ module.exports = class API {
     return response;
   }
 
-  static genWebButton() {
+  static genWebButton(path) {
     return [
       API.genWebUrlButton(
         i18n.__("menu.shop"),
-        `https://cologne.dog/products`
+        `${Config.shopUrl}/${path}`
       )
     ]
   }

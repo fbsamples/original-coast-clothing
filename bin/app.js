@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
@@ -32,9 +32,9 @@ fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
   if (files && files.length) {
     files.forEach(function(f) {
       if (f.indexOf(".json") > -1) {
-        var json = fs.readFileSync(path.join(__dirname, "i18n", "locales", f)).toString()
+        var _json = fs.readFileSync(path.join(__dirname, "i18n", "locales", f)).toString()
         try {
-          jsonlint.parse(json)
+          jsonlint.parse(_json)
         } catch(e) {
           console.log("\nformatting issue detected in i18n JSON file", f)
           console.error(e)
@@ -57,15 +57,9 @@ app.use(
 // Parse application/json. Verify that callback came from Facebook
 app.use(json({ verify: verifyRequestSignature }));
 
-// Serving static files in Express
-app.use(express.static(path.join(path.resolve(), "public")));
-
-// Set template engine in Express
-app.set("view engine", "ejs");
-
-// Respond with index file when a GET request is made to the homepage
-app.get("/", function(_req, res) {
-  res.render("index");
+// Health checker
+app.get("/health", function(_req, res) {
+  res.json({status: 200, code: 200, message: 'Ok!'})
 });
 
 // Adds support for GET requests to our webhook
@@ -107,13 +101,13 @@ app.post("/webhook", (req, res) => {
           let change = entry.changes[0].value;
           switch (change.item) {
             case "post":
-              return receiveMessage.handlePrivateReply(
+              return receiveMessage.handleWelcomeReply(
                 "post_id",
                 change.post_id
               );
               break;
             case "comment":
-              return receiveMessage.handlePrivateReply(
+              return receiveMessage.handleWelcomeReply(
                 "commentgity _id",
                 change.comment_id
               );
@@ -206,20 +200,6 @@ app.get("/profile", (req, res) => {
         profile.setThread();
         res.write(`<p>Set Messenger Profile of Page ${Config.pageId}</p>`);
       }
-      if (mode == "personas" || mode == "all") {
-        profile.setPersonas();
-        res.write(`<p>Set Personas for ${Config.appId}</p>`);
-        res.write(
-          "<p>To persist the personas, add the following variables \
-          to your environment variables:</p>"
-        );
-        res.write("<ul>");
-        res.write(`<li>PERSONA_BILLING = ${Config.personaBilling.id}</li>`);
-        res.write(`<li>PERSONA_SUPPORT = ${Config.personaCare.id}</li>`);
-        res.write(`<li>PERSONA_ORDER = ${Config.personaOrder.id}</li>`);
-        res.write(`<li>PERSONA_SALES = ${Config.personaSales.id}</li>`);
-        res.write("</ul>");
-      }
       if (mode == "nlp" || mode == "all") {
         Core.callNLPConfigsAPI();
         res.write(`<p>Enable Built-in NLP for Page ${Config.pageId}</p>`);
@@ -246,7 +226,6 @@ app.get("/profile", (req, res) => {
 // Verify that the callback came from Facebook.
 function verifyRequestSignature(req, res, buf) {
   var signature = req.headers["x-hub-signature"];
-
   if (!signature) {
     console.log("Couldn't validate the signature.");
   } else {
