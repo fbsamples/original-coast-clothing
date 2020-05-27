@@ -54,18 +54,13 @@ app.use(
   })
 );
 
-// Parse application/json. Verify that callback came from Facebook
-app.use(json({ verify: verifyRequestSignature }));
-
-// Serving static files in Express
-app.use(express.static(path.join(path.resolve(), "public")));
-
-// Set template engine in Express
-app.set("view engine", "ejs");
-
-// Respond with index file when a GET request is made to the homepage
+// Ping routes
 app.get("/", function(_req, res) {
-  res.render("index");
+  res.json({status: 200, code: 200, message: 'Ok'})
+});
+
+app.get("/health", function(_req, res) {
+  res.json({status: 200, code: 200, message: 'Ok'})
 });
 
 // Adds support for GET requests to our webhook

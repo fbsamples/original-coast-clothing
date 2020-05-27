@@ -22,7 +22,7 @@
 		"guarantee": "First-time purchasers: love it or get your money back!"
 	},
 	"profile": {
-		"greeting": "Welcome to Cologne.Dog™ 🐶"
+		"greeting": "Hi {{userFirstName}}! Welcome to Cologne.Dog™ 🐶"
 	},
 	"media": {
 		"biocosmetical": {
