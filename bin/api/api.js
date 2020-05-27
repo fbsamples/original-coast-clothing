@@ -136,30 +136,4 @@ module.exports = class API {
       )
     ]
   }
-
-  static genNuxMessage(user) {
-    let welcome = this.genText(
-      i18n.__("get_started.welcome", {
-        userFirstName: user.firstName
-      })
-    );
-
-    let guide = this.genText(i18n.__("get_started.guidance"));
-    let curation = this.genQuickReply(i18n.__("get_started.help"), [
-      {
-        title: i18n.__("menu.suggestion"),
-        payload: "MENU"
-      },
-      // {
-      //   title: i18n.__("menu.help"),
-      //   payload: "SUPPORT_HELP"
-      // },
-      {
-        title: i18n.__("products.buy"),
-        payload: "ORDER_BUY_NOW"
-      }
-    ]);
-
-    return [welcome, guide, curation];
-  }
 };

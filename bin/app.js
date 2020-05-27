@@ -101,13 +101,13 @@ app.post("/webhook", (req, res) => {
           let change = entry.changes[0].value;
           switch (change.item) {
             case "post":
-              return receiveMessage.handleWelcomeReply(
+              return receiveMessage.sendWelcomeReply(
                 "post_id",
                 change.post_id
               );
               break;
             case "comment":
-              return receiveMessage.handleWelcomeReply(
+              return receiveMessage.sendWelcomeReply(
                 "commentgity _id",
                 change.comment_id
               );
