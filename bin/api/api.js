@@ -54,7 +54,7 @@ module.exports = class API {
     return response;
   }
 
-  static genImageTemplate(image_url, title, subtitle = "") {
+  static genImageTemplate(image_url, title, subtitle="") {
     let response = {
       attachment: {
         type: "template",
@@ -128,11 +128,12 @@ module.exports = class API {
     return response;
   }
 
-  static genWebButton(path) {
+  static genWebButton(url) {
     return [
       API.genWebUrlButton(
         i18n.__("menu.shop"),
-        `${Config.shopUrl}/${path}`
+        url
+        // `${Config.shopUrl}/${path}`
       )
     ]
   }

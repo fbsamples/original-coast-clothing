@@ -14,9 +14,9 @@
 // Imports dependencies
 const 
   Menu = require("./menu"),
-  Navigation = require("./navigation");
+  Render = require("./render");
 
 module.exports = {
   Menu: Menu,
-  Navigation: Navigation
+  Render: Render
 };

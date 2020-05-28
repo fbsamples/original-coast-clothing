@@ -109,25 +109,14 @@ module.exports = class In {
     GraphAPi.callFBAEventsAPI(this.client.psid, payload)
 
     let response = null
-    let model = Out.Navigation
+    let model = Out.Render
 
     response = new model(this.client, this.webhookEvent).handlePayload(payload)
     return response
   }
 
   sendWelcomeReply(type, object_id) {
-    let welcomeMessage = i18n.__("get_started.welcome")
-
-    let response = API.genQuickReply(welcomeMessage, [
-      {
-        title: i18n.__("menu.suggestion"),
-        payload: "MENU"
-      },
-      // {
-      //   title: i18n.__("menu.help"),
-      //   payload: "SUPPORT_HELP"
-      // }
-    ])
+    %%welcome%%
 
     let requestBody = {
       recipient: {
@@ -140,42 +129,15 @@ module.exports = class In {
   }
 
   handleGreetingReply(user) {
-    let welcome = this.genText(
-      i18n.__("get_started.welcome", {
-        userFirstName: user.firstName
-      })
-    )
+    %%greeting%%
 
-    return this.genQuickReply(welcome, [
-      {
-        title: i18n.__("menu.suggestion"),
-        payload: "MENU"
-      },
-      // {
-      //   title: i18n.__("menu.help"),
-      //   payload: "SUPPORT_HELP"
-      // },
-      {
-        title: i18n.__("products.buy"),
-        payload: "ORDER_BUY_NOW"
-      }
-    ])
+    return response
   }
 
   handleFallbackReply(user, message) {
-    return [
-      API.genText(
-        i18n.__("fallback", {
-          message: message
-        })
-      ),
-      API.genQuickReply(i18n.__("get_started.guidance"), [
-        {
-          title: i18n.__("menu.suggestion"),
-          payload: "MENU"
-        }
-      ])
-    ]
+    %%fallback%%
+
+    return response
   }
 
   sendMessage(response, delay=0) {

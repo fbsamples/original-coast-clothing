@@ -9,8 +9,8 @@
  * https://www.messenger.com/t/colognedog
  */
 
-const Config = require("../config/config")
-const enum = ['navigation', 'info', 'image', 'web']
+const Config = require("../bin/config/config")
+const _enum = ['navigation', 'info', 'image', 'web']
 var destinations = []
 
 /*
@@ -120,7 +120,4 @@ const webButton = function(options) {
 	
 }
 
-
-
-
-
+module.exports = createDisplay
