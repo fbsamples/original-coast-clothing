@@ -154,31 +154,9 @@ module.exports = class Profile {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: i18n.__("menu.support"),
-          type: "nested",
-          call_to_actions: [
-            {
-              title: i18n.__("menu.order"),
-              type: "postback",
-              payload: "TRACK_ORDER"
-            },
-            // {
-            //   title: i18n.__("menu.help"),
-            //   type: "postback",
-            //   payload: "SUPPORT_HELP"
-            // }
-          ]
-        },
-        {
-          title: i18n.__("menu.suggestion"),
+          title: 'WELCOME!',
           type: "postback",
-          payload: "MENU"
-        },
-        {
-          type: "web_url",
-          title: i18n.__("menu.shop"),
-          url: Config.shopUrl,
-          webview_height_ratio: "full"
+          payload: "welcome"
         }
       ]
     };

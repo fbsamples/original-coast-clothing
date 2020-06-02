@@ -21,7 +21,7 @@ const ENV_VARS = [
   "APP_SECRET",
   "VERIFY_TOKEN",
   "APP_URL",
-  "SHOP_URL"
+  "WEB_URLS"
 ];
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
   appUrl: process.env.APP_URL,
 
   // URL of your website
-  shopUrl: process.env.SHOP_URL,
+  webURLs: process.env.WEB_URLS.split(','),
 
   // Persona IDs
   personas: {},
@@ -115,23 +115,13 @@ module.exports = {
   },
 
   get whitelistedDomains() {
-    return [this.appUrl, this.shopUrl];
+    return this.webURLs;
   },
 
   checkEnvVariables: function() {
     ENV_VARS.forEach(function(key) {
       if (!process.env[key]) {
         console.log("WARNING: Missing the environment variable " + key);
-      } else {
-        // Check that urls use https
-        if (["APP_URL", "SHOP_URL"].includes(key)) {
-          const url = process.env[key];
-          if (!url.startsWith("https://")) {
-            console.log(
-              "WARNING: Your " + key + ' does not begin with "https://"'
-            );
-          }
-        }
       }
     });
   }

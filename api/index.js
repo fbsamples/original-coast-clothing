@@ -72,12 +72,13 @@ const navigationOpts = function(title, destination) {
 	}
 }
 
-const webOpts = function(path, title, subtitle) {
-	let url = `${Config.shopUrl}/${path}`
-	return {
-		url: url,
-		title: title || null,
-		subtitle: subtitle || null,
+const webOpts = function(url, title, subtitle) {
+	if (Config.webURLs.indexOf(url) > -1) {
+		return {
+			url: url,
+			title: title || null,
+			subtitle: subtitle || null,
+		}
 	}
 }
 

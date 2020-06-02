@@ -129,12 +129,13 @@ module.exports = class API {
   }
 
   static genWebButton(url) {
-    return [
-      API.genWebUrlButton(
-        i18n.__("menu.shop"),
-        url
-        // `${Config.shopUrl}/${path}`
-      )
-    ]
+    if (Config.webURLs.indexOf(url) > -1) {
+      return [
+        API.genWebUrlButton(
+          i18n.__("menu.shop"),
+          url
+        )
+      ]
+    }
   }
-};
+}
