@@ -13,7 +13,6 @@
 
 // Imports dependencies and set up http server
 const express = require("express"),
-  { urlencoded, json } = require("body-parser"),
   crypto = require("crypto"),
   path = require("path"),
   In = require("./io/in"),
@@ -58,8 +57,15 @@ var users = {};
 
 // Parse application/x-www-form-urlencoded
 app.use(
-  urlencoded({
+  express.urlencoded({
     extended: true
+  })
+);
+
+// Parse application/json
+app.use(
+  express.json({
+    limit: '10mb'
   })
 );
 

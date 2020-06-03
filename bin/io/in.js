@@ -13,6 +13,7 @@
 
 const Out = require("./out"),
   API = require("../api/api"),
+  Config = require("../config/config"),
   Survey = require("../services/survey"),
   GraphAPi = require("../api/core/graph-api"),
   i18n = require("../i18n/i18n.config");
@@ -88,15 +89,15 @@ module.exports = class In {
             message: message
           })
         ),
-        API.genQuickReply(i18n.__("get_started.guidance"), [
+        API.genQuickReply(i18n.__("menu.prompt"), [
           {
-            title: i18n.__("menu.suggestion"),
-            payload: "MENU"
+            title: i18n.__("menu.deodorants"),
+            payload: "PRODUCTS_DEODORANTS"
           },
-          // {
-          //   title: i18n.__("menu.help"),
-          //   payload: "SUPPORT_HELP"
-          // }
+          {
+            title: i18n.__("menu.biocosmeticals"),
+            payload: "PRODUCTS_BIOCOSMETICALS"
+          }
         ])
       ];
     }
