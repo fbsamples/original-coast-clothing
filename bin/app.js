@@ -25,6 +25,7 @@ const express = require("express"),
   jsonlint = require("jsonlint").parser,
   fs = require("fs"),
   assert = require("assert"),
+  request = require("request"),
   app = express();
 
 // i18n JSON needs to be perfect
@@ -253,14 +254,15 @@ var listener = app.listen(Config.port, function() {
     Config.appUrl &&
     Config.verifyToken
   ) {
-    console.log(
-      "Is this the first time running?\n" +
-      "Make sure to set the both the Messenger profile, persona " +
-      "and webhook by visiting:\n" +
-      Config.appUrl +
-      "/profile?mode=all&verify_token=" +
-      Config.verifyToken
-    );
+    let url =  `${Config.appUrl}/profile?mode=all&verify_token=Config.verifyToken`
+    console.log('Configuring webhook:');
+    setTimeout(function() {
+      request(url, function(err, response, body) {
+        console.error('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+      })
+    }, 484)
   }
 
   if (Config.pageId) {
