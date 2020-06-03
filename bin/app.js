@@ -21,7 +21,7 @@ const express = require("express"),
   Client = require("./api/client"),
   Profile = require("./api/profile"),
   Config = require("./config/config"),
-  i18n = require("./i18n/i18n.config"),
+  i18n = require("./i18n/i18n.config.js"),
   jsonlint = require("jsonlint").parser,
   fs = require("fs"),
   assert = require("assert"),
@@ -44,6 +44,15 @@ fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
     })
   }
 })
+
+// helper method
+function safeLocale(locale) {
+  try {
+    i18n.setLocale(client.locale);
+  } catch(e) {
+    i18n.setLocale('en_US');  
+  }
+}
 
 var users = {};
 
@@ -150,18 +159,12 @@ app.post("/webhook", (req, res) => {
             console.log("Profile is unavailable:", error);
           })
           .finally(() => {
-            i18n.setLocale(client.locale);
-            console.log(
-              "New Profile PSID:",
-              senderPsid,
-              "with locale:",
-              i18n.getLocale()
-            );
+            safeLocale(client.locale)
             let messageFromMessenger = new In(client, webhookEvent);
             return messageFromMessenger.triageMessage();
           });
       } else {
-        i18n.setLocale(client.locale);
+        safeLocale(client.locale)
         console.log(
           "Profile already exists PSID:",
           senderPsid,
