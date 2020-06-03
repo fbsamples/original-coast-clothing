@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger Builder by Cologne.Dog
+ * Messenger For Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
@@ -13,7 +13,6 @@
 
 // Imports dependencies and set up http server
 const express = require("express"),
-  { urlencoded, json } = require("body-parser"),
   crypto = require("crypto"),
   path = require("path"),
   In = require("./io/in"),
@@ -21,11 +20,10 @@ const express = require("express"),
   Client = require("./api/client"),
   Profile = require("./api/profile"),
   Config = require("./config/config"),
-  i18n = require("./i18n/i18n.config"),
+  i18n = require("./i18n/i18n.config.js"),
   jsonlint = require("jsonlint").parser,
   fs = require("fs"),
   assert = require("assert"),
-  request = require("request"),
   app = express();
 
 // i18n JSON needs to be perfect
@@ -33,9 +31,9 @@ fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
   if (files && files.length) {
     files.forEach(function(f) {
       if (f.indexOf(".json") > -1) {
-        var _json = fs.readFileSync(path.join(__dirname, "i18n", "locales", f)).toString()
+        var json = fs.readFileSync(path.join(__dirname, "i18n", "locales", f)).toString()
         try {
-          jsonlint.parse(_json)
+          jsonlint.parse(json)
         } catch(e) {
           console.log("\nformatting issue detected in i18n JSON file", f)
           console.error(e)
@@ -46,21 +44,38 @@ fs.readdir(path.join(__dirname, "i18n", "locales"), null, function(err, files) {
   }
 })
 
+// helper method
+function safeLocale(locale) {
+  try {
+    i18n.setLocale(client.locale);
+  } catch(e) {
+    i18n.setLocale('en_US');  
+  }
+}
+
 var users = {};
 
 // Parse application/x-www-form-urlencoded
 app.use(
-  urlencoded({
+  express.urlencoded({
     extended: true
   })
 );
 
-// Parse application/json. Verify that callback came from Facebook
-app.use(json({ verify: verifyRequestSignature }));
+// Parse application/json
+app.use(
+  express.json({
+    limit: '10mb'
+  })
+);
 
-// Health checker
+// Ping routes
+app.get("/", function(_req, res) {
+  res.json({status: 200, code: 200, message: 'Ok'})
+});
+
 app.get("/health", function(_req, res) {
-  res.json({status: 200, code: 200, message: 'Ok!'})
+  res.json({status: 200, code: 200, message: 'Ok'})
 });
 
 // Adds support for GET requests to our webhook
@@ -102,13 +117,13 @@ app.post("/webhook", (req, res) => {
           let change = entry.changes[0].value;
           switch (change.item) {
             case "post":
-              return receiveMessage.sendWelcomeReply(
+              return receiveMessage.handlePrivateReply(
                 "post_id",
                 change.post_id
               );
               break;
             case "comment":
-              return receiveMessage.sendWelcomeReply(
+              return receiveMessage.handlePrivateReply(
                 "commentgity _id",
                 change.comment_id
               );
@@ -150,18 +165,12 @@ app.post("/webhook", (req, res) => {
             console.log("Profile is unavailable:", error);
           })
           .finally(() => {
-            i18n.setLocale(client.locale);
-            console.log(
-              "New Profile PSID:",
-              senderPsid,
-              "with locale:",
-              i18n.getLocale()
-            );
+            safeLocale(client.locale)
             let messageFromMessenger = new In(client, webhookEvent);
             return messageFromMessenger.triageMessage();
           });
       } else {
-        i18n.setLocale(client.locale);
+        safeLocale(client.locale)
         console.log(
           "Profile already exists PSID:",
           senderPsid,
@@ -201,6 +210,20 @@ app.get("/profile", (req, res) => {
         profile.setThread();
         res.write(`<p>Set Messenger Profile of Page ${Config.pageId}</p>`);
       }
+      if (mode == "personas" || mode == "all") {
+        profile.setPersonas();
+        res.write(`<p>Set Personas for ${Config.appId}</p>`);
+        res.write(
+          "<p>To persist the personas, add the following variables \
+          to your environment variables:</p>"
+        );
+        res.write("<ul>");
+        res.write(`<li>PERSONA_BILLING = ${Config.personaBilling.id}</li>`);
+        res.write(`<li>PERSONA_SUPPORT = ${Config.personaCare.id}</li>`);
+        res.write(`<li>PERSONA_ORDER = ${Config.personaOrder.id}</li>`);
+        res.write(`<li>PERSONA_SALES = ${Config.personaSales.id}</li>`);
+        res.write("</ul>");
+      }
       if (mode == "nlp" || mode == "all") {
         Core.callNLPConfigsAPI();
         res.write(`<p>Enable Built-in NLP for Page ${Config.pageId}</p>`);
@@ -227,6 +250,7 @@ app.get("/profile", (req, res) => {
 // Verify that the callback came from Facebook.
 function verifyRequestSignature(req, res, buf) {
   var signature = req.headers["x-hub-signature"];
+
   if (!signature) {
     console.log("Couldn't validate the signature.");
   } else {
@@ -254,15 +278,14 @@ var listener = app.listen(Config.port, function() {
     Config.appUrl &&
     Config.verifyToken
   ) {
-    let url =  `${Config.appUrl}/profile?mode=all&verify_token=Config.verifyToken`
-    console.log('Configuring webhook:');
-    setTimeout(function() {
-      request(url, function(err, response, body) {
-        console.error('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body); // Print the HTML for the Google homepage.
-      })
-    }, 484)
+    console.log(
+      "Is this the first time running?\n" +
+      "Make sure to set the both the Messenger profile, persona " +
+      "and webhook by visiting:\n" +
+      Config.appUrl +
+      "/profile?mode=all&verify_token=" +
+      Config.verifyToken
+    );
   }
 
   if (Config.pageId) {

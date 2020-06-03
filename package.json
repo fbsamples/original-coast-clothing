@@ -8,7 +8,6 @@
     "test": "echo 'test'&&exit 0;"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
     "camelcase": "^5.3.1",
     "dotenv": "^8.1.0",
     "ejs": "^2.6.2",
@@ -22,7 +21,7 @@
     "node": "^8.10.0 || ^10.13.0 || >=11.10.1"
   },
   "repository": {
-    "url": "https://github.com/Cologne-Dog/original-coast-clothing.git"
+    "url": "https://github.com/Cologne-Dog/messenger-commerce-bot.git"
   },
   "author": "Cologne.Dog",
   "license": "ISC",
