@@ -41,16 +41,15 @@ var imageMetaFromName = function(name, mod) {
 }
 
 var action = function(name) {
+  console.log(new Array(10).join('! ~ '))
+  console.log('in action')
   let media = imageMetaFromName(name, 'photos')
-  let response = []
-  media.forEach(function(m) {
-    response.push(
-      API.genImageTemplate(
+  let response = media.map(function(m) {
+      return API.genImageTemplate(
         images[m],
         i18n.__(`media.${m}.title`),
         i18n.__(`media.${m}.subtitle`)
       )
-    )
   })
 
   response.push(

@@ -62,6 +62,8 @@ module.exports = class Order {
         break;
 
       case "ORDER_BUY_NOW":
+      case "ORDER_DEODORANTS_BUY_NOW":
+      case "ORDER_BIOCOSMETICALS_BUY_NOW":
         response = API.genGenericTemplate(
           `https://storage.needpix.com/rsynced_images/buy-now-2541975_1280.png`,
           i18n.__("menu.title"),

@@ -52,7 +52,7 @@ module.exports = class In {
     }
 
     if (Array.isArray(response)) {
-      let delay = 0;
+      let delay = 0.01;
       for (let resp of response) {
         this.sendMessage(resp, delay * 2000);
         delay++;
@@ -201,19 +201,18 @@ module.exports = class In {
   }
 
   handlePrivateReply(type,object_id) {
-    let welcomeMessage = i18n.__("get_started.welcome") + " " +
-      i18n.__("get_started.guidance") + ". " +
-      i18n.__("get_started.help");
-
-    let response = API.genQuickReply(welcomeMessage, [
-      {
-        title: i18n.__("menu.suggestion"),
-        payload: "MENU"
-      },
-      // {
-      //   title: i18n.__("menu.help"),
-      //   payload: "SUPPORT_HELP"
-      // }
+    let response = API.genQuickReply(i18n.__("get_started.help"), [
+        {
+          title: i18n.__("menu.suggestion"),
+          type: "postback",
+          payload: "MENU"
+        },
+        {
+          type: "web_url",
+          title: i18n.__("products.buy"),
+          url: Config.shopUrl,
+          webview_height_ratio: "full"
+        }
     ]);
 
     let requestBody = {
@@ -226,7 +225,8 @@ module.exports = class In {
     GraphAPi.callSendAPI(requestBody);
   }
 
-  sendMessage(response, delay = 0) {
+  sendMessage(response, delay=0.03) {
+    if (!response) return
     // Check if there is delay in the response
     if ("delay" in response) {
       delay = response["delay"];

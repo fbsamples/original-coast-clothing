@@ -145,6 +145,8 @@ module.exports = class Profile {
   }
 
   getMenuItems(locale) {
+    console.log('in getMenuItems')
+    console.log(new Array(10).join('!! '))
     let param = locale === "en_US" ? "default" : locale;
 
     i18n.setLocale(locale);
@@ -154,29 +156,13 @@ module.exports = class Profile {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: i18n.__("menu.support"),
-          type: "nested",
-          call_to_actions: [
-            {
-              title: i18n.__("menu.order"),
-              type: "postback",
-              payload: "TRACK_ORDER"
-            },
-            // {
-            //   title: i18n.__("menu.help"),
-            //   type: "postback",
-            //   payload: "SUPPORT_HELP"
-            // }
-          ]
-        },
-        {
           title: i18n.__("menu.suggestion"),
           type: "postback",
           payload: "MENU"
         },
         {
           type: "web_url",
-          title: i18n.__("menu.shop"),
+          title: i18n.__("products.buy"),
           url: Config.shopUrl,
           webview_height_ratio: "full"
         }

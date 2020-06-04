@@ -12,14 +12,15 @@
 "use strict";
 
 module.exports = class Client {
-  constructor(psid) {
-    this.psid = psid;
-  }
+	constructor(psid) {
+		this.psid = psid;
+	}
 
-  setProfile(profile) {
-    this.firstName = profile.firstName;
-    this.lastName = profile.lastName;
-    this.locale = profile.locale; // i18n: defaults en-uss
-    this.timezone = profile.timezone;
-  }
+	setProfile(profile) {
+		if (!profile) return
+		this.firstName = profile.firstName;
+		this.lastName = profile.lastName;
+		this.locale = profile.locale; // i18n: defaults en-uss
+		this.timezone = profile.timezone;
+	}
 };
