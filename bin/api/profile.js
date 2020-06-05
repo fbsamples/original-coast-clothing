@@ -154,7 +154,7 @@ module.exports = class Profile {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: 'WELCOME!',
+          title: 'Welcome!',
           type: "postback",
           payload: "welcome"
         }

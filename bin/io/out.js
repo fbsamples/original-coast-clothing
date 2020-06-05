@@ -13,10 +13,8 @@
 
 // Imports dependencies
 const 
-  Menu = require("./menu"),
   Render = require("./render");
 
 module.exports = {
-  Menu: Menu,
   Render: Render
 };

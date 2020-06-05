@@ -22,7 +22,7 @@ module.exports = class Render {
   }
 
   handlePayload(payload) {
-    let response = null
+    var response = null
 
     switch (payload) {
 
