@@ -13,7 +13,6 @@
 
 const Out = require("./out"),
   API = require("../api/api"),
-  Survey = require("../services/survey"),
   GraphAPi = require("../api/core/graph-api"),
   i18n = require("../i18n/i18n.config");
 
