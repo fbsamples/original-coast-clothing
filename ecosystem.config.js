@@ -1,6 +1,8 @@
+require("dotenv").config()
+
 module.exports = {
   apps : [{
-    name: "app",
+    name: `mu-${process.env.PORT}`,
     script: "npm start",
     watch: true,
     max_memory_restart: '500M',
