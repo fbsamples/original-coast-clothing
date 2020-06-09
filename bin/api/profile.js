@@ -32,7 +32,7 @@ module.exports = class Profile {
     let profilePayload = {
       ...this.getGetStarted(),
       ...this.getGreeting(),
-      ...this.getPersistentMenu()
+      // ...this.getPersistentMenu()
     };
 
     GraphAPi.callMessengerProfileAPI(profilePayload);
