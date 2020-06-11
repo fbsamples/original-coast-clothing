@@ -102,7 +102,7 @@ module.exports = class In {
   }
 
   handlePayload(payload) {
-    console.log("Received Payload:", `${payload} for ${this.client.psid}`)
+    console.log("!!in:", `${payload} for ${this.client.psid}`)
 
     // Log CTA event in FBA
     GraphAPi.callFBAEventsAPI(this.client.psid, payload)
@@ -115,7 +115,7 @@ module.exports = class In {
   }
 
   sendWelcomeReply(type, object_id) {
-    console.log('%%welcome%%')
+    console.log('!!welcome!!')
     %%welcome%%
 
     let requestBody = {
@@ -129,14 +129,14 @@ module.exports = class In {
   }
 
   handleGreetingReply(user) {
-    console.log('%%greeting%%')
+    console.log('!!greeting!!')
     %%greeting%%
 
     return response
   }
 
   handleFallbackReply(user, message) {
-    console.log('%%fallback%%')
+    console.log('!!fallback!!')
     %%fallback%%
 
     return response
@@ -155,7 +155,7 @@ module.exports = class In {
       message: response
     };
 
-    console.log(`out: ${JSON.stringify(requestBody)}`)
+    console.log(`!!out: ${JSON.stringify(requestBody)}`)
 
     // is there persona id in the response
     if ("persona_id" in response) {
