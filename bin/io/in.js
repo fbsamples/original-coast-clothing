@@ -59,10 +59,7 @@ module.exports = class In {
 
   // Handles messages events with text
   MessageIn() {
-    console.log(
-      "Received text:",
-      `${this.webhookEvent.message.text} for ${this.client.psid}`
-    )
+    console.log(`!!text: ${this.webhookEvent.message.text} for ${this.client.psid} !!date: ${new Date().getTime()}`)
 
     let event = this.webhookEvent
     let greeting = this.firstEntity(event.message.nlp, "greetings")
@@ -102,7 +99,7 @@ module.exports = class In {
   }
 
   handlePayload(payload) {
-    console.log("!!in:", `${payload} for ${this.client.psid}`)
+    console.log("!!in:", `${payload} for ${this.client.psid} !!date: ${new Date().getTime()}`)
 
     // Log CTA event in FBA
     GraphAPi.callFBAEventsAPI(this.client.psid, payload)
@@ -115,7 +112,7 @@ module.exports = class In {
   }
 
   sendWelcomeReply(type, object_id) {
-    console.log('!!welcome!!')
+    console.log(`!!welcome!! !!date: ${new Date().getTime()}`)
     %%welcome%%
 
     let requestBody = {
@@ -129,14 +126,14 @@ module.exports = class In {
   }
 
   handleGreetingReply(user) {
-    console.log('!!greeting!!')
+    console.log(`!!greeting!! !!date: ${new Date().getTime()}`)
     %%greeting%%
 
     return response
   }
 
   handleFallbackReply(user, message) {
-    console.log('!!fallback!!')
+    console.log(`!!fallback!! !!date: ${new Date().getTime()}`)
     %%fallback%%
 
     return response
@@ -155,7 +152,7 @@ module.exports = class In {
       message: response
     };
 
-    console.log(`!!out: ${JSON.stringify(requestBody)}`)
+    console.log(`!!out: ${JSON.stringify(requestBody)} !!date: ${new Date().getTime()}`)
 
     // is there persona id in the response
     if ("persona_id" in response) {
