@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
@@ -32,7 +32,7 @@ module.exports = class Profile {
     let profilePayload = {
       ...this.getGetStarted(),
       ...this.getGreeting(),
-      ...this.getPersistentMenu()
+      // ...this.getPersistentMenu()
     };
 
     GraphAPi.callMessengerProfileAPI(profilePayload);
@@ -145,8 +145,6 @@ module.exports = class Profile {
   }
 
   getMenuItems(locale) {
-    console.log('in getMenuItems')
-    console.log(new Array(10).join('!! '))
     let param = locale === "en_US" ? "default" : locale;
 
     i18n.setLocale(locale);
@@ -156,15 +154,9 @@ module.exports = class Profile {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: i18n.__("menu.suggestion"),
+          title: 'Welcome!',
           type: "postback",
-          payload: "MENU"
-        },
-        {
-          type: "web_url",
-          title: i18n.__("products.buy"),
-          url: Config.shopUrl,
-          webview_height_ratio: "full"
+          payload: "welcome"
         }
       ]
     };

@@ -5,13 +5,14 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
 "use strict";
 
-const i18n = require("../i18n/i18n.config");
+const i18n = require("../i18n/i18n.config"),
+      Config = require("../config/config");
 
 module.exports = class API {
 
@@ -28,9 +29,6 @@ module.exports = class API {
         payload: quickReply["payload"]
       });
     }
-
-    console.log('genQuickReply output')
-    console.log(response)
 
     return response;
   }
@@ -56,7 +54,7 @@ module.exports = class API {
     return response;
   }
 
-  static genImageTemplate(image_url, title, subtitle = "") {
+  static genImageTemplate(image_url, title, subtitle="") {
     let response = {
       attachment: {
         type: "template",
@@ -130,33 +128,14 @@ module.exports = class API {
     return response;
   }
 
-  static genWebButton() {
-    return [
-      API.genWebUrlButton(
-        i18n.__("menu.shop"),
-        `https://cologne.dog/products`
-      )
-    ]
+  static genWebButton(url) {
+    if (Config.webURLs.indexOf(url) > -1) {
+      return [
+        API.genWebUrlButton(
+          i18n.__("menu.shop"),
+          url
+        )
+      ]
+    }
   }
-
-  static genNuxMessage(user) {
-    console.log('in genNuxMessage')
-    return [
-      this.genText(
-        i18n.__("get_started.welcome", {
-          userFirstName: user.firstName
-        })
-      ),
-      this.genQuickReply(i18n.__("get_started.guidance"), [
-        {
-          title: i18n.__("menu.suggestion"),
-          payload: "MENU"
-        },
-        {
-          title: i18n.__("products.buy"),
-          payload: "ORDER_BUY_NOW"
-        }
-      ])
-    ]
-  }
-};
+}

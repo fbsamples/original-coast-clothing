@@ -4,7 +4,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
@@ -21,7 +21,7 @@ const ENV_VARS = [
   "APP_SECRET",
   "VERIFY_TOKEN",
   "APP_URL",
-  "SHOP_URL"
+  "WEB_URLS"
 ];
 
 module.exports = {
@@ -38,8 +38,6 @@ module.exports = {
 
   // URL of your app domain
   appUrl: process.env.APP_URL,
-
-  shopUrl: process.env.SHOP_URL,
 
   // URL of your website
   webURLs: process.env.WEB_URLS.split(','),

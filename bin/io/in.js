@@ -5,235 +5,146 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * Messenger For Cologne.Dog
+ * Messenger Builder by Cologne.Dog
  * https://www.messenger.com/t/colognedog
  */
 
-"use strict";
+"use strict"
 
 const Out = require("./out"),
   API = require("../api/api"),
-  Config = require("../config/config"),
-  Survey = require("../services/survey"),
   GraphAPi = require("../api/core/graph-api"),
   i18n = require("../i18n/i18n.config");
 
 module.exports = class In {
   constructor(client, webhookEvent) {
-    this.client = client;
-    this.webhookEvent = webhookEvent;
+    this.client = client
+    this.webhookEvent = webhookEvent
   }
 
   triageMessage() {
-    let event = this.webhookEvent;
-    let message = event.message;
-    let response = null;
+    let event = this.webhookEvent
+    let message = event.message
+    let response = null
 
     try {
       if (message) {
         if (message.quick_reply) {
-          response = this.QuickReply();
-        } else if (message.attachments) {
-          response = this.GetAttachment();
+          response = this.QuickReply()
         } else if (message.text) {
-          response = this.MessageIn();
+          response = this.MessageIn()
         }
       } else if (event.postback) {
-        response = this.Postback();
+        response = this.Postback()
       } else if (event.referral) {
-        response = this.Referral();
+        response = this.Referral()
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
       response = {
-        text: `An error has occured: '${error}'. We have been notified and \
-        will fix the issue shortly!`
-      };
+        text: "An error has occured. Please email us or try again!"
+      }
     }
 
     if (Array.isArray(response)) {
-      let delay = 0.01;
+      let delay = 0
       for (let resp of response) {
-        this.sendMessage(resp, delay * 2000);
-        delay++;
+        this.sendMessage(resp, delay * 2000)
+        delay++
       }
     } else {
-      this.sendMessage(response);
+      this.sendMessage(response)
     }
   }
 
   // Handles messages events with text
   MessageIn() {
-    console.log(
-      "Received text:",
-      `${this.webhookEvent.message.text} for ${this.client.psid}`
-    );
+    console.log(`!!text: ${this.webhookEvent.message.text} for ${this.client.psid} !!date: ${new Date().getTime()}`)
 
     let event = this.webhookEvent
-    let greeting = this.firstEntity(event.message.nlp, "greetings");
-    let message = event.message.text.trim().toLowerCase();
-    let response = null;
+    let greeting = this.firstEntity(event.message.nlp, "greetings")
+    let message = event.message.text.trim().toLowerCase()
+    let response = null
     if (
       (greeting && greeting.confidence > 0.8) ||
       message.includes("start over")
     ) {
-      response = API.genNuxMessage(this.client);
-    } else if (Number(message)) {
-      let menu = new Out.Order(this.client, event);
-      response = Order.handlePayload("ORDER_NUMBER");
+      // greeting detected
+      response = this.handleGreetingReply(this.client)
     } else {
-      // default handler
-      response = [
-        API.genText(
-          i18n.__("fallback.any", {
-            message: message
-          })
-        ),
-        API.genQuickReply(i18n.__("menu.prompt"), [
-          {
-            title: i18n.__("menu.deodorants"),
-            payload: "PRODUCTS_DEODORANTS"
-          },
-          {
-            title: i18n.__("menu.biocosmeticals"),
-            payload: "PRODUCTS_BIOCOSMETICALS"
-          }
-        ])
-      ];
+      // fallback to any
+      response = this.handleFallbackReply(this.client, message)
     }
 
-    return response;
+    return response
   }
 
-  // Handles mesage events with attachments
-  GetAttachment() {
-    let response;
-
-    // Get the attachment
-    let attachment = this.webhookEvent.message.attachments[0];
-    console.log("Received attachment:", `${attachment} for ${this.client.psid}`);
-
-    response = API.genQuickReply(i18n.__("fallback.attachment"), [
-      {
-        title: i18n.__("menu.help"),
-        payload: "SUPPORT_HELP"
-      },
-      {
-        title: i18n.__("menu.start_over"),
-        payload: "GET_STARTED"
-      }
-    ]);
-
-    return response;
-  }
-
-  // Handles mesage events with quick replies
+  // Handles mesage with quick reply
   QuickReply() {
-    // Get the payload of the quick reply
-    let payload = this.webhookEvent.message.quick_reply.payload;
-    return this.handlePayload(payload);
+    let payload = this.webhookEvent.message.quick_reply.payload
+    return this.handlePayload(payload)
   }
 
   // Handles postbacks events
   Postback() {
-    let postback = this.webhookEvent.postback;
-    // Check for the special Get Starded with referral
-    let payload;
-    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
-    } else {
-      // Get the payload of the postback
-      payload = postback.payload;
-    }
-    return this.handlePayload(payload.toUpperCase());
+    let postback = this.webhookEvent.postback
+    let payload = postback.payload
+    return this.handlePayload(payload.toUpperCase())
   }
 
-  // Handles referral events
+  // Get payload of the postback
   Referral() {
-    // Get the payload of the postback
-    let payload = this.webhookEvent.referral.ref.toUpperCase();
-
-    return this.handlePayload(payload);
+    let payload = this.webhookEvent.referral.ref.toUpperCase()
+    return this.handlePayload(payload)
   }
 
   handlePayload(payload) {
-    console.log("Received Payload:", `${payload} for ${this.client.psid}`);
+    console.log("!!in:", `${payload} for ${this.client.psid} !!date: ${new Date().getTime()}`)
 
     // Log CTA event in FBA
-    GraphAPi.callFBAEventsAPI(this.client.psid, payload);
+    GraphAPi.callFBAEventsAPI(this.client.psid, payload)
 
-    let response = null;
+    let response = null
+    let model = Out.Render
 
-    // Set the response based on the payload
-    if (
-      payload === "GET_STARTED" ||
-      payload === "DEVDOCS" ||
-      payload === "GITHUB"
-    ) {
-      response = API.genNuxMessage(this.client);
-    } else {
-      let model = null;
-      if (payload.includes("MENU")) {
-        model = Out.Menu
-      } else if (payload.includes("SUPPORT")) {
-        model = Out.Support
-      } else if (payload.includes("PRODUCTS")) {
-        model = Out.Products
-      } else if (payload.includes("FEATURES")) {
-        model = Out.Features
-      } else if (payload.includes("ORDER")) {
-        model = Out.Order
-      } else if (payload.includes("CSAT")) {
-        model = Out.Survey
-      }
-
-      if (model) {
-        response = new model(
-          this.client, this.webhookEvent).handlePayload(payload);
-      } else {
-        response = {
-          text: `Could not compute message for payload: ${payload}!`
-        };
-      }
-    }
-
-    return response;
+    response = new model(this.client, this.webhookEvent).handlePayload(payload)
+    return response
   }
 
-  handlePrivateReply(type,object_id) {
-    let response = API.genQuickReply(i18n.__("get_started.help"), [
-        {
-          title: i18n.__("menu.suggestion"),
-          type: "postback",
-          payload: "MENU"
-        },
-        {
-          type: "web_url",
-          title: i18n.__("products.buy"),
-          url: Config.shopUrl,
-          webview_height_ratio: "full"
-        }
-    ]);
+  sendWelcomeReply(type, object_id) {
+    console.log(`!!welcome!! !!date: ${new Date().getTime()}`)
+    %%welcome%%
 
     let requestBody = {
       recipient: {
         [type]: object_id
       },
       message: response
-    };
-
-    GraphAPi.callSendAPI(requestBody);
-  }
-
-  sendMessage(response, delay=0.03) {
-    if (!response) return
-    // Check if there is delay in the response
-    if ("delay" in response) {
-      delay = response["delay"];
-      delete response["delay"];
     }
 
-    // Construct the message body
+    GraphAPi.callSendAPI(requestBody)
+  }
+
+  handleGreetingReply(user) {
+    console.log(`!!greeting!! !!date: ${new Date().getTime()}`)
+    %%greeting%%
+
+    return response
+  }
+
+  handleFallbackReply(user, message) {
+    console.log(`!!fallback!! !!date: ${new Date().getTime()}`)
+    %%fallback%%
+
+    return response
+  }
+
+  sendMessage(response, delay=0) {
+    if ("delay" in response) {
+      delay = response["delay"]
+      delete response["delay"]
+    }
+
     let requestBody = {
       recipient: {
         id: this.client.psid
@@ -241,10 +152,12 @@ module.exports = class In {
       message: response
     };
 
-    // Check if there is persona id in the response
+    console.log(`!!out: ${JSON.stringify(requestBody)} !!date: ${new Date().getTime()}`)
+
+    // is there persona id in the response
     if ("persona_id" in response) {
-      let persona_id = response["persona_id"];
-      delete response["persona_id"];
+      let persona_id = response["persona_id"]
+      delete response["persona_id"]
 
       requestBody = {
         recipient: {
@@ -255,10 +168,10 @@ module.exports = class In {
       };
     }
 
-    setTimeout(() => GraphAPi.callSendAPI(requestBody), delay);
+    setTimeout(() => GraphAPi.callSendAPI(requestBody), delay)
   }
 
   firstEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0]
   }
 };
