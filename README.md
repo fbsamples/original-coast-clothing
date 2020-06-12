@@ -34,7 +34,7 @@ APP_URL=
 SHOP_URL=
 
 # Port
-PORT=3000
+PORT=9999
 ```
 
 #### Get the App id and App Secret
@@ -83,7 +83,7 @@ $ yarn install
 npm start
 ```
 
-You should now be able to access the application in your browser at [http://localhost:3000](http://localhost:3000)
+You should now be able to access the application in your browser at [http://localhost:9999](http://localhost:9999)
 
 The Facebook servers will need to reach your localhost server. Unless you are running your code in the cloud, use ngrok or similar.
 
@@ -91,7 +91,7 @@ The Facebook servers will need to reach your localhost server. Unless you are ru
 
 Use the `VERIFY_TOKEN` that you created in `.env` file and call the **/profile** endpoint like so:
 ```
-http://localhost:3000/profile?mode=all&verify_token=$VERIFY_TOKEN
+http://localhost:9999/profile?mode=all&verify_token=$VERIFY_TOKEN
 ```
 
 #### 5. Test that your app setup is successful
