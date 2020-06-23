@@ -221,9 +221,12 @@ module.exports = class Receive {
     return response;
   }
 
-  handlePrivateReply(type,object_id) {
-    let welcomeMessage = i18n.__("get_started.welcome") + " " +
-      i18n.__("get_started.guidance") + ". " +
+  handlePrivateReply(type, object_id) {
+    let welcomeMessage =
+      i18n.__("get_started.welcome") +
+      " " +
+      i18n.__("get_started.guidance") +
+      ". " +
       i18n.__("get_started.help");
 
     let response = Response.genQuickReply(welcomeMessage, [

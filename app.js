@@ -88,15 +88,13 @@ app.post("/webhook", (req, res) => {
                 "post_id",
                 change.post_id
               );
-              break;
             case "comment":
               return receiveMessage.handlePrivateReply(
-                "commentgity _id",
+                "comment_id",
                 change.comment_id
               );
-              break;
             default:
-              console.log('Unsupported feed change type.');
+              console.log("Unsupported feed change type.");
               return;
           }
         }
