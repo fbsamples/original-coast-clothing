@@ -48,60 +48,9 @@ $ cd original-coast-clothing
 You will need:
 
 - [Node](https://nodejs.org/en/) 10.x or higher
-- [Localtunnel](https://github.com/localtunnel/localtunnel) or remote server like [Heroku](https://www.heroku.com/)
+- Remote server like [Heroku](https://www.heroku.com/)
 
 # Usage
-
-## Using Local Tunnel
-
-#### 1. Install the dependencies
-
-```bash
-$ npm install
-```
-
-Alternatively, you can use [Yarn](https://yarnpkg.com/en/):
-
-```bash
-$ yarn install
-```
-
-#### 2. Install Local Tunnel
-```bash
-npm install -g localtunnel
-```
-
-Open a new terminal tab and request a tunnel to your local server with your preferred port
-```bash
-lt --port 3000
-```
-
-#### 3. Rename the file `.sample.env` to `.env`
-
-```bash
-mv .sample.env .env
-```
-
- Edit the `.env` file to add all the values for your app and page. Then run your app locally using the built-in web server
-
-#### 4. Run your app locally using the built-in web server<
-
-```bash
-node app.js
-```
-
-You should now be able to access the application in your browser at [http://localhost:3000](http://localhost:3000)
-
-#### 5. Configure your webhook subcription and set the Messenger profile
-
-Use the `VERIFY_TOKEN` that you created in `.env` file and call the **/profile** endpoint like so:
-```
-http://localhost:3000/profile?mode=all&verify_token=verify-token
-```
-
-#### 6. Test that your app setup is successful
-
-Send a message to your Page from Facebook or in Messenger, if your webhook receives an event, you have fully set up your app! Voilà!
 
 ## Using Heroku
 #### 1. Install the Heroku CLI
@@ -111,7 +60,6 @@ Download and install the [Heroku CLI](https://devcenter.heroku.com/articles/hero
 #### 2. Create an app from the CLI
 
 ```bash
-git init
 heroku apps:create
 # Creating app... done, ⬢ mystic-wind-83
 # Created http://mystic-wind-83.herokuapp.com/ | git@heroku.com:mystic-wind-83.git
@@ -119,8 +67,6 @@ heroku apps:create
 
 #### 3. Deploy the code
 ```bash
-git add .
-git commit -m "My first commit"
 git push heroku master
 ```
 
