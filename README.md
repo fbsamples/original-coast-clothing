@@ -28,10 +28,10 @@ Before you begin, make sure you have completed all of the requirements listed ab
 #### Grant  Messenger access to your Facebook App
 
 1. Go to your app Dashboard
-2. Under Add Product find Messenger and click Set Up
+2. Under _Add Product_ find _Messenger_ and click _Set Up_
 3. Now you should be in the App Messenger Settings
-4. Under Access Tokens, click on Edit Permissions
-5. Select the desired page and allow Manage and access Page conversations in Messenger
+4. Under Access Tokens, click on _Add or Remove Pages_
+5. Select the desired page and allow "Manage and access Page conversations" in Messenger
 6. Select the desired page and an access token should appear
 7. Get the Page ID from the page access token by using the [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/)
 8. In the section Built-In NLP, select your page and enable the toggle
