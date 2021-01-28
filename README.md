@@ -48,7 +48,7 @@ $ cd original-coast-clothing
 You will need:
 
 - [Node](https://nodejs.org/en/) 10.x or higher
-- Remote server like [Heroku](https://www.heroku.com/)
+- Remote server such as [Heroku](https://www.heroku.com/)
 
 # Usage
 
@@ -65,24 +65,36 @@ heroku apps:create
 # Created http://mystic-wind-83.herokuapp.com/ | git@heroku.com:mystic-wind-83.git
 ```
 
-#### 3. Deploy the code
+Note the name given to your app. In this example, it was `mystic-wind-83`.
+
+#### 3. Set your environment variables
+  On the [Heroku App Dashboard](https://dashboard.heroku.com/), find your app and set up the config vars following the comments in the file ```.sample.env```
+  
+  Alternatively, you can set env variables from the command line like this:
+ ```bash
+heroku config:set PAGE_ID=XXXX
+```
+
+#### 4. Deploy the code
 ```bash
 git push heroku master
 ```
 
-#### 4. Set your environment variables
-  In your Heroku App Dashboard [https://dashboard.heroku.com/apps/mystic-wind-83](https://dashboard.heroku.com/apps/mystic-wind-83) set up the config vars following the comments in the file ```.sample.env```
+#### 5. View log output
+```bash
+heroku logs --tail
+```
 
-#### 5. Configure your webhook subscription and set the Messenger profile
-  You should now be able to access the application. Use the ```VERIFY_TOKEN``` that you created as config vars and call the **/profile** endpoint like so:
+#### 6. Configure your webhook subscription and set the Messenger profile
+  You should now be able to access the application. Use the ```VERIFY_TOKEN``` that you created as a config var and call the **/profile** endpoint on your app like so:
 
   ```
-  http://mystic-wind-83.herokuapp.com/profile?mode=all&verify_token=verify-token
+  http://<YOUR APP NAME>.herokuapp.com/profile?mode=all&verify_token=verify-token
   ```
 
 #### 6. Test that your app setup is successful
 
-  Send a message to your Page from Facebook or in Messenger, if your webhook receives an event, you have fully set up your app! Voilà!
+  Send a message to your page from Facebook or in Messenger. If your webhook receives an event, you have fully set up your app! Voilà!
 
 ## License
 Sample Messenger App Original Coast Clothing is BSD licensed, as found in the LICENSE file.
