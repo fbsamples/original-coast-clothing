@@ -89,7 +89,7 @@ heroku logs --tail
   You should now be able to access the application. Use the ```VERIFY_TOKEN``` that you created as a config var and call the **/profile** endpoint on your app like so:
 
   ```
-  http://<YOUR APP NAME>.herokuapp.com/profile?mode=all&verify_token=verify-token
+  http://<YOUR APP NAME>.herokuapp.com/profile?mode=all&verify_token=<VERIFY_TOKEN>
   ```
 
 #### 6. Test that your app setup is successful
