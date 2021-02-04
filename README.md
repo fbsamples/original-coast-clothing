@@ -48,11 +48,80 @@ $ cd original-coast-clothing
 You will need:
 
 - [Node](https://nodejs.org/en/) 10.x or higher
-- Remote server such as [Heroku](https://www.heroku.com/)
+- Remote server service such as [Heroku](https://www.heroku.com/), a local tunneling service such as [ngrok](https://ngrok.com/), or your own webserver.
 
 # Usage
 
+## Using ngrok
+
+#### 1. Install tunneling service
+
+If not already installed, install ngrok via [download](https://ngrok.com/download) or via command line:
+
+```bash
+npm install -g ngrok
+```
+
+In the directory of this repo, request a tunnel to your local server with your preferred port
+```bash
+ngrok http 3000
+```
+
+Note the https URL of the external server that is tunneled to your local machine. It will look something like `https://1c3b838deacb.ngrok.io`.
+
+#### 2. Install the dependencies
+
+Open a new terminal tab, also in the rep directiory. 
+
+```bash
+$ npm install
+```
+
+Alternatively, you can use [Yarn](https://yarnpkg.com/en/):
+
+```bash
+$ yarn install
+```
+
+#### 3. Set up .env file
+
+Copy the file `.sample.env` to `.env`
+
+```bash
+cp .sample.env .env
+```
+
+Edit the `.env` file to add all the values for your app and page. Note that `APP_URL` will be the external URL from step 1. 
+
+#### 4. Run your app locally
+
+```bash
+node app.js
+```
+
+You should now be able to access the application in your browser at [http://localhost:3000](http://localhost:3000) 
+
+Confirm that you canalso access it at the external URL from step 1.
+
+#### 5. Configure your webhook subcription and set the Messenger profile
+
+Use the `VERIFY_TOKEN` that you created in `.env` file and call the **/profile** endpoint in your browser or via cURL:
+```
+http://localhost:3000/profile?mode=all&verify_token=verify-tokenl
+```
+
+This will configure your webhook. 
+
+#### 6. Test that your app setup is successful
+
+Send a message to your Page from Facebook or in Messenger. 
+
+You should see the webhook called in the ngrok terminal tab, and in your application terminal tab. 
+
+If you see a response to your message in messenger, you have fully set up your app! Voilà!
+
 ## Using Heroku
+
 #### 1. Install the Heroku CLI
 
 Download and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
@@ -68,19 +137,23 @@ heroku apps:create
 Note the name given to your app. In this example, it was `mystic-wind-83`.
 
 #### 3. Set your environment variables
-  On the [Heroku App Dashboard](https://dashboard.heroku.com/), find your app and set up the config vars following the comments in the file ```.sample.env```
+
+On the [Heroku App Dashboard](https://dashboard.heroku.com/), find your app and set up the config vars following the comments in the file ```.sample.env```
   
-  Alternatively, you can set env variables from the command line like this:
+Alternatively, you can set env variables from the command line like this:
+
  ```bash
 heroku config:set PAGE_ID=XXXX
 ```
 
 #### 4. Deploy the code
+
 ```bash
 git push heroku master
 ```
 
 #### 5. View log output
+
 ```bash
 heroku logs --tail
 ```
@@ -94,9 +167,10 @@ heroku logs --tail
 
 #### 6. Test that your app setup is successful
 
-  Send a message to your page from Facebook or in Messenger. If your webhook receives an event, you have fully set up your app! Voilà!
+Send a message to your page from Facebook or in Messenger. If your webhook receives an event, you have fully set up your app! Voilà!
 
 ## License
+
 Sample Messenger App Original Coast Clothing is BSD licensed, as found in the LICENSE file.
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
