@@ -71,7 +71,7 @@ Note the https URL of the external server that is tunneled to your local machine
 
 #### 2. Install the dependencies
 
-Open a new terminal tab, also in the rep directiory. 
+Open a new terminal tab, also in the repo directiory. 
 
 ```bash
 $ npm install
