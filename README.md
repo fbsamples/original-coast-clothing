@@ -67,7 +67,21 @@ In the directory of this repo, request a tunnel to your local server with your p
 ngrok http 3000
 ```
 
-Note the https URL of the external server that is tunneled to your local machine. It will look something like `https://1c3b838deacb.ngrok.io`.
+The screen should show the ngrok status:
+
+```
+Session Status                online
+Account                       Redacted (Plan: Free)
+Version                       2.3.35
+Region                        United States (us)
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://1c3b838deacb.ngrok.io -> http://localhost:3000
+Forwarding                    https://1c3b838deacb.ngrok.io -> http://localhost:3000
+
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+Note the https URL of the external server that is fowarded to your local machine. In the above example, it is `https://1c3b838deacb.ngrok.io`.
 
 #### 2. Install the dependencies
 
