@@ -73,10 +73,11 @@ module.exports = class Receive {
       `${this.webhookEvent.message.text} for ${this.user.psid}`
     );
 
-    // check greeting is here and is confident
-    let greeting = this.firstEntity(this.webhookEvent.message.nlp, "greetings");
+    let event = this.webhookEvent;
 
-    let message = this.webhookEvent.message.text.trim().toLowerCase();
+    // check greeting is here and is confident
+    let greeting = this.firstEntity(event.message.nlp, "greetings");
+    let message = event.message.text.trim().toLowerCase();
 
     let response;
 
@@ -96,7 +97,7 @@ module.exports = class Receive {
       response = [
         Response.genText(
           i18n.__("fallback.any", {
-            message: this.webhookEvent.message.text
+            message: event.message.text;
           })
         ),
         Response.genText(i18n.__("get_started.guidance")),
