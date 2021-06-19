@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
+ * Copyright 2021-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
@@ -11,54 +11,50 @@
 "use strict";
 
 // Imports dependencies
-const request = require("request"),
-  camelCase = require("camelcase"),
-  config = require("./config");
+const config = require("./config"),
+  fetch = require("node-fetch"),
+  { URL, URLSearchParams } = require("url");
 
-module.exports = class GraphAPi {
-  static callSendAPI(requestBody) {
-    // Send the HTTP request to the Messenger Platform
-    request(
-      {
-        uri: `${config.mPlatfom}/me/messages`,
-        qs: {
-          access_token: config.pageAccesToken
-        },
-        method: "POST",
-        json: requestBody
-      },
-      error => {
-        if (error) {
-          console.error("Unable to send message:", error);
-        }
-      }
-    );
+module.exports = class GraphApi {
+  static async callSendApi(requestBody) {
+    let url = new URL(`${config.apiUrl}/me/messages`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken
+    });
+    let response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody)
+    });
+    if (!response.ok) {
+      console.warn(`Could not sent message.`, response.statusText);
+    }
   }
 
-  static callMessengerProfileAPI(requestBody) {
+  static async callMessengerProfileAPI(requestBody) {
     // Send the HTTP request to the Messenger Profile API
 
     console.log(`Setting Messenger Profile for app ${config.appId}`);
-    request(
-      {
-        uri: `${config.mPlatfom}/me/messenger_profile`,
-        qs: {
-          access_token: config.pageAccesToken
-        },
-        method: "POST",
-        json: requestBody
-      },
-      (error, _res, body) => {
-        if (!error) {
-          console.log("Request sent:", body);
-        } else {
-          console.error("Unable to send message:", error);
-        }
-      }
-    );
+    let url = new URL(`${config.apiUrl}/me/messenger_profile`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken
+    });
+    let response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody)
+    });
+    if (response.ok) {
+      console.log(`Request sent.`);
+    } else {
+      console.warn(
+        `Unable to callMessengerProfileAPI: ${response.statusText}`,
+        await response.json()
+      );
+    }
   }
 
-  static callSubscriptionsAPI(customFields) {
+  static async callSubscriptionsAPI(customFields) {
     // Send the HTTP request to the Subscriptions Edge to configure your webhook
     // You can use the Graph API's /{app-id}/subscriptions edge to configure and
     // manage your app's Webhooks product
@@ -68,39 +64,39 @@ module.exports = class GraphAPi {
     );
 
     let fields =
-      "messages, messaging_postbacks, messaging_optins, \
-        message_deliveries, messaging_referrals";
+      "messages, messaging_postbacks, messaging_optins, " +
+      "message_deliveries, messaging_referrals";
 
     if (customFields !== undefined) {
       fields = fields + ", " + customFields;
     }
 
-    console.log(fields);
+    console.log({ fields });
 
-    request(
-      {
-        uri: `${config.mPlatfom}/${config.appId}/subscriptions`,
-        qs: {
-          access_token: config.appId + "|" + config.appSecret,
-          object: "page",
-          callback_url: config.webhookUrl,
-          verify_token: config.verifyToken,
-          fields: fields,
-          include_values: "true"
-        },
-        method: "POST"
-      },
-      (error, _res, body) => {
-        if (!error) {
-          console.log("Request sent:", body);
-        } else {
-          console.error("Unable to send message:", error);
-        }
-      }
-    );
+    let url = new URL(`${config.apiUrl}/${config.appId}/subscriptions`);
+    url.search = new URLSearchParams({
+      access_token: `${config.appId}|${config.appSecret}`,
+      object: "page",
+      callback_url: config.webhookUrl,
+      verify_token: config.verifyToken,
+      fields: fields,
+      include_values: "true"
+    });
+    let response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    });
+    if (response.ok) {
+      console.log(`Request sent.`);
+    } else {
+      console.error(
+        `Unable to callSubscriptionsAPI: ${response.statusText}`,
+        await response.json()
+      );
+    }
   }
 
-  static callSubscribedApps(customFields) {
+  static async callSubscribedApps(customFields) {
     // Send the HTTP request to subscribe an app for Webhooks for Pages
     // You can use the Graph API's /{page-id}/subscribed_apps edge to configure
     // and manage your pages subscriptions
@@ -108,222 +104,125 @@ module.exports = class GraphAPi {
     console.log(`Subscribing app ${config.appId} to page ${config.pageId}`);
 
     let fields =
-      "messages, messaging_postbacks, messaging_optins, \
-        message_deliveries, messaging_referrals";
+      "messages, messaging_postbacks, messaging_optins, " +
+      "message_deliveries, messaging_referrals";
 
     if (customFields !== undefined) {
       fields = fields + ", " + customFields;
     }
 
-    console.log(fields);
+    console.log({ fields });
 
-    request(
-      {
-        uri: `${config.mPlatfom}/${config.pageId}/subscribed_apps`,
-        qs: {
-          access_token: config.pageAccesToken,
-          subscribed_fields: fields
-        },
-        method: "POST"
-      },
-      error => {
-        if (error) {
-          console.error("Unable to send message:", error);
-        }
-      }
-    );
-  }
-
-  static async getUserProfile(senderPsid) {
-    try {
-      const userProfile = await this.callUserProfileAPI(senderPsid);
-
-      for (const key in userProfile) {
-        const camelizedKey = camelCase(key);
-        const value = userProfile[key];
-        delete userProfile[key];
-        userProfile[camelizedKey] = value;
-      }
-
-      return userProfile;
-    } catch (err) {
-      console.log("Fetch failed:", err);
+    let url = new URL(`${config.apiUrl}/${config.pageId}/subscribed_apps`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken,
+      subscribed_fields: fields
+    });
+    let response = await fetch(url, {
+      method: "POST"
+    });
+    if (response.ok) {
+      console.log(`Request sent.`);
+    } else {
+      console.error(
+        `Unable to callSubscribedApps: ${response.statusText}`,
+        await response.json()
+      );
     }
   }
 
-  static callUserProfileAPI(senderPsid) {
-    return new Promise(function(resolve, reject) {
-      let body = [];
-
-      // Send the HTTP request to the Graph API
-      request({
-        uri: `${config.mPlatfom}/${senderPsid}`,
-        qs: {
-          access_token: config.pageAccesToken,
-          fields: "first_name, last_name, gender, locale, timezone"
-        },
-        method: "GET"
-      })
-        .on("response", function(response) {
-          // console.log(response.statusCode);
-
-          if (response.statusCode !== 200) {
-            reject(Error(response.statusCode));
-          }
-        })
-        .on("data", function(chunk) {
-          body.push(chunk);
-        })
-        .on("error", function(error) {
-          console.error("Unable to fetch profile:" + error);
-          reject(Error("Network Error"));
-        })
-        .on("end", () => {
-          body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
-          resolve(JSON.parse(body));
-        });
+  static async getUserProfile(senderIgsid) {
+    let url = new URL(`${config.apiUrl}/${senderIgsid}`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken,
+      fields: "first_name, last_name, gender, locale, timezone"
     });
-  }
-
-  static getPersonaAPI() {
-    return new Promise(function(resolve, reject) {
-      let body = [];
-
-      // Send the POST request to the Personas API
-      console.log(`Fetching personas for app ${config.appId}`);
-
-      request({
-        uri: `${config.mPlatfom}/me/personas`,
-        qs: {
-          access_token: config.pageAccesToken
-        },
-        method: "GET"
-      })
-        .on("response", function(response) {
-          // console.log(response.statusCode);
-
-          if (response.statusCode !== 200) {
-            reject(Error(response.statusCode));
-          }
-        })
-        .on("data", function(chunk) {
-          body.push(chunk);
-        })
-        .on("error", function(error) {
-          console.error("Unable to fetch personas:" + error);
-          reject(Error("Network Error"));
-        })
-        .on("end", () => {
-          body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
-          resolve(JSON.parse(body).data);
-        });
-    });
-  }
-
-  static postPersonaAPI(name, profile_picture_url) {
-    let body = [];
-
-    return new Promise(function(resolve, reject) {
-      // Send the POST request to the Personas API
-      console.log(`Creating a Persona for app ${config.appId}`);
-
-      let requestBody = {
-        name: name,
-        profile_picture_url: profile_picture_url
+    let response = await fetch(url);
+    if (response.ok) {
+      let userProfile = await response.json();
+      return {
+        firstName: userProfile.first_name,
+        lastName: userProfile.last_name,
+        gender: userProfile.gender,
+        locale: userProfile.locale,
+        timezone: userProfile.timezone
       };
-
-      request({
-        uri: `${config.mPlatfom}/me/personas`,
-        qs: {
-          access_token: config.pageAccesToken
-        },
-        method: "POST",
-        json: requestBody
-      })
-        .on("response", function(response) {
-          // console.log(response.statusCode);
-          if (response.statusCode !== 200) {
-            reject(Error(response.statusCode));
-          }
-        })
-        .on("data", function(chunk) {
-          body.push(chunk);
-        })
-        .on("error", function(error) {
-          console.error("Unable to create a persona:", error);
-          reject(Error("Network Error"));
-        })
-        .on("end", () => {
-          body = Buffer.concat(body).toString();
-          // console.log(JSON.parse(body));
-
-          resolve(JSON.parse(body).id);
-        });
-    }).catch(error => {
-      console.error("Unable to create a persona:", error, body);
-    });
+    } else {
+      console.warn(
+        `Could not load profile for ${senderIgsid}: ${response.statusText}`,
+        await response.json()
+      );
+      return null;
+    }
   }
 
-  static callNLPConfigsAPI() {
+  static async getPersonaAPI() {
+    // Send the POST request to the Personas API
+    console.log(`Fetching personas for app ${config.appId}`);
+
+    let url = new URL(`${config.apiUrl}/me/personas`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken
+    });
+    let response = await fetch(url);
+    if (response.ok) {
+      let body = await response.json();
+      return body.data;
+    } else {
+      console.warn(
+        `Unable to fetch personas for ${config.appId}: ${response.statusText}`,
+        await response.json()
+      );
+      return null;
+    }
+  }
+
+  static async postPersonaAPI(name, profile_picture_url) {
+    let requestBody = {
+      name,
+      profile_picture_url
+    };
+    console.log(`Creating a Persona for app ${config.appId}`);
+    console.log({ requestBody });
+    let url = new URL(`${config.apiUrl}/me/personas`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken
+    });
+    let response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody)
+    });
+    if (response.ok) {
+      console.log(`Request sent.`);
+      let json = await response.json();
+      return json.id;
+    } else {
+      console.error(
+        `Unable to postPersonaAPI: ${response.statusText}`,
+        await response.json()
+      );
+    }
+  }
+
+  static async callNLPConfigsAPI() {
     // Send the HTTP request to the Built-in NLP Configs API
     // https://developers.facebook.com/docs/graph-api/reference/page/nlp_configs/
 
     console.log(`Enable Built-in NLP for Page ${config.pageId}`);
-    request(
-      {
-        uri: `${config.mPlatfom}/me/nlp_configs`,
-        qs: {
-          access_token: config.pageAccesToken,
-          nlp_enabled: true
-        },
-        method: "POST"
-      },
-      (error, _res, body) => {
-        if (!error) {
-          console.log("Request sent:", body);
-        } else {
-          console.error("Unable to activate built-in NLP:", error);
-        }
-      }
-    );
-  }
 
-  static callFBAEventsAPI(senderPsid, eventName) {
-    // Construct the message body
-    let requestBody = {
-      event: "CUSTOM_APP_EVENTS",
-      custom_events: JSON.stringify([
-        {
-          _eventName: "postback_payload",
-          _value: eventName,
-          _origin: "original_coast_clothing"
-        }
-      ]),
-      advertiser_tracking_enabled: 1,
-      application_tracking_enabled: 1,
-      extinfo: JSON.stringify(["mb1"]),
-      page_id: config.pageId,
-      page_scoped_user_id: senderPsid
-    };
-
-    // Send the HTTP request to the Activities API
-    request(
-      {
-        uri: `${config.mPlatfom}/${config.appId}/activities`,
-        method: "POST",
-        form: requestBody
-      },
-      error => {
-        if (!error) {
-          console.log(`FBA event '${eventName}'`);
-        } else {
-          console.error(`Unable to send FBA event '${eventName}':` + error);
-        }
-      }
-    );
+    let url = new URL(`${config.apiUrl}/me/nlp_configs}/me/nlp_configs`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken,
+      nlp_enabled: true
+    });
+    let response = await fetch(url, {
+      method: "POST"
+    });
+    if (response.ok) {
+      console.log(`Request sent.`);
+    } else {
+      console.error(`Unable to activate built-in NLP: ${response.statusText}`);
+    }
   }
 };

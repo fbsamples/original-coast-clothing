@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
+ * Copyright 2021-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
@@ -26,8 +26,8 @@ const ENV_VARS = [
 
 module.exports = {
   // Messenger Platform API
-  mPlatformDomain: "https://graph.facebook.com",
-  mPlatformVersion: "v3.2",
+  apiDomain: "https://graph.facebook.com",
+  apiVersion: "v11.0",
 
   // Page and Application information
   pageId: process.env.PAGE_ID,
@@ -48,13 +48,14 @@ module.exports = {
   // Preferred port (default to 3000)
   port: process.env.PORT || 3000,
 
-  get mPlatfom() {
-    return this.mPlatformDomain + "/" + this.mPlatformVersion;
+  // Base URL for Messenger Platform API calls
+  get apiUrl() {
+    return `${this.apiDomain}/${this.apiVersion}`;
   },
 
   // URL of your webhook endpoint
   get webhookUrl() {
-    return this.appUrl + "/webhook";
+    return `${this.appUrl}/webhook`;
   },
 
   get newPersonas() {
@@ -121,13 +122,13 @@ module.exports = {
   checkEnvVariables: function() {
     ENV_VARS.forEach(function(key) {
       if (!process.env[key]) {
-        console.log("WARNING: Missing the environment variable " + key);
+        console.warn("WARNING: Missing the environment variable " + key);
       } else {
         // Check that urls use https
         if (["APP_URL", "SHOP_URL"].includes(key)) {
           const url = process.env[key];
           if (!url.startsWith("https://")) {
-            console.log(
+            console.warn(
               "WARNING: Your " + key + ' does not begin with "https://"'
             );
           }

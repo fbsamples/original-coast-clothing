@@ -3,7 +3,6 @@
     "greeting": "Bem-vindo(a) à Original Coast Clothing {{user_first_name}}! Clique em Começar para conferir nosso exemplo de experiência de mensagens automáticas. Se você deseja criar uma semelhante, acesse https://fb.me/get-sample-oc."
   },
   "menu": {
-    "support": "Suporte ao cliente",
     "order": "Atualizações de pedidos",
     "help": "Fale com um agente",
     "suggestion": "Sugestões de roupas",

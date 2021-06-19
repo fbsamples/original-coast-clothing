@@ -3,7 +3,6 @@
     "greeting": "{{user_first_name}}，歡迎來到 Original Coast Clothing！點擊「立即開始」，在範例中體驗我們的自動訊息功能。如果您想要建立類似的自動訊息，請前往 https://fb.me/get-sample-oc"
   },
   "menu": {
-    "support": "客戶支援團隊",
     "order": "訂單更新",
     "help": "聯絡代理商",
     "suggestion": "服裝建議",

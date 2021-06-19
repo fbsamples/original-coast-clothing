@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
+ * Copyright 2021-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
@@ -11,20 +11,20 @@
 "use strict";
 
 // Imports dependencies
-const GraphAPi = require("./graph-api"),
+const GraphApi = require("./graph-api"),
   i18n = require("../i18n.config"),
   config = require("./config"),
   locales = i18n.getLocales();
 
 module.exports = class Profile {
   setWebhook() {
-    GraphAPi.callSubscriptionsAPI();
-    GraphAPi.callSubscribedApps();
+    GraphApi.callSubscriptionsAPI();
+    GraphApi.callSubscribedApps();
   }
 
   setPageFeedWebhook() {
-    GraphAPi.callSubscriptionsAPI("feed");
-    GraphAPi.callSubscribedApps("feed");
+    GraphApi.callSubscriptionsAPI("feed");
+    GraphApi.callSubscribedApps("feed");
   }
 
   setThread() {
@@ -34,65 +34,55 @@ module.exports = class Profile {
       ...this.getPersistentMenu()
     };
 
-    GraphAPi.callMessengerProfileAPI(profilePayload);
+    GraphApi.callMessengerProfileAPI(profilePayload);
   }
 
-  setPersonas() {
+  async setPersonas() {
     let newPersonas = config.newPersonas;
 
-    GraphAPi.getPersonaAPI()
-      .then(personas => {
-        for (let persona of personas) {
-          config.pushPersona({
-            name: persona.name,
-            id: persona.id
-          });
-        }
-        console.log(config.personas);
-        return config.personas;
-      })
-      .then(existingPersonas => {
-        for (let persona of newPersonas) {
-          if (!(persona.name in existingPersonas)) {
-            GraphAPi.postPersonaAPI(persona.name, persona.picture)
-              .then(personaId => {
-                config.pushPersona({
-                  name: persona.name,
-                  id: personaId
-                });
-                console.log(config.personas);
-              })
-              .catch(error => {
-                console.log("Creation failed:", error);
-              });
-          } else {
-            console.log("Persona already exists for name:", persona.name);
-          }
-        }
-      })
-      .catch(error => {
-        console.log("Creation failed:", error);
+    let personas = await GraphApi.getPersonaAPI();
+    for (let persona of personas) {
+      config.pushPersona({
+        name: persona.name,
+        id: persona.id
       });
+    }
+    let existingPersonas = config.personas;
+    console.log({ existingPersonas });
+
+    for (let persona of newPersonas) {
+      if (!(persona.name in existingPersonas)) {
+        let personaId = await GraphApi.postPersonaAPI(
+          persona.name,
+          persona.picture
+        );
+        config.pushPersona({
+          name: persona.name,
+          id: personaId
+        });
+        console.log(config.personas);
+      }
+    }
   }
 
   setGetStarted() {
     let getStartedPayload = this.getGetStarted();
-    GraphAPi.callMessengerProfileAPI(getStartedPayload);
+    GraphApi.callMessengerProfileAPI(getStartedPayload);
   }
 
   setGreeting() {
     let greetingPayload = this.getGreeting();
-    GraphAPi.callMessengerProfileAPI(greetingPayload);
+    GraphApi.callMessengerProfileAPI(greetingPayload);
   }
 
   setPersistentMenu() {
     let menuPayload = this.getPersistentMenu();
-    GraphAPi.callMessengerProfileAPI(menuPayload);
+    GraphApi.callMessengerProfileAPI(menuPayload);
   }
 
   setWhitelistedDomains() {
     let domainPayload = this.getWhitelistedDomains();
-    GraphAPi.callMessengerProfileAPI(domainPayload);
+    GraphApi.callMessengerProfileAPI(domainPayload);
   }
 
   getGetStarted() {
@@ -139,7 +129,7 @@ module.exports = class Profile {
       })
     };
 
-    console.log(localizedGreeting);
+    console.log({ localizedGreeting });
     return localizedGreeting;
   }
 
@@ -153,20 +143,14 @@ module.exports = class Profile {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: i18n.__("menu.support"),
-          type: "nested",
-          call_to_actions: [
-            {
-              title: i18n.__("menu.order"),
-              type: "postback",
-              payload: "TRACK_ORDER"
-            },
-            {
-              title: i18n.__("menu.help"),
-              type: "postback",
-              payload: "CARE_HELP"
-            }
-          ]
+          title: i18n.__("menu.order"),
+          type: "postback",
+          payload: "TRACK_ORDER"
+        },
+        {
+          title: i18n.__("menu.help"),
+          type: "postback",
+          payload: "CARE_HELP"
         },
         {
           title: i18n.__("menu.suggestion"),
@@ -182,7 +166,7 @@ module.exports = class Profile {
       ]
     };
 
-    console.log(localizedMenu);
+    console.log({ localizedMenu });
     return localizedMenu;
   }
 
@@ -191,7 +175,7 @@ module.exports = class Profile {
       whitelisted_domains: config.whitelistedDomains
     };
 
-    console.log(whitelistedDomains);
+    console.log({ whitelistedDomains });
     return whitelistedDomains;
   }
 };

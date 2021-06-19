@@ -3,7 +3,6 @@
     "greeting": "{{user_first_name}}님, 안녕하세요. Original Coast Clothing입니다! 시작하기를 클릭하여 샘플 자동 메시지 기능을 활용해보세요. 비슷한 메시지를 만들려면 visit https://fb.me/get-sample-oc를 방문하세요."
   },
   "menu": {
-    "support": "고객 지원",
     "order": "주문 업데이트",
     "help": "상담원과 대화하기",
     "suggestion": "의상 추천",

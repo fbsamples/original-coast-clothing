@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
+ * Copyright 2021-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
@@ -15,7 +15,7 @@ const Curation = require("./curation"),
   Response = require("./response"),
   Care = require("./care"),
   Survey = require("./survey"),
-  GraphAPi = require("./graph-api"),
+  GraphApi = require("./graph-api"),
   i18n = require("../i18n.config");
 
 module.exports = class Receive {
@@ -152,12 +152,13 @@ module.exports = class Receive {
     let postback = this.webhookEvent.postback;
     // Check for the special Get Starded with referral
     let payload;
-    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
-    } else {
+    if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
+    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
     }
+
     return this.handlePayload(payload.toUpperCase());
   }
 
@@ -171,9 +172,6 @@ module.exports = class Receive {
 
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
-
-    // Log CTA event in FBA
-    GraphAPi.callFBAEventsAPI(this.user.psid, payload);
 
     let response;
 
@@ -248,7 +246,7 @@ module.exports = class Receive {
       message: response
     };
 
-    GraphAPi.callSendAPI(requestBody);
+    GraphApi.callSendApi(requestBody);
   }
 
   sendMessage(response, delay = 0) {
@@ -280,7 +278,7 @@ module.exports = class Receive {
       };
     }
 
-    setTimeout(() => GraphAPi.callSendAPI(requestBody), delay);
+    setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
 
   firstEntity(nlp, name) {
