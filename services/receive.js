@@ -97,7 +97,7 @@ module.exports = class Receive {
       response = [
         Response.genText(
           i18n.__("fallback.any", {
-            message: event.message.text;
+            message: event.message.text
           })
         ),
         Response.genText(i18n.__("get_started.guidance")),
