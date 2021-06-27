@@ -1,0 +1,74 @@
+{
+  "profile": {
+    "greeting": "Witaj w Original Coast Clothing {{user_first_name}}! Naciśnij \"rozpocznij\", aby pozanć naszą przykładową konwersację. Jeśli tylko chcesz, to możesz stworzyć podobną, zajrzyj na https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "support": "Obsługa klienta",
+    "order": "Aktualizacje statusu zamówienia",
+    "help": "Porozmawiaj z pracownikiem",
+    "suggestion": "Sugestie dotyczące stroju",
+    "shop": "Rozpocznij zakupy",
+    "start_over": "Zacznij od nowa"
+  },
+  "get_started": {
+    "welcome": "Cześć {{userFirstName}}! Witaj w Original Coast Clothing - miejscu, w którym znajdziesz swój styl na każdą okazję!",
+    "guidance": "W każdej chwili możesz użyć menu poniżej, aby poruszać się przez różne funkcje.",
+    "help": "W czym możemy Ci dziś pomóc?"
+  },
+  "leadgen": {
+    "promo": "Hej {{userFirstName}}, znalezienie świetnych insiracji jest teraz przyjemniejsze i znacznie prostsze.",
+    "title": "Kupon 50%",
+    "subtitle": "Oto Twój kupon",
+    "apply": "Użyj zniżki",
+    "coupon": "Kupon został użyty w tej rozmowie, teraz tańszą letnia kolekcja specjalnie dla Ciebie - sprawdź ją!"
+  },
+  "curation": {
+    "prompt": "Szukasz stroju dla siebie, czy może dla kogoś innego?",
+    "occasion": "Świetnie! Rozpocznijmy w takim razie. Po pierwsze, czy strój jest na jakąś okazję?",
+    "price": "Ile planujesz wydać?",
+    "me": "Dla mnie!",
+    "someone": "Dla kogoś innego",
+    "work": "Praca",
+    "dinner": "Kolacja",
+    "party": "Przyjęcie",
+    "sales": "Porozmawiaj z działem sprzedaży",
+    "shop": "Kup ten strój",
+    "title": "Kolekcja letnia 2019",
+    "subtitle": "Polecany strój",
+    "show": "Następna kompozycja"
+  },
+  "order": {
+    "prompt": "Chętnie Tobie pomożemy. Wybierz z poniższych",
+    "search": "Szukaj po numerze zamówienia",
+    "account": "Połącz moje konto",
+    "dialog": "Okno łączenia kont",
+    "searching": "Szukam Twojego ostatniego zamówienia...",
+    "number": "Jasne, podaj proszę numer zamówienia",
+    "status": "Twoje zamówienie jest w trakcie wysyłki, powinno dotrzeć w ciągu 3 dni."
+  },
+  "care": {
+    "prompt": "Aby móc skontaktować Cię z odpowiednim działem muszę znać temat rozmowy, o czym chcesz porozmawiać?",
+    "order": "Pytanie o zamówienie",
+    "billing": "Problemy z płatością",
+    "other": "Inne",
+    "issue": "Hej {{userFirstName}}, mam na imię {{agentFirstName}}. Jestem tu, aby Ci pomóc z dowolnym pytaniem w temacie \"{{topic}}\".",
+    "default": "Hej {{userFirstName}}, mam na imię {{agentFirstName}}. Jestem tu dziś dla Ciebie. W czym mogę Ci pomóc?",
+    "style": "Hej {{userFirstName}}, mam na imię {{agentFirstName}}. Chętnie odpowiem na Twoje pytania dotyczące naszej letniej kolekcji",
+    "end": "W tym miejscu nasza demo rozmowa się kończy. Wykorzystaj możliwości platformy messenger w swojej firmie. Zajrzyj na https://fb.me/get-sample-oc aby nauczyć się jak stworzyć podobny projekt",
+    "help": "Pomoc"
+  },
+  "survey": {
+    "prompt": "Witaj, chciałbym zapytać się Ciebie o szybką opinię na temat rozmowy z {{agentFirstName}}",
+    "positive": "Dzięki za feedback",
+    "neutral": "Dziękujemy za feedback, jeśli jest coś, co moglibyśmy poprawić nie wahaj się, aby napisać o tym tu dopisując do Twojego komentarza \"#suggestion\"",
+    "negative": "Dziękujemy za poinformowanie nas o tym. Bardzo przykro jest nam o tym słyszeć, jeśli jest coś co możemy z tym zrobić to proszę dać nam znać",
+    "suggestion": "Otrzymaliśmy twoją sugestię, nasz zespół niedługo ją rozpatrzy. Jeśli jest to naprawdę pilne, to po prostu napisz teraz \"help\""
+  },
+  "chat_plugin": {
+    "prompt": "Serdecznie dziękujemy za odwiedznie naszego sklepu, polecamy sprawdźić wszystkie nasze nowe inspiracje z kolekcji letniej."
+  },
+  "fallback": {
+    "any": "Przykro mi, lecz nie mogę odpowiedzieć na \"{{message}}\".",
+    "attachment": "Dziękujemy za przesłanie tego załącznika, możemy przekazać rozmowę do naszego pracownika lub zacząć od nowa"
+  }
+}
