@@ -11,6 +11,7 @@
 "use strict";
 
 const Curation = require("./curation"),
+  Nlp = require("./nlp"),
   Order = require("./order"),
   Response = require("./response"),
   Care = require("./care"),
@@ -40,7 +41,12 @@ module.exports = class Receive {
         } else if (message.attachments) {
           responses = this.handleAttachmentMessage();
         } else if (message.text) {
-          responses = this.handleTextMessage();
+          if (Nlp.shouldTriggerReviewBox(message.text)) {
+            responses = this.handleReviewRequest();
+          }
+          else {
+            responses = this.handleTextMessage();
+          }
         }
       } else if (event.postback) {
         responses = this.handlePostback();
@@ -65,6 +71,21 @@ module.exports = class Receive {
       this.sendMessage(responses);
     }
   }
+
+  // Handles mesage events with review requests
+  handleReviewRequest() {
+    // Get the payload of the quick reply
+    let payload = this.webhookEvent.message.text
+    let response = Response.genCSATTemplate();
+    let requestBody = {
+      recipient: {
+        id: this.user.psid
+      },
+      message: response
+    };
+    GraphApi.callSendApi(requestBody);
+  }
+
 
   // Handles messages events with text
   handleTextMessage() {

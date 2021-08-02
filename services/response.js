@@ -51,6 +51,46 @@ module.exports = class Response {
     return response;
   }
 
+
+  static genCSATTemplate() {
+    let response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "customer_feedback",
+          title: "Rate your experience with Mumma's Shoppe", // Business needs to define. 
+          subtitle: "Let Mumma's Shoppe know how they are doing by answering two questions", // Business needs to define. 
+          button_title: "Rate Experience", // Business needs to define. 
+          feedback_screens: [{
+            questions: [{
+              "id": "hauydmns8", // Unique id for question that business sets
+              "type": "csat",
+              "title": "How would you rate your experience with Mumma's Shoppe", // Optional. If business does not define, we show standard text. Standard text based on question type ("csat", "nps", "ces" >>> "text")
+              "score_label": "neg_pos", // Optional
+              "score_option": "five_stars", // Optional
+              "follow_up": // Optional. Inherits the title and id from the previous question on the same page.  Only free-from input is allowed. No other title will show. 
+              {
+                "type": "free_form",
+                "placeholder": "Give additional feedback" // Optional
+              }
+            }]
+          }],
+          business_privacy:
+          {
+            "url": "https://www.example.com"
+          },
+          expires_in_days: 3 // Optional, default 1 day, business defines 1-7 days
+        }
+      }
+
+    };
+
+    return response;
+  }
+
+
+
+
   static genImageTemplate(image_url, title, subtitle = "") {
     let response = {
       attachment: {
