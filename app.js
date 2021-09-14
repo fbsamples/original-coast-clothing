@@ -112,6 +112,9 @@ app.post("/webhook", (req, res) => {
         } else if ("delivery" in webhookEvent) {
           console.log("Got a delivery event");
           return;
+        } else if (webhookEvent.message && webhookEvent.message.is_echo) {
+          console.log("Got an echo of our send, mid = " + webhookEvent.message.mid);
+          return;
         }
 
         // Get the sender PSID
