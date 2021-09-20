@@ -163,7 +163,7 @@ heroku config:set PAGE_ID=XXXX
 #### 4. Deploy the code
 
 ```bash
-git push heroku master
+git push heroku main
 ```
 
 #### 5. View log output
