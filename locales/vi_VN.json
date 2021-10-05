@@ -50,6 +50,7 @@
     "order": "Thắc mắc về đơn đặt hàng",
     "billing": "Vấn đề về thanh toán",
     "other": "Khác",
+    "appointment": "Cảm ơn bạn đã muốn đặt một cuộc hẹn.",
     "issue": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được hỗ trợ bạn về mọi thắc mắc liên quan đến {{topic}}.",
     "default": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được hỗ trợ bạn hôm nay. Tôi có thể giúp gì cho bạn?",
     "style": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được giải đáp cho bạn mọi thắc mắc về phong cách thời trang mùa hè của chúng tôi",

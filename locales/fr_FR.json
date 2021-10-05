@@ -50,6 +50,7 @@
     "order": "Demandes d’informations sur les commandes",
     "billing": "Problèmes de facturation",
     "other": "Autre",
+    "appointment": "Merci de vouloir prendre un rendez-vous.",
     "issue": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}}, je suis à votre disposition si vous avez des questions à propos de {{topic}}.",
     "default": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}}, je suis là pour vous aider aujourd’hui. Comment puis-je vous aider ?",
     "style": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}} et je suis à votre disposition pour répondre à toute question sur nos styles de l’été",

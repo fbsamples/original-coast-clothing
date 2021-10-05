@@ -50,6 +50,7 @@
     "order": "Consultas sobre pedidos",
     "billing": "Problemas de facturación",
     "other": "Otra",
+    "appointment": "Gracias por querer concertar una cita.",
     "issue": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para ayudarte con cualquier pregunta que tengas sobre {{topic}}.",
     "default": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para ofrecerte asistencia. ¿Cómo te puedo ayudar?",
     "style": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}} y estoy aquí para responder cualquier pregunta que puedas tener sobre nuestros estilos de verano.",

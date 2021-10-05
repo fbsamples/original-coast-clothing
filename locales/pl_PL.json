@@ -51,6 +51,7 @@
     "order": "Zapytania dotyczące zamówienia",
     "billing": "Problemy z rozliczeniem",
     "other": "Inne",
+    "appointment": "Dziękuję za chęć umówienia spotkania.",
     "issue": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i udzielę Ci wszelkiej pomocy w zakresie: {{topic}}.",
     "default": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i udzielę Ci wszelkiej pomocy. W czym możemy pomóc?",
     "style": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i odpowiem na wszelkie pytania dotyczące letnich stylizacji",

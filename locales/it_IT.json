@@ -50,6 +50,7 @@
     "order": "Richieste relative a un ordine",
     "billing": "Problemi di fatturazione",
     "other": "Altro",
+    "appointment": "Grazie per aver voluto fissare un appuntamento.",
     "issue": "Ciao {{userFirstName}}, mi chiamo {{agentFirstName}} e sono qui per aiutarti a rispondere ad eventuali domande relative a {{topic}}.",
     "default": "Ciao {{userFirstName}}, mi chiamo {{agentFirstName}} e oggi sono qui per aiutarti. Cosa posso fare per te?",
     "style": "Ciao {{userFirstName}}, mi chiamo {{agentFirstName}} e sono qui per rispondere alle domande relative ai nostri look estivi.",

@@ -50,6 +50,7 @@
     "order": "注文に関するお問い合わせ",
     "billing": "請求の問題",
     "other": "その他",
+    "appointment": "ご予約ありがとうございます。",
     "issue": "{{userFirstName}}さん、こんにちは。{{agentFirstName}}です。{{topic}}に関してご不明の点をお手伝いいたします。",
     "default": "{{userFirstName}}さん、こんにちは。{{agentFirstName}}です。お手伝いさせていただきます。どのようなサポートをご希望ですか？",
     "style": "{{userFirstName}}さん、こんにちは。{{agentFirstName}}です。夏のコーディネートについてご不明の点にお答えいたします。",

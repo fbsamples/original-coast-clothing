@@ -50,6 +50,7 @@
     "order": "Consultas sobre pedidos",
     "billing": "Cobrança",
     "other": "Outro",
+    "appointment": "Obrigado por querer marcar uma consulta.",
     "issue": "Oi, {{userFirstName}}. Meu nome é {{agentFirstName}} e estou aqui para responder a qualquer pergunta que você possa ter sobre seu(sua) {{topic}}.",
     "default": "Oi, {{userFirstName}}. Meu nome é {{agentFirstName}} e estou aqui para ajudar você hoje. Como posso ajudar?",
     "style": "Oi, {{userFirstName}}. Meu nome é {{agentFirstName}} e estou aqui para responder às perguntas que você possa ter sobre nossos estilos de verão.",

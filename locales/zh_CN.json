@@ -50,6 +50,7 @@
     "order": "订单查询",
     "billing": "账单问题",
     "other": "其他",
+    "appointment": "感谢您想预约。",
     "issue": "您好，{{userFirstName}}，我是{{agentFirstName}}，希望能帮您解决关于{{topic}}的问题。",
     "default": "您好，{{userFirstName}}，我是{{agentFirstName}}，今天由我来协助您。请问您需要什么帮助？",
     "style": "您好，{{userFirstName}}，我是{{agentFirstName}}，有关我们夏季款式的问题请尽管问我。",

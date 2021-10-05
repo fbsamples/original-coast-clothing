@@ -50,6 +50,7 @@
     "order": "Frage zur Bestellung",
     "billing": "Problem mit der Zahlung",
     "other": "Sonstiges",
+    "appointment": "Vielen Dank, dass Sie einen Termin vereinbaren möchten.",
     "issue": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich werde dich bei Fragen zu {{topic}} unterstützen.",
     "default": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich bin heute für dich da. Wie kann ich dir helfen?",
     "style": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich werde deine Fragen zu unseren Sommerstyles beantworten.",

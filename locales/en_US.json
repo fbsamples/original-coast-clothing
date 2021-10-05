@@ -50,6 +50,7 @@
     "order": "Order Inquiries",
     "billing": "Billing Issues",
     "other": "Other",
+    "appointment": "Thank you for wanting to make an appointment.",
     "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
     "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
     "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",

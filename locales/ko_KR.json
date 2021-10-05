@@ -50,6 +50,7 @@
     "order": "주문 관련 문의",
     "billing": "청구 비용 문제",
     "other": "기타",
+    "appointment": "예약을 원해주셔서 감사합니다.",
     "issue": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. {{topic}}에 관해 문의해주신 문제 해결을 도와드리겠습니다.",
     "default": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 정성껏 도와드리겠습니다. 무엇을 도와드릴까요?",
     "style": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 저희 여름 컬렉션에 관해 문의해주신 내용에 대해 답변해드리겠습니다.",

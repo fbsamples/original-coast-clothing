@@ -211,7 +211,12 @@ module.exports = class Receive {
           }
         ])
       ];
-    } else {
+    } else if(payload.includes("BOOK_APPOINTMENT")){
+      response = [
+        Response.genText(i18n.__("care.appointment")),
+        Response.genText(i18n.__("care.end"))
+      ];
+    }else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
       };

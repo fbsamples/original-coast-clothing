@@ -50,6 +50,7 @@
     "order": "訂單查詢",
     "billing": "帳單問題",
     "other": "其他",
+    "appointment": "感謝您想預約。",
     "issue": "{{userFirstName}}，您好！我是 {{agentFirstName}}，負責協助您處理任何與 {{topic}} 相關的問題。",
     "default": "{{userFirstName}}，您好！我是 {{agentFirstName}}，今天由我負責協助您。需要我提供什麼協助嗎？",
     "style": "{{userFirstName}}，您好！我是 {{agentFirstName}}，負責解答夏季穿搭風格的相關問題",
