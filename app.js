@@ -137,7 +137,7 @@ app.post("/webhook", (req, res) => {
         if (!(senderPsid in users)) {
               let user = new User(senderPsid);
 
-              GraphAPi.getUserProfile(senderPsid)
+              GraphApi.getUserProfile(senderPsid)
                 .then(userProfile => {
                   user.setProfile(userProfile);
                 })
