@@ -13,7 +13,7 @@
 module.exports = class User {
   constructor(psid) {
     this.psid = psid;
-    this.firstName = "Friend";
+    this.firstName = "";
     this.lastName = "";
     this.locale = "en_US";
     this.timezone = "";
