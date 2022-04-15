@@ -119,27 +119,16 @@ app.post("/webhook", (req, res) => {
 
         // Get the sender PSID
         let senderPsid = webhookEvent.sender.id;
-        // Get the user_ref if from Chat plugin
+        // Get the user_ref if from Chat plugin logged in user
         let user_ref = webhookEvent.sender.user_ref
-        // if (!(senderPsid in users)) {
-        //   // First time seeing this user
-        //   let user = new User(senderPsid);
-        //   let userProfile = await GraphApi.getUserProfile(senderPsid);
-        //   if (userProfile) {
-        //     user.setProfile(userProfile);
-        //     users[senderPsid] = user;
-        //     console.log(`Created new user profile:`);
-        //     console.log({ user });
-        //   }
-        // }
-        // i18n.setLocale(users[senderPsid].locale);
-        // let receiveMessage = new Receive(users[senderPsid], webhookEvent);
-        // return receiveMessage.handleMessage();
+        // Check if user is guest from Chat plugin guest user
+        let guestUser = isGuestUser(webhookEvent);
+
         if(senderPsid != null && senderPsid != undefined) {
           if (!(senderPsid in users)) {
-            let user = new User(senderPsid);
-
-            GraphApi.getUserProfile(senderPsid)
+            if(!guestUser) { //Make call to UserProfile API only if user is not guest
+              let user = new User(senderPsid);
+              GraphApi.getUserProfile(senderPsid)
               .then(userProfile => {
                 user.setProfile(userProfile);
               })
@@ -151,16 +140,24 @@ app.post("/webhook", (req, res) => {
               .finally(() => {
                 console.log("locale: "+user.locale);
                 users[senderPsid] = user;
-                i18n.setLocale("en_US");//i18n.setLocale(user.locale);
+                i18n.setLocale("en_US");
                 console.log(
                   "New Profile PSID:",
                   senderPsid,
                   "with locale:",
                   i18n.getLocale()
                 );
-                let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
-                return receiveMessage.handleMessage();
+                // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
+                // return receiveMessage.handleMessage();
+                return receiveAndReturn(users[senderPsid], webhookEvent, false)
               });
+            }
+            else {
+              setDefaultUser(senderPsid);
+              // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
+              // return receiveMessage.handleMessage();
+              // return receiveAndReturn(users[senderPsid], webhookEvent, false)
+            }
           } else {
             i18n.setLocale(users[senderPsid].locale);
             console.log(
@@ -169,17 +166,16 @@ app.post("/webhook", (req, res) => {
               "with locale:",
               i18n.getLocale()
             );
-            let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
-            return receiveMessage.handleMessage();
+            // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
+            // return receiveMessage.handleMessage();
           }
+          return receiveAndReturn(users[senderPsid], webhookEvent, false)
         }
-        else if(user_ref != null && user_ref != undefined){
-          //Handle user_ref code
-          let user = new User(user_ref);
-          users[user_ref] = user;
-          i18n.setLocale("en_US")
-          let receiveMessage = new Receive(users[user_ref], webhookEvent, true);
-          return receiveMessage.handleMessage();
+        else if(user_ref != null && user_ref != undefined){//Handle user_ref
+          setDefaultUser(user_ref);
+          // let receiveMessage = new Receive(users[user_ref], webhookEvent, true);
+          // return receiveMessage.handleMessage();
+          return receiveAndReturn(users[user_ref], webhookEvent, true)
         }
       });
     });
@@ -188,6 +184,29 @@ app.post("/webhook", (req, res) => {
     res.sendStatus(404);
   }
 });
+
+function setDefaultUser(id) {
+  let user = new User(id);
+  users[id] = user;
+  i18n.setLocale("en_US")
+}
+
+function isGuestUser(webhookEvent) {
+  let guestUser = false;
+  if("postback" in webhookEvent) {
+    if("referral" in webhookEvent.postback) {
+      if("is_guest_user" in webhookEvent.postback.referral) {
+        guestUser = true;
+      }
+    }
+  }
+  return guestUser;
+}
+
+function receiveAndReturn(user, webhookEvent, isUserRef) {
+  let receiveMessage = new Receive(user, webhookEvent, isUserRef);
+  return receiveMessage.handleMessage();
+}
 
 // Set up your App's Messenger Profile
 app.get("/profile", (req, res) => {
