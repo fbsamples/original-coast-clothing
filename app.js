@@ -119,7 +119,8 @@ app.post("/webhook", (req, res) => {
 
         // Get the sender PSID
         let senderPsid = webhookEvent.sender.id;
-
+        // Get the user_ref if from Chat plugin
+        let user_ref = webhookEvent.sender.user_ref
         // if (!(senderPsid in users)) {
         //   // First time seeing this user
         //   let user = new User(senderPsid);
@@ -134,42 +135,52 @@ app.post("/webhook", (req, res) => {
         // i18n.setLocale(users[senderPsid].locale);
         // let receiveMessage = new Receive(users[senderPsid], webhookEvent);
         // return receiveMessage.handleMessage();
-        if (!(senderPsid in users)) {
-              let user = new User(senderPsid);
+        if(senderPsid != null && senderPsid != undefined) {
+          if (!(senderPsid in users)) {
+            let user = new User(senderPsid);
 
-              GraphApi.getUserProfile(senderPsid)
-                .then(userProfile => {
-                  user.setProfile(userProfile);
-                })
-                .catch(error => {
-                  // The profile is unavailable
-                  console.log(JSON.stringify(body));
-                  console.log("Profile is unavailable:", error);
-                })
-                .finally(() => {
-                  console.log("locale: "+user.locale);
-                  users[senderPsid] = user;
-                  i18n.setLocale("en_US");//i18n.setLocale(user.locale);
-                  console.log(
-                    "New Profile PSID:",
-                    senderPsid,
-                    "with locale:",
-                    i18n.getLocale()
-                  );
-                  let receiveMessage = new Receive(users[senderPsid], webhookEvent);
-                  return receiveMessage.handleMessage();
-                });
-            } else {
-              i18n.setLocale(users[senderPsid].locale);
-              console.log(
-                "Profile already exists PSID:",
-                senderPsid,
-                "with locale:",
-                i18n.getLocale()
-              );
-              let receiveMessage = new Receive(users[senderPsid], webhookEvent);
-              return receiveMessage.handleMessage();
-            }
+            GraphApi.getUserProfile(senderPsid)
+              .then(userProfile => {
+                user.setProfile(userProfile);
+              })
+              .catch(error => {
+                // The profile is unavailable
+                console.log(JSON.stringify(body));
+                console.log("Profile is unavailable:", error);
+              })
+              .finally(() => {
+                console.log("locale: "+user.locale);
+                users[senderPsid] = user;
+                i18n.setLocale("en_US");//i18n.setLocale(user.locale);
+                console.log(
+                  "New Profile PSID:",
+                  senderPsid,
+                  "with locale:",
+                  i18n.getLocale()
+                );
+                let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
+                return receiveMessage.handleMessage();
+              });
+          } else {
+            i18n.setLocale(users[senderPsid].locale);
+            console.log(
+              "Profile already exists PSID:",
+              senderPsid,
+              "with locale:",
+              i18n.getLocale()
+            );
+            let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
+            return receiveMessage.handleMessage();
+          }
+        }
+        else if(user_ref != null && user_ref != undefined){
+          //Handle user_ref code
+          let user = new User(user_ref);
+          users[user_ref] = user;
+          i18n.setLocale("en_US")
+          let receiveMessage = new Receive(users[user_ref], webhookEvent, true);
+          return receiveMessage.handleMessage();
+        }
       });
     });
   } else {

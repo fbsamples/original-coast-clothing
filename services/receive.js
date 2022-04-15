@@ -19,9 +19,10 @@ const Curation = require("./curation"),
   i18n = require("../i18n.config");
 
 module.exports = class Receive {
-  constructor(user, webhookEvent) {
+  constructor(user, webhookEvent, isUserRef) {
     this.user = user;
     this.webhookEvent = webhookEvent;
+    this.isUserRef = isUserRef;
   }
 
   // Check if the event is a message or postback and
@@ -58,11 +59,11 @@ module.exports = class Receive {
     if (Array.isArray(responses)) {
       let delay = 0;
       for (let response of responses) {
-        this.sendMessage(response, delay * 2000);
+        this.sendMessage(response, delay * 2000, isUserRef);
         delay++;
       }
     } else {
-      this.sendMessage(responses);
+      this.sendMessage(responses, isUserRef);
     }
   }
 
@@ -254,7 +255,7 @@ module.exports = class Receive {
     GraphApi.callSendApi(requestBody);
   }
 
-  sendMessage(response, delay = 0) {
+  sendMessage(response, delay = 0, isUserRef) {
     // Check if there is delay in the response
     if ("delay" in response) {
       delay = response["delay"];
@@ -262,25 +263,46 @@ module.exports = class Receive {
     }
 
     // Construct the message body
-    let requestBody = {
-      recipient: {
-        id: this.user.psid
-      },
-      message: response
-    };
+    let requestBody = {};
+    if(isUserRef) {//for chat plugin
+      requestBody = {
+        recipient: {
+          user_ref: this.user.psid
+        },
+        message: response
+      };
+    }
+    else {
+      requestBody = {
+        recipient: {
+          id: this.user.psid
+        },
+        message: response
+      };
+    }
 
     // Check if there is persona id in the response
     if ("persona_id" in response) {
       let persona_id = response["persona_id"];
       delete response["persona_id"];
-
-      requestBody = {
-        recipient: {
-          id: this.user.psid
-        },
-        message: response,
-        persona_id: persona_id
-      };
+      if(isUserRef) {//for chat plugin
+        requestBody = {
+          recipient: {
+            user_ref: this.user.psid
+          },
+          message: response,
+          persona_id: persona_id
+        };
+      }
+      else {
+        requestBody = {
+          recipient: {
+            id: this.user.psid
+          },
+          message: response,
+          persona_id: persona_id
+        };
+      }
     }
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
