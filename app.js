@@ -147,15 +147,11 @@ app.post("/webhook", (req, res) => {
                   "with locale:",
                   i18n.getLocale()
                 );
-                // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
-                // return receiveMessage.handleMessage();
                 return receiveAndReturn(users[senderPsid], webhookEvent, false)
               });
             }
             else {
               setDefaultUser(senderPsid);
-              // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
-              // return receiveMessage.handleMessage();
               return receiveAndReturn(users[senderPsid], webhookEvent, false)
             }
           } else {
@@ -166,16 +162,11 @@ app.post("/webhook", (req, res) => {
               "with locale:",
               i18n.getLocale()
             );
-            // let receiveMessage = new Receive(users[senderPsid], webhookEvent, false);
-            // return receiveMessage.handleMessage();
-
             return receiveAndReturn(users[senderPsid], webhookEvent, false)
           }
         }
         else if(user_ref != null && user_ref != undefined){//Handle user_ref
           setDefaultUser(user_ref);
-          // let receiveMessage = new Receive(users[user_ref], webhookEvent, true);
-          // return receiveMessage.handleMessage();
           return receiveAndReturn(users[user_ref], webhookEvent, true)
         }
       });
