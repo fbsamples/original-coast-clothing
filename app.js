@@ -113,7 +113,9 @@ app.post("/webhook", (req, res) => {
           console.log("Got a delivery event");
           return;
         } else if (webhookEvent.message && webhookEvent.message.is_echo) {
-          console.log("Got an echo of our send, mid = " + webhookEvent.message.mid);
+          console.log(
+            "Got an echo of our send, mid = " + webhookEvent.message.mid
+          );
           return;
         }
 
