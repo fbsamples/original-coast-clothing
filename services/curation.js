@@ -190,6 +190,15 @@ module.exports = class Curation {
           ]
         );
         break;
+      case "PRODUCT_LAUNCH":
+        // Build the recommendation logic here
+        response = Response.genRecurringNotificationsTemplate(
+          `${config.appUrl}/styles/female-party.jpg`,
+          i18n.__("curation.productLaunchTitle"),
+          "WEEKLY",
+          "12345"
+        );
+        break;
     }
 
     return response;

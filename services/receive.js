@@ -182,7 +182,11 @@ module.exports = class Receive {
       payload === "GITHUB"
     ) {
       response = Response.genNuxMessage(this.user);
-    } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
+    } else if (
+      payload.includes("CURATION") ||
+      payload.includes("COUPON") ||
+      payload.includes("PRODUCT_LAUNCH")
+    ) {
       let curation = new Curation(this.user, this.webhookEvent);
       response = curation.handlePayload(payload);
     } else if (payload.includes("CARE")) {
@@ -250,17 +254,18 @@ module.exports = class Receive {
       },
       message: response
     };
-
     GraphApi.callSendApi(requestBody);
   }
 
   sendMessage(response, delay = 0) {
     // Check if there is delay in the response
+    if (response === undefined) {
+      return;
+    }
     if ("delay" in response) {
       delay = response["delay"];
       delete response["delay"];
     }
-
     // Construct the message body
     let requestBody = {
       recipient: {

@@ -47,7 +47,27 @@ module.exports = class Response {
         }
       }
     };
+    return response;
+  }
 
+  static genRecurringNotificationsTemplate(
+    image_url,
+    title,
+    notification_messages_frequency,
+    payload
+  ) {
+    let response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "notification_messages",
+          title: title,
+          image_url: image_url,
+          notification_messages_frequency: notification_messages_frequency,
+          payload: payload
+        }
+      }
+    };
     return response;
   }
 
