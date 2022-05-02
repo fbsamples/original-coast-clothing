@@ -113,46 +113,52 @@ app.post("/webhook", (req, res) => {
           console.log("Got a delivery event");
           return;
         } else if (webhookEvent.message && webhookEvent.message.is_echo) {
-          console.log("Got an echo of our send, mid = " + webhookEvent.message.mid);
+          console.log(
+            "Got an echo of our send, mid = " + webhookEvent.message.mid
+          );
           return;
         }
 
         // Get the sender PSID
         let senderPsid = webhookEvent.sender.id;
         // Get the user_ref if from Chat plugin logged in user
-        let user_ref = webhookEvent.sender.user_ref
+        let user_ref = webhookEvent.sender.user_ref;
         // Check if user is guest from Chat plugin guest user
         let guestUser = isGuestUser(webhookEvent);
 
-        if(senderPsid != null && senderPsid != undefined) {
+        if (senderPsid != null && senderPsid != undefined) {
           if (!(senderPsid in users)) {
-            if(!guestUser) { //Make call to UserProfile API only if user is not guest
+            if (!guestUser) {
+              //Make call to UserProfile API only if user is not guest
               let user = new User(senderPsid);
               GraphApi.getUserProfile(senderPsid)
-              .then(userProfile => {
-                user.setProfile(userProfile);
-              })
-              .catch(error => {
-                // The profile is unavailable
-                console.log(JSON.stringify(body));
-                console.log("Profile is unavailable:", error);
-              })
-              .finally(() => {
-                console.log("locale: "+user.locale);
-                users[senderPsid] = user;
-                i18n.setLocale("en_US");
-                console.log(
-                  "New Profile PSID:",
-                  senderPsid,
-                  "with locale:",
-                  i18n.getLocale()
-                );
-                return receiveAndReturn(users[senderPsid], webhookEvent, false)
-              });
-            }
-            else {
+                .then(userProfile => {
+                  user.setProfile(userProfile);
+                })
+                .catch(error => {
+                  // The profile is unavailable
+                  console.log(JSON.stringify(body));
+                  console.log("Profile is unavailable:", error);
+                })
+                .finally(() => {
+                  console.log("locale: " + user.locale);
+                  users[senderPsid] = user;
+                  i18n.setLocale("en_US");
+                  console.log(
+                    "New Profile PSID:",
+                    senderPsid,
+                    "with locale:",
+                    i18n.getLocale()
+                  );
+                  return receiveAndReturn(
+                    users[senderPsid],
+                    webhookEvent,
+                    false
+                  );
+                });
+            } else {
               setDefaultUser(senderPsid);
-              return receiveAndReturn(users[senderPsid], webhookEvent, false)
+              return receiveAndReturn(users[senderPsid], webhookEvent, false);
             }
           } else {
             i18n.setLocale(users[senderPsid].locale);
@@ -162,12 +168,12 @@ app.post("/webhook", (req, res) => {
               "with locale:",
               i18n.getLocale()
             );
-            return receiveAndReturn(users[senderPsid], webhookEvent, false)
+            return receiveAndReturn(users[senderPsid], webhookEvent, false);
           }
-        }
-        else if(user_ref != null && user_ref != undefined){//Handle user_ref
+        } else if (user_ref != null && user_ref != undefined) {
+          //Handle user_ref
           setDefaultUser(user_ref);
-          return receiveAndReturn(users[user_ref], webhookEvent, true)
+          return receiveAndReturn(users[user_ref], webhookEvent, true);
         }
       });
     });
@@ -180,14 +186,14 @@ app.post("/webhook", (req, res) => {
 function setDefaultUser(id) {
   let user = new User(id);
   users[id] = user;
-  i18n.setLocale("en_US")
+  i18n.setLocale("en_US");
 }
 
 function isGuestUser(webhookEvent) {
   let guestUser = false;
-  if("postback" in webhookEvent) {
-    if("referral" in webhookEvent.postback) {
-      if("is_guest_user" in webhookEvent.postback.referral) {
+  if ("postback" in webhookEvent) {
+    if ("referral" in webhookEvent.postback) {
+      if ("is_guest_user" in webhookEvent.postback.referral) {
         guestUser = true;
       }
     }

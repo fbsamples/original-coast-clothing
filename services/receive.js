@@ -212,12 +212,12 @@ module.exports = class Receive {
           }
         ])
       ];
-    } else if(payload.includes("BOOK_APPOINTMENT")){
+    } else if (payload.includes("BOOK_APPOINTMENT")) {
       response = [
         Response.genText(i18n.__("care.appointment")),
         Response.genText(i18n.__("care.end"))
       ];
-    }else {
+    } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
       };
@@ -264,15 +264,15 @@ module.exports = class Receive {
 
     // Construct the message body
     let requestBody = {};
-    if(isUserRef) {//for chat plugin
+    if (isUserRef) {
+      //for chat plugin
       requestBody = {
         recipient: {
           user_ref: this.user.psid
         },
         message: response
       };
-    }
-    else {
+    } else {
       requestBody = {
         recipient: {
           id: this.user.psid
@@ -285,7 +285,8 @@ module.exports = class Receive {
     if ("persona_id" in response) {
       let persona_id = response["persona_id"];
       delete response["persona_id"];
-      if(isUserRef) {//for chat plugin
+      if (isUserRef) {
+        //for chat plugin
         requestBody = {
           recipient: {
             user_ref: this.user.psid
@@ -293,8 +294,7 @@ module.exports = class Receive {
           message: response,
           persona_id: persona_id
         };
-      }
-      else {
+      } else {
         requestBody = {
           recipient: {
             id: this.user.psid
