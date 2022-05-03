@@ -265,7 +265,7 @@ module.exports = class Receive {
     // Construct the message body
     let requestBody = {};
     if (isUserRef) {
-      //for chat plugin
+      // For chat plugin
       requestBody = {
         recipient: {
           user_ref: this.user.psid
@@ -286,7 +286,7 @@ module.exports = class Receive {
       let persona_id = response["persona_id"];
       delete response["persona_id"];
       if (isUserRef) {
-        //for chat plugin
+        // For chat plugin
         requestBody = {
           recipient: {
             user_ref: this.user.psid
