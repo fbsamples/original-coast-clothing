@@ -211,7 +211,7 @@ module.exports = class GraphApi {
 
     console.log(`Enable Built-in NLP for Page ${config.pageId}`);
 
-    let url = new URL(`${config.apiUrl}/me/nlp_configs}/me/nlp_configs`);
+    let url = new URL(`${config.apiUrl}/me/nlp_configs`);
     url.search = new URLSearchParams({
       access_token: config.pageAccesToken,
       nlp_enabled: true
