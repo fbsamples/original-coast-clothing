@@ -175,7 +175,7 @@ module.exports = class Curation {
         outfit = `${this.user.gender}-${this.randomOutfit()}`;
 
         response = Response.genGenericTemplate(
-          `${config.appUrl}/styles/${outfit}.jpg`,
+          `${config.appUrl}/looks/${outfit}.jpg`,
           i18n.__("curation.title"),
           i18n.__("curation.subtitle"),
           [
@@ -191,10 +191,10 @@ module.exports = class Curation {
         );
         break;
       case "PRODUCT_LAUNCH":
-         // Build the recommendation logic here
+        // Build the recommendation logic here
         outfit = `${this.user.gender}-${this.randomOutfit()}`;
         response = Response.genRecurringNotificationsTemplate(
-          `${config.appUrl}/styles/${outfit}.jpg`,
+          `${config.appUrl}/looks/${outfit}.jpg`,
           i18n.__("curation.productLaunchTitle"),
           "WEEKLY",
           "12345"
