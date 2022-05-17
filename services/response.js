@@ -161,6 +161,10 @@ module.exports = class Response {
       {
         title: i18n.__("menu.help"),
         payload: "CARE_HELP"
+      },
+      {
+        title: i18n.__("menu.product_launch"),
+        payload: "PRODUCT_LAUNCH"
       }
     ]);
 

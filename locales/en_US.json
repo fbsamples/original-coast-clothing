@@ -7,7 +7,8 @@
     "help": "Talk to an agent",
     "suggestion": "Outfit suggestions",
     "shop": "Shop now",
-    "start_over": "Start over"
+    "start_over": "Start over",
+    "product_launch":"Launch updates"
   },
   "get_started": {
     "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
