@@ -110,6 +110,10 @@ module.exports = class Receive {
           {
             title: i18n.__("menu.help"),
             payload: "CARE_HELP"
+          },
+          {
+            title: i18n.__("menu.product_launch"),
+            payload: "PRODUCT_LAUNCH"
           }
         ])
       ];
@@ -153,11 +157,11 @@ module.exports = class Receive {
     let postback = this.webhookEvent.postback;
     // Check for the special Get Starded with referral
     let payload;
-    if (postback.payload) {
+    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
+    } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
-    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
     }
 
     return this.handlePayload(payload.toUpperCase());
@@ -246,6 +250,10 @@ module.exports = class Receive {
       {
         title: i18n.__("menu.help"),
         payload: "CARE_HELP"
+      },
+      {
+        title: i18n.__("menu.product_launch"),
+        payload: "PRODUCT_LAUNCH"
       }
     ]);
 
