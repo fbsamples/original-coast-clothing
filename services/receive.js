@@ -161,6 +161,8 @@ module.exports = class Receive {
     let payload;
     if (postback.referral && postback.referral.type == "OPEN_THREAD") {
       payload = postback.referral.ref;
+    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
     } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
@@ -177,6 +179,18 @@ module.exports = class Receive {
     return this.handlePayload(payload);
   }
 
+  // Handles optins events
+  handleOptIn() {
+    let optin = this.webhookEvent.optin;
+    // Check for the special Get Starded with referral
+    let payload;
+    if (optin.type === "notification_messages") {
+      payload = "RN_" + optin.notification_messages_frequency.toUpperCase();
+      this.sendRecurringMessage(optin.notification_messages_token, 5000);
+      return this.handlePayload(payload);
+    }
+    return null;
+  }
   // Handles optins events
   handleOptIn() {
     let optin = this.webhookEvent.optin;
@@ -241,7 +255,7 @@ module.exports = class Receive {
       ];
     } else if (payload === "RN_WEEKLY") {
       response = {
-        text: `[INFO]The following message is a sample weekly recurring notification. This is usually sent outside the initial 24-hour window for users who have opted in to weekly messages.`
+        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
       };
     } else {
       response = {
@@ -268,6 +282,10 @@ module.exports = class Receive {
       {
         title: i18n.__("menu.help"),
         payload: "CARE_HELP"
+      },
+      {
+        title: i18n.__("menu.product_launch"),
+        payload: "PRODUCT_LAUNCH"
       },
       {
         title: i18n.__("menu.product_launch"),
