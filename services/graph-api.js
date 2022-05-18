@@ -29,7 +29,10 @@ module.exports = class GraphApi {
       body: JSON.stringify(requestBody)
     });
     if (!response.ok) {
-      console.warn(`Could not send message.`, response.statusText);
+      console.warn(
+        `Unable to call Send API: ${response.statusText}`,
+        await response.json()
+      );
     }
   }
 
