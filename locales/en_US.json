@@ -7,7 +7,8 @@
     "help": "Talk to an agent",
     "suggestion": "Outfit suggestions",
     "shop": "Shop now",
-    "start_over": "Start over"
+    "start_over": "Start over",
+    "product_launch":"Launch updates"
   },
   "get_started": {
     "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
@@ -32,7 +33,7 @@
     "party": "Party",
     "sales": "Talk to sales",
     "shop": "Shop this look",
-    "title": "Summer collection 2021",
+    "title": "Summer collection 2022",
     "subtitle": "Featured outfit",
     "show": "Another look",
     "productLaunchTitle":"New Product Launches"

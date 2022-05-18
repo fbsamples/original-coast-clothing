@@ -47,6 +47,8 @@ module.exports = class Receive {
         responses = this.handlePostback();
       } else if (event.referral) {
         responses = this.handleReferral();
+      } else if (event.optin) {
+        responses = this.handleOptIn();
       }
     } catch (error) {
       console.error(error);
@@ -110,6 +112,10 @@ module.exports = class Receive {
           {
             title: i18n.__("menu.help"),
             payload: "CARE_HELP"
+          },
+          {
+            title: i18n.__("menu.product_launch"),
+            payload: "PRODUCT_LAUNCH"
           }
         ])
       ];
@@ -153,11 +159,11 @@ module.exports = class Receive {
     let postback = this.webhookEvent.postback;
     // Check for the special Get Starded with referral
     let payload;
-    if (postback.payload) {
+    if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
+    } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
-    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
     }
 
     return this.handlePayload(payload.toUpperCase());
@@ -171,6 +177,18 @@ module.exports = class Receive {
     return this.handlePayload(payload);
   }
 
+  // Handles optins events
+  handleOptIn() {
+    let optin = this.webhookEvent.optin;
+    // Check for the special Get Starded with referral
+    let payload;
+    if (optin.type === "notification_messages") {
+      payload = "RN_" + optin.notification_messages_frequency.toUpperCase();
+      this.sendRecurringMessage(optin.notification_messages_token, 5000);
+      return this.handlePayload(payload);
+    }
+    return null;
+  }
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
@@ -221,6 +239,10 @@ module.exports = class Receive {
         Response.genText(i18n.__("care.appointment")),
         Response.genText(i18n.__("care.end"))
       ];
+    } else if (payload === "RN_WEEKLY") {
+      response = {
+        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
+      };
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
@@ -246,6 +268,10 @@ module.exports = class Receive {
       {
         title: i18n.__("menu.help"),
         payload: "CARE_HELP"
+      },
+      {
+        title: i18n.__("menu.product_launch"),
+        payload: "PRODUCT_LAUNCH"
       }
     ]);
 
@@ -312,7 +338,27 @@ module.exports = class Receive {
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
+  sendRecurringMessage(notificationMessageToken, delay) {
+    console.log("Received Recurring Message token");
+    let requestBody = {},
+      response,
+      curation;
+    //This example will send summer collection
+    curation = new Curation(this.user, this.webhookEvent);
+    response = curation.handlePayload("CURATION_BUDGET_50_DINNER");
+    // Check if there is delay in the response
+    if (response === undefined) {
+      return;
+    }
+    requestBody = {
+      recipient: {
+        notification_messages_token: notificationMessageToken
+      },
+      message: response
+    };
 
+    setTimeout(() => GraphApi.callSendApi(requestBody), delay);
+  }
   firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
   }
