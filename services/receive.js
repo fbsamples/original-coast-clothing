@@ -255,7 +255,7 @@ module.exports = class Receive {
       ];
     } else if (payload === "RN_WEEKLY") {
       response = {
-        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
+        text: `[INFO]The following message is a sample weekly recurring notification. This is usually sent outside the initial 24-hour window for users who have opted in to weekly messages.`
       };
     } else {
       response = {
