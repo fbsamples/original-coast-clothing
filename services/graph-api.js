@@ -21,13 +21,17 @@ module.exports = class GraphApi {
     url.search = new URLSearchParams({
       access_token: config.pageAccesToken
     });
+    console.warn("Request body is\n" + JSON.stringify(requestBody));
     let response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody)
     });
     if (!response.ok) {
-      console.warn(`Could not sent message.`, response.statusText);
+      console.warn(
+        `Unable to call Send API: ${response.statusText}`,
+        await response.json()
+      );
     }
   }
 
