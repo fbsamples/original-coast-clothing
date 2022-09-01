@@ -39,7 +39,7 @@ module.exports = class Lead {
           ),
         ];
         responses[0].delay = 4000;
-        responses[1].delay = 1000;
+        responses[1].delay = 6000;
         return responses;
       case "messenger_lead_gen_incomplete":
         return Response.genNuxMessage(this.user);
