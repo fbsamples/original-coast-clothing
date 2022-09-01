@@ -12,11 +12,13 @@
 
 const Curation = require("./curation"),
   Order = require("./order"),
+  Lead = require("./lead"),
   Response = require("./response"),
   Care = require("./care"),
   Survey = require("./survey"),
   GraphApi = require("./graph-api"),
-  i18n = require("../i18n.config");
+  i18n = require("../i18n.config"),
+  config = require("./services/config");
 
 module.exports = class Receive {
   constructor(user, webhookEvent, isUserRef) {
@@ -49,12 +51,14 @@ module.exports = class Receive {
         responses = this.handleReferral();
       } else if (event.optin) {
         responses = this.handleOptIn();
+      } else if (event.pass_thread_control) {
+        responses = this.handlePassThreadControlHandover();
       }
     } catch (error) {
       console.error(error);
       responses = {
         text: `An error has occured: '${error}'. We have been notified and \
-        will fix the issue shortly!`
+        will fix the issue shortly!`,
       };
     }
 
@@ -100,24 +104,24 @@ module.exports = class Receive {
       response = [
         Response.genText(
           i18n.__("fallback.any", {
-            message: event.message.text
+            message: event.message.text,
           })
         ),
         Response.genText(i18n.__("get_started.guidance")),
         Response.genQuickReply(i18n.__("get_started.help"), [
           {
             title: i18n.__("menu.suggestion"),
-            payload: "CURATION"
+            payload: "CURATION",
           },
           {
             title: i18n.__("menu.help"),
-            payload: "CARE_HELP"
+            payload: "CARE_HELP",
           },
           {
             title: i18n.__("menu.product_launch"),
-            payload: "PRODUCT_LAUNCH"
-          }
-        ])
+            payload: "PRODUCT_LAUNCH",
+          },
+        ]),
       ];
     }
 
@@ -135,12 +139,12 @@ module.exports = class Receive {
     response = Response.genQuickReply(i18n.__("fallback.attachment"), [
       {
         title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        payload: "CARE_HELP",
       },
       {
         title: i18n.__("menu.start_over"),
-        payload: "GET_STARTED"
-      }
+        payload: "GET_STARTED",
+      },
     ]);
 
     return response;
@@ -191,18 +195,26 @@ module.exports = class Receive {
     }
     return null;
   }
-  // Handles optins events
-  handleOptIn() {
-    let optin = this.webhookEvent.optin;
-    // Check for the special Get Starded with referral
-    let payload;
-    if (optin.type === "notification_messages") {
-      payload = "RN_" + optin.notification_messages_frequency.toUpperCase();
-      this.sendRecurringMessage(optin.notification_messages_token, 5000);
-      return this.handlePayload(payload);
+
+  handlePassThreadControlHandover() {
+    let new_owner_app_id =
+      this.webhookEvent.pass_thread_control.new_owner_app_id;
+    let previous_owner_app_id =
+      this.webhookEvent.pass_thread_control.previous_owner_app_id;
+    let metadata = this.webhookEvent.pass_thread_control.metadata;
+    if (config.appId === new_owner_app_id) {
+      console.log("Received a handover event, but is not for this app");
+      return;
     }
-    return null;
+    const lead_gen_app_id = 413038776280800; // App id for Messenger Lead Ads
+    if (previous_owner_app_id === lead_gen_app_id) {
+      let lead = new Lead(this.user, this.webhookEvent);
+      return lead.handleHandover(metadata);
+    }
+    // We have thread control but no context on what to do, default to New User Experience
+    return Response.genNuxMessage(this.user);
   }
+
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
@@ -236,30 +248,30 @@ module.exports = class Receive {
         Response.genQuickReply(i18n.__("get_started.help"), [
           {
             title: i18n.__("care.order"),
-            payload: "CARE_ORDER"
+            payload: "CARE_ORDER",
           },
           {
             title: i18n.__("care.billing"),
-            payload: "CARE_BILLING"
+            payload: "CARE_BILLING",
           },
           {
             title: i18n.__("care.other"),
-            payload: "CARE_OTHER"
-          }
-        ])
+            payload: "CARE_OTHER",
+          },
+        ]),
       ];
     } else if (payload.includes("BOOK_APPOINTMENT")) {
       response = [
         Response.genText(i18n.__("care.appointment")),
-        Response.genText(i18n.__("care.end"))
+        Response.genText(i18n.__("care.end")),
       ];
     } else if (payload === "RN_WEEKLY") {
       response = {
-        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
+        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`,
       };
     } else {
       response = {
-        text: `This is a default postback message for payload: ${payload}!`
+        text: `This is a default postback message for payload: ${payload}!`,
       };
     }
 
@@ -277,27 +289,23 @@ module.exports = class Receive {
     let response = Response.genQuickReply(welcomeMessage, [
       {
         title: i18n.__("menu.suggestion"),
-        payload: "CURATION"
+        payload: "CURATION",
       },
       {
         title: i18n.__("menu.help"),
-        payload: "CARE_HELP"
+        payload: "CARE_HELP",
       },
       {
         title: i18n.__("menu.product_launch"),
-        payload: "PRODUCT_LAUNCH"
+        payload: "PRODUCT_LAUNCH",
       },
-      {
-        title: i18n.__("menu.product_launch"),
-        payload: "PRODUCT_LAUNCH"
-      }
     ]);
 
     let requestBody = {
       recipient: {
-        [type]: object_id
+        [type]: object_id,
       },
-      message: response
+      message: response,
     };
     GraphApi.callSendApi(requestBody);
   }
@@ -317,16 +325,16 @@ module.exports = class Receive {
       // For chat plugin
       requestBody = {
         recipient: {
-          user_ref: this.user.psid
+          user_ref: this.user.psid,
         },
-        message: response
+        message: response,
       };
     } else {
       requestBody = {
         recipient: {
-          id: this.user.psid
+          id: this.user.psid,
         },
-        message: response
+        message: response,
       };
     }
 
@@ -338,21 +346,24 @@ module.exports = class Receive {
         // For chat plugin
         requestBody = {
           recipient: {
-            user_ref: this.user.psid
+            user_ref: this.user.psid,
           },
           message: response,
-          persona_id: persona_id
+          persona_id: persona_id,
         };
       } else {
         requestBody = {
           recipient: {
-            id: this.user.psid
+            id: this.user.psid,
           },
           message: response,
-          persona_id: persona_id
+          persona_id: persona_id,
         };
       }
     }
+    // Mitigate restriction on Persona API
+    // Persona API does not work for people in EU, until fixed is safer to not use
+    delete requestBody["persona_id"];
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
@@ -370,9 +381,9 @@ module.exports = class Receive {
     }
     requestBody = {
       recipient: {
-        notification_messages_token: notificationMessageToken
+        notification_messages_token: notificationMessageToken,
       },
-      message: response
+      message: response,
     };
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);

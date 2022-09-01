@@ -22,6 +22,9 @@
     "apply": "Apply discount",
     "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
   },
+  "wholesale_leadgen": {
+    "intro": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I see that you are looking to join our resellers program"
+  },
   "curation": {
     "prompt": "Are you looking for an outfit for yourself or someone else?",
     "occasion": "Great! Let's get started. First, is there an occasion in mind?",
