@@ -18,7 +18,7 @@ const Curation = require("./curation"),
   Survey = require("./survey"),
   GraphApi = require("./graph-api"),
   i18n = require("../i18n.config"),
-  config = require("./services/config");
+  config = require("./config");
 
 module.exports = class Receive {
   constructor(user, webhookEvent, isUserRef) {
