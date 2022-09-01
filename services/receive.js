@@ -165,8 +165,6 @@ module.exports = class Receive {
     let payload;
     if (postback.referral && postback.referral.type == "OPEN_THREAD") {
       payload = postback.referral.ref;
-    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
     } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
@@ -371,6 +369,9 @@ module.exports = class Receive {
         };
       }
     }
+    // Mitigate restriction on Persona API
+    // Persona API does not work for people in EU, until fixed is safer to not use
+    delete requestBody["persona_id"];
     // Mitigate restriction on Persona API
     // Persona API does not work for people in EU, until fixed is safer to not use
     delete requestBody["persona_id"];
