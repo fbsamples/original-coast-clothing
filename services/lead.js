@@ -25,18 +25,19 @@ module.exports = class Lead {
   handleHandover(metadata) {
     switch (metadata) {
       case "messenger_lead_gen_complete":
-        let responses = [
+        var responses = [
           Response.genTextWithPersona(
             i18n.__("wholesale_leadgen.intro", {
               userFirstName: this.user.firstName,
-              agentFirstName: config.personaSales.name,
+              agentFirstName: config.personaOrder.name,
+              topic: i18n.__("care.order")
             }),
-            config.personaSales.id
+            config.personaOrder.id
           ),
           Response.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaSales.id
-          ),
+            config.personaOrder.id
+          )
         ];
         responses[0].delay = 4000;
         responses[1].delay = 6000;
