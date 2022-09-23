@@ -21,6 +21,9 @@
     "apply": "Aplicar descuento",
     "coupon": "Se agregó tu cupón a esta conversación; ahora puedes echarle un vistazo a la colección de verano con descuento"
   },
+  "wholesale_leadgen": {
+    "intro": "Hola, {{userFirstName}}. Me llamo {{agentFirstName}}. Veo que desea unirse a nuestro programa de revendedores"
+  },
   "curation": {
     "prompt": "¿Estás buscando ropa para ti u otra persona?",
     "occasion": "¡Genial! Empecemos. Primero, ¿buscas ropa para alguna ocasión en especial?",
