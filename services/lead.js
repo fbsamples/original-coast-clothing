@@ -29,14 +29,14 @@ module.exports = class Lead {
           Response.genTextWithPersona(
             i18n.__("wholesale_leadgen.intro", {
               userFirstName: this.user.firstName,
-              agentFirstName: config.personaOrder.name,
+              agentFirstName: config.personaSales.name,
               topic: i18n.__("care.order")
             }),
-            config.personaOrder.id
+            config.personaSales.id
           ),
           Response.genTextWithPersona(
             i18n.__("care.end"),
-            config.personaOrder.id
+            config.personaSales.id
           )
         ];
         responses[0].delay = 4000;
