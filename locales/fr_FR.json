@@ -21,6 +21,9 @@
     "apply": "Appliquer la remise",
     "coupon": "Votre coupon a été ajouté à la conversation, vous pouvez maintenant découvrir la collection été soldée"
   },
+  "wholesale_leadgen": {
+    "intro": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}}. Je vois que vous souhaitez rejoindre notre programme revendeur"
+  },
   "curation": {
     "prompt": "Cherchez-vous une tenue pour vous ou quelqu’un d’autre ?",
     "occasion": "Super ! Commençons. Tout d’abord, est-ce pour une occasion spéciale ?",

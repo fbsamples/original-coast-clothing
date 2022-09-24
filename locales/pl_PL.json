@@ -22,6 +22,9 @@
     "apply": "Zastosuj zniżkę",
     "coupon": "Po dodaniu kuponu do tego wątku możesz zobaczyć przecenioną kolekcję letnią"
   },
+  "wholesale_leadgen": {
+    "intro": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} Widzę, że chcesz dołączyć do naszego programu dla sprzedawców"
+  },
   "curation": {
     "prompt": "Szukasz ubrania dla siebie czy kogoś innego?",
     "occasion": "Doskonale! W takim razie zaczynajmy. Czy szukasz czegoś na konkretną okazję?",

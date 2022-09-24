@@ -21,6 +21,9 @@
     "apply": "套用優惠折扣",
     "coupon": "您已在此對話串中加入優惠券，快來購買夏季折扣系列商品吧"
   },
+  "wholesale_leadgen": {
+    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划"
+  },
   "curation": {
     "prompt": "您是為自己還是他人挑選服裝呢？",
     "occasion": "太棒了！馬上開始吧。首先，您打算穿去什麼場合呢？",

@@ -21,6 +21,9 @@
     "apply": "Terapkan diskon",
     "coupon": "Tambahkan kupon Anda ke utas ini untuk melihat koleksi musim panas dengan harga diskon"
   },
+  "wholesale_leadgen": {
+    "intro": "Halo {{userFirstName}}, nama saya {{agentFirstName}}. Saya melihat bahwa Anda ingin bergabung dengan program reseller kami"
+  },
   "curation": {
     "prompt": "Apa Anda mencari pakaian untuk Anda atau untuk orang lain?",
     "occasion": "Bagus! Mari mulai. Pertama-tama, apakah ada acara khusus?",

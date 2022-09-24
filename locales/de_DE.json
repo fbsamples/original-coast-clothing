@@ -21,6 +21,9 @@
     "apply": "Rabatt anwenden",
     "coupon": "Dein Gutschein wurde zu diesem Nachrichtenverlauf hinzugefügt. Entdecke jetzt unsere heruntergesetzte Sommerkollektion!"
   },
+  "wholesale_leadgen": {
+    "intro": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}, Wie ich sehe, möchten Sie unserem Reseller-Programm beitreten"
+  },
   "curation": {
     "prompt": "Suchst du ein Outfit für dich selbst oder für jemand anderen?",
     "occasion": "Super! Los geht’s! Geht es um einen bestimmten Anlass?",

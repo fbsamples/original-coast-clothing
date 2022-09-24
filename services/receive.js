@@ -12,11 +12,13 @@
 
 const Curation = require("./curation"),
   Order = require("./order"),
+  Lead = require("./lead"),
   Response = require("./response"),
   Care = require("./care"),
   Survey = require("./survey"),
   GraphApi = require("./graph-api"),
-  i18n = require("../i18n.config");
+  i18n = require("../i18n.config"),
+  config = require("./config");
 
 module.exports = class Receive {
   constructor(user, webhookEvent, isUserRef) {
@@ -49,6 +51,8 @@ module.exports = class Receive {
         responses = this.handleReferral();
       } else if (event.optin) {
         responses = this.handleOptIn();
+      } else if (event.pass_thread_control) {
+        responses = this.handlePassThreadControlHandover();
       }
     } catch (error) {
       console.error(error);
@@ -161,6 +165,8 @@ module.exports = class Receive {
     let payload;
     if (postback.referral && postback.referral.type == "OPEN_THREAD") {
       payload = postback.referral.ref;
+    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
+      payload = postback.referral.ref;
     } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
@@ -189,6 +195,26 @@ module.exports = class Receive {
     }
     return null;
   }
+
+  handlePassThreadControlHandover() {
+    let new_owner_app_id = this.webhookEvent.pass_thread_control
+      .new_owner_app_id;
+    let previous_owner_app_id = this.webhookEvent.pass_thread_control
+      .previous_owner_app_id;
+    let metadata = this.webhookEvent.pass_thread_control.metadata;
+    if (config.appId === new_owner_app_id) {
+      console.log("Received a handover event, but is not for this app");
+      return;
+    }
+    const lead_gen_app_id = 413038776280800; // App id for Messenger Lead Ads
+    if (previous_owner_app_id === lead_gen_app_id) {
+      let lead = new Lead(this.user, this.webhookEvent);
+      return lead.handleHandover(metadata);
+    }
+    // We have thread control but no context on what to do, default to New User Experience
+    return Response.genNuxMessage(this.user);
+  }
+
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
@@ -241,7 +267,7 @@ module.exports = class Receive {
       ];
     } else if (payload === "RN_WEEKLY") {
       response = {
-        text: `[INFO]The following message is a sample weekly recurring notification. This is usually sent outside the initial 24-hour window for users who have opted in to weekly messages.`
+        text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
       };
     } else {
       response = {
@@ -335,6 +361,9 @@ module.exports = class Receive {
         };
       }
     }
+    // Mitigate restriction on Persona API
+    // Persona API does not work for people in EU, until fixed is safer to not use
+    delete requestBody["persona_id"];
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }

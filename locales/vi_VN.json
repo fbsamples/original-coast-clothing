@@ -21,6 +21,9 @@
     "apply": "Áp dụng chiết khấu",
     "coupon": "Đã thêm phiếu giảm giá vào cuộc trò chuyện này. Giờ thì bạn hãy xem thử bộ sưu tập mùa hè đang được chiết khấu nhé"
   },
+  "wholesale_leadgen": {
+    "intro": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Tôi thấy rằng bạn đang muốn tham gia chương trình người bán lại của chúng tôi"
+  },
   "curation": {
     "prompt": "Bạn đang tìm trang phục cho mình hay người khác?",
     "occasion": "Quá tuyệt! Mình bắt đầu thôi. Trước tiên, bạn định mặc trong dịp nào nhỉ?",

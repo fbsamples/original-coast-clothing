@@ -21,6 +21,9 @@
     "apply": "使用折扣",
     "coupon": "将您的优惠券添加到对话里，就能以优惠价格结账购买夏季系列了"
   },
+  "wholesale_leadgen": {
+    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划"
+  },
   "curation": {
     "prompt": "您是想给自己还是给别人买衣服呢？",
     "occasion": "太好了！让我们马上开始吧。首先，着装场合是什么？",
