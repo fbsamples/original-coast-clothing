@@ -230,4 +230,23 @@ module.exports = class GraphApi {
       console.error(`Unable to activate built-in NLP: ${response.statusText}`);
     }
   }
+
+  static async callAppEventApi(requestBody) {
+    let url = new URL(`${config.apiUrl}/${config.appId}/page_activities`);
+    url.search = new URLSearchParams({
+      access_token: config.pageAccesToken
+    });
+    console.warn("Request body is\n" + JSON.stringify(requestBody));
+    let response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody)
+    });
+    if (!response.ok) {
+      console.warn(
+        `Unable to call App Event API: ${response.statusText}`,
+        await response.json()
+      );
+    }
+  }
 };

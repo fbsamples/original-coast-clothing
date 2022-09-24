@@ -269,6 +269,8 @@ module.exports = class Receive {
       response = {
         text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
       };
+    } else if (payload.includes("WHOLESALE_LEAD")) {
+      response = Lead.handlePayload(payload);
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
@@ -367,6 +369,7 @@ module.exports = class Receive {
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
+
   sendRecurringMessage(notificationMessageToken, delay) {
     console.log("Received Recurring Message token");
     let requestBody = {},
@@ -390,5 +393,26 @@ module.exports = class Receive {
   }
   firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+  }
+
+  handleReportLeadSubmittedEvent() {
+    let requestBody = {
+      custom_events: [
+        {
+          _eventName: "lead_submitted"
+        }
+      ],
+      advertiser_tracking_enabled: 1,
+      application_tracking_enabled: 1,
+      page_id: config.pageId,
+      page_scoped_user_id: this.user.psid,
+      logging_source: "messenger_bot",
+      logging_target: "page"
+    };
+    try {
+      GraphApi.callAppEventApi(requestBody);
+    } catch (error) {
+      console.error("Error while reporting lead submitted", error);
+    }
   }
 };
