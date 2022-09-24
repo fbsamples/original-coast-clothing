@@ -197,10 +197,10 @@ module.exports = class Receive {
   }
 
   handlePassThreadControlHandover() {
-    let new_owner_app_id = this.webhookEvent.pass_thread_control
-      .new_owner_app_id;
-    let previous_owner_app_id = this.webhookEvent.pass_thread_control
-      .previous_owner_app_id;
+    let new_owner_app_id =
+      this.webhookEvent.pass_thread_control.new_owner_app_id;
+    let previous_owner_app_id =
+      this.webhookEvent.pass_thread_control.previous_owner_app_id;
     let metadata = this.webhookEvent.pass_thread_control.metadata;
     if (config.appId === new_owner_app_id) {
       console.log("Received a handover event, but is not for this app");
@@ -270,7 +270,8 @@ module.exports = class Receive {
         text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
       };
     } else if (payload.includes("WHOLESALE_LEAD")) {
-      response = Lead.handlePayload(payload);
+      let lead = new Lead(this.user, this.webhookEvent);
+      response = lead.handlePayload(payload);
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`

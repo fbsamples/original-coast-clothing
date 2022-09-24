@@ -119,8 +119,8 @@ module.exports = {
     return [this.appUrl, this.shopUrl];
   },
 
-  checkEnvVariables: function() {
-    ENV_VARS.forEach(function(key) {
+  checkEnvVariables: function () {
+    ENV_VARS.forEach(function (key) {
       if (!process.env[key]) {
         console.warn("WARNING: Missing the environment variable " + key);
       } else {

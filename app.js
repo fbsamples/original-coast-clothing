@@ -41,7 +41,7 @@ app.use(express.static(path.join(path.resolve(), "public")));
 app.set("view engine", "ejs");
 
 // Respond with index file when a GET request is made to the homepage
-app.get("/", function(_req, res) {
+app.get("/", function (_req, res) {
   res.render("index");
 });
 
@@ -79,7 +79,7 @@ app.post("/webhook", (req, res) => {
     res.status(200).send("EVENT_RECEIVED");
 
     // Iterate over each entry - there may be multiple if batched
-    body.entry.forEach(async function(entry) {
+    body.entry.forEach(async function (entry) {
       if ("changes" in entry) {
         // Handle Page Changes event
         let receiveMessage = new Receive();
@@ -104,7 +104,7 @@ app.post("/webhook", (req, res) => {
       }
 
       // Iterate over webhook events - there may be multiple
-      entry.messaging.forEach(async function(webhookEvent) {
+      entry.messaging.forEach(async function (webhookEvent) {
         // Discard uninteresting events
         if ("read" in webhookEvent) {
           console.log("Got a read event");
@@ -132,10 +132,10 @@ app.post("/webhook", (req, res) => {
               // Make call to UserProfile API only if user is not guest
               let user = new User(senderPsid);
               GraphApi.getUserProfile(senderPsid)
-                .then(userProfile => {
+                .then((userProfile) => {
                   user.setProfile(userProfile);
                 })
-                .catch(error => {
+                .catch((error) => {
                   // The profile is unavailable
                   console.log(JSON.stringify(body));
                   console.log("Profile is unavailable:", error);
@@ -296,7 +296,7 @@ function verifyRequestSignature(req, res, buf) {
 config.checkEnvVariables();
 
 // Listen for requests :)
-var listener = app.listen(config.port, function() {
+var listener = app.listen(config.port, function () {
   console.log(`The app is listening on port ${listener.address().port}`);
   if (
     Object.keys(config.personas).length == 0 &&
