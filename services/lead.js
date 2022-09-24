@@ -12,7 +12,7 @@
 
 // Imports dependencies
 const Response = require("./response"),
-  Receive = require("./receive"),
+  GraphApi = require("./graph-api"),
   config = require("./config"),
   i18n = require("../i18n.config");
 
@@ -61,7 +61,7 @@ module.exports = class Lead {
               userFirstName: this.user.firstName
             })
           ),
-          Response.genQuickReply(i18n.__("leadgen.lead_question"), [
+          Response.genQuickReply(i18n.__("wholesale_leadgen.lead_question"), [
             {
               title: i18n.__("common.yes"),
               payload: "WHOLESALE_LEAD_YES"
@@ -75,16 +75,17 @@ module.exports = class Lead {
         break;
 
       case "WHOLESALE_LEAD_YES":
-        new Receive(
-          this.user,
-          this.webhookEvent
-        ).handleReportLeadSubmittedEvent();
-        response = [Response.genText(i18n.__("leadgen.lead_qualified"))];
+        GraphApi.reportLeadSubmittedEvent(this.user.psid);
+        response = [
+          Response.genText(i18n.__("wholesale_leadgen.lead_qualified"))
+        ];
         response.concat(this.responseForLeadRef());
         break;
 
       case "WHOLESALE_LEAD_NO":
-        response = [Response.genText(i18n.__("leadgen.lead_disqualified"))];
+        response = [
+          Response.genText(i18n.__("wholesale_leadgen.lead_disqualified"))
+        ];
         response.concat(Response.genNuxMessage(this.user));
         break;
     }

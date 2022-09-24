@@ -231,22 +231,41 @@ module.exports = class GraphApi {
     }
   }
 
-  static async callAppEventApi(requestBody) {
+  static async reportLeadSubmittedEvent(psid) {
     let url = new URL(`${config.apiUrl}/${config.appId}/page_activities`);
     url.search = new URLSearchParams({
       access_token: config.pageAccesToken
     });
-    console.warn("Request body is\n" + JSON.stringify(requestBody));
-    let response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody)
-    });
-    if (!response.ok) {
-      console.warn(
-        `Unable to call App Event API: ${response.statusText}`,
-        await response.json()
-      );
+    let requestBody = {
+      custom_events: [
+        {
+          _eventName: "lead_submitted"
+        }
+      ],
+      advertiser_tracking_enabled: 1,
+      application_tracking_enabled: 1,
+      page_id: config.pageId,
+      page_scoped_user_id: psid,
+      logging_source: "messenger_bot",
+      logging_target: "page"
+    };
+    console.warn(
+      "Request to " + url + "\nWith body:\n" + JSON.stringify(requestBody)
+    );
+    try {
+      let response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody)
+      });
+      if (!response.ok) {
+        console.warn(
+          `Unable to call App Event API: ${response.statusText}`,
+          await response.json()
+        );
+      }
+    } catch (error) {
+      console.error("Error while reporting lead submitted", error);
     }
   }
 };
