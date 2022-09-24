@@ -403,4 +403,25 @@ module.exports = class Receive {
   firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
   }
+
+  handleReportLeadSubmittedEvent() {
+    let requestBody = {
+      custom_events: [
+        {
+          _eventName: "lead_submitted"
+        }
+      ],
+      advertiser_tracking_enabled: 1,
+      application_tracking_enabled: 1,
+      page_id: config.pageId,
+      page_scoped_user_id: this.user.psid,
+      logging_source: "messenger_bot",
+      logging_target: "page"
+    };
+    try {
+      GraphApi.callAppEventApi(requestBody);
+    } catch (error) {
+      console.error("Error while reporting lead submitted", error);
+    }
+  }
 };
