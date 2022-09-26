@@ -171,6 +171,10 @@ module.exports = class Receive {
       // Get the payload of the postback
       payload = postback.payload;
     }
+    if (payload.trim().length === 0) {
+      console.log("Ignore postback with empty payload");
+      return null;
+    }
 
     return this.handlePayload(payload.toUpperCase());
   }
@@ -179,7 +183,10 @@ module.exports = class Receive {
   handleReferral() {
     // Get the payload of the postback
     let payload = this.webhookEvent.referral.ref.toUpperCase();
-
+    if (payload.trim().length === 0) {
+      console.log("Ignore referral with empty payload");
+      return null;
+    }
     return this.handlePayload(payload);
   }
 
