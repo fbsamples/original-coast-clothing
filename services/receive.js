@@ -320,7 +320,7 @@ module.exports = class Receive {
 
   sendMessage(response, delay = 0, isUserRef) {
     // Check if there is delay in the response
-    if (response === undefined) {
+    if (response === undefined || response === null) {
       return;
     }
     if ("delay" in response) {
