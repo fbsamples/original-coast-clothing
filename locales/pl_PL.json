@@ -23,7 +23,11 @@
     "coupon": "Po dodaniu kuponu do tego wątku możesz zobaczyć przecenioną kolekcję letnią"
   },
   "wholesale_leadgen": {
-    "intro": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} Widzę, że chcesz dołączyć do naszego programu dla sprzedawców"
+    "intro": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} Widzę, że chcesz dołączyć do naszego programu dla sprzedawców",
+    "lead_intro": "Witaj {{userFirstName}}. Original Coast Clothing może dostarczyć Twojemu sklepowi świeże oryginalne style odzieży",
+    "lead_question": "Czy chcesz zostać autoryzowanym sprzedawcą odzieży Original Coast?",
+    "lead_qualified": "Dziękujemy za wyrażenie zainteresowania naszą marką. Wkrótce podamy więcej informacji",
+    "lead_disqualified": "Nie ma problemu, zawsze możesz kupić odzież za pośrednictwem naszej strony https://www.originalcoastclothing.com/"
   },
   "curation": {
     "prompt": "Szukasz ubrania dla siebie czy kogoś innego?",
@@ -74,5 +78,9 @@
   "fallback": {
     "any": "Niestety nie rozpoznaję \"{{message}}\".",
     "attachment": "Dziękujemy za przesłanie tego załącznika. Możemy połączyć Cię z konsultantem, aby sprawdzić załącznik, lub zacząć od nowa."
+  },
+  "common": {
+    "yes": "tak",
+    "no": "nie"
   }
 }

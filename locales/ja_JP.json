@@ -22,7 +22,11 @@
     "coupon": "このスレッドにクーポンを追加しました。これで割引価格になった夏のコレクションをチェックアウトできます。"
   },
   "wholesale_leadgen": {
-    "intro": "{{userFirstName}}さん、こんにちは。{{agentFirstName}} 再販業者プログラムへの参加を検討されているようです"
+    "intro": "{{userFirstName}}さん、こんにちは。{{agentFirstName}} 再販業者プログラムへの参加を検討されているようです",
+    "lead_intro": "こんにちは{{userFirstName}}。 Original Coast Clothing は、新鮮なオリジナルの衣類スタイルをあなたの店に提供できます。",
+    "lead_question": "Original Coast Clothing 認定再販業者になることに興味がありますか?",
+    "lead_qualified": "当社のブランドにご関心をお寄せいただきありがとうございます。詳細については、まもなくフォローアップします",
+    "lead_disqualified": "問題ありません。当社のウェブサイト https://www.originalcoastclothing.com/ からいつでも衣類を購入できます。"
   },
   "curation": {
     "prompt": "お探しのものは自分の服ですか？プレゼントですか？",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "申し訳ございません。「{{message}}」は認識できません。",
     "attachment": "添付ファイルをお送りいただき、ありがとうございます。担当者におつなぎし、確認させていただきます。または始めからやり直すこともできます。"
+  },
+  "common": {
+    "yes": "はい",
+    "no": "番号"
   }
 }

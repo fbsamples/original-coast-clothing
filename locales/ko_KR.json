@@ -22,7 +22,11 @@
     "coupon": "스레드에 쿠폰이 추가되었습니다. 이제 여름 컬렉션 의상을 할인이 적용된 가격으로 확인하세요."
   },
   "wholesale_leadgen": {
-    "intro": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 귀하가 당사 리셀러 프로그램에 가입하려고 하는 것을 확인했습니다."
+    "intro": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 귀하가 당사 리셀러 프로그램에 가입하려고 하는 것을 확인했습니다.",
+    "lead_intro": "안녕하세요 {{userFirstName}}님. Original Coast Clothing은 신선한 오리지널 의류 스타일을 매장에 공급할 수 있습니다.",
+    "lead_question": "Original Coast Clothing Authorized Reseller가 되는 데 관심이 있으십니까?",
+    "lead_qualified": "저희 브랜드에 관심을 보여주셔서 감사합니다. 곧 추가 정보를 알려드리겠습니다.",
+    "lead_disqualified": "문제 없습니다. 저희 웹사이트 https://www.originalcoastclothing.com/을 통해 언제든지 의류를 구입할 수 있습니다."
   },
   "curation": {
     "prompt": "직접 착용하실 옷인가요, 아니면 다른 사람이 착용할 옷인가요?",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "죄송합니다. '{{message}}'이(가) 무엇인지 식별할 수 없습니다.",
     "attachment": "첨부파일을 보내주셔서 감사합니다. 검토를 위해 담당자에게 연결하거나 처음부터 다시 시작할 수 있습니다."
+  },
+  "common": {
+    "yes": "예",
+    "no": "아니"
   }
 }

@@ -22,7 +22,11 @@
     "coupon": "将您的优惠券添加到对话里，就能以优惠价格结账购买夏季系列了"
   },
   "wholesale_leadgen": {
-    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划"
+    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划",
+    "lead_intro": "嗨 {{userFirstName}}。 Original Coast Clothing 可以為您的商店提供新鮮的原創服裝款式",
+    "lead_question": "您有興趣成為 Original Coast Clothing 授權經銷商嗎？",
+    "lead_qualified": "感謝您表達對我們品牌的興趣。我們將盡快跟進更多信息",
+    "lead_disqualified": "沒問題，您可以隨時通過我們的網站 https://www.originalcoastclothing.com/ 購買服裝"
   },
   "curation": {
     "prompt": "您是想给自己还是给别人买衣服呢？",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "抱歉，我不知道“{{message}}”是什么。",
     "attachment": "感谢您发送这份附件，我们可以为您联系一名客服人员阅读附件，或者我们可以重新开始聊天"
+  },
+  "common": {
+    "yes": "是的",
+    "no": "不"
   }
 }

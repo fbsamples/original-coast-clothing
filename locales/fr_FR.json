@@ -22,7 +22,11 @@
     "coupon": "Votre coupon a été ajouté à la conversation, vous pouvez maintenant découvrir la collection été soldée"
   },
   "wholesale_leadgen": {
-    "intro": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}}. Je vois que vous souhaitez rejoindre notre programme revendeur"
+    "intro": "Salut {{userFirstName}}, je m’appelle {{agentFirstName}}. Je vois que vous souhaitez rejoindre notre programme revendeur",
+    "lead_intro": "Bonjour {{userFirstName}}. Original Coast Clothing peut fournir à votre magasin des styles de vêtements originaux",
+    "lead_question": "Êtes-vous intéressé à devenir un revendeur agréé Original Coast Clothing ?",
+    "lead_qualified": "Merci d'avoir manifesté votre intérêt pour notre marque. Nous suivrons sous peu avec plus d'informations",
+    "lead_disqualified": "No problem, you can always buy clothing via our website https://www.originalcoastclothing.com/"
   },
   "curation": {
     "prompt": "Cherchez-vous une tenue pour vous ou quelqu’un d’autre ?",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "Désolé, mais je ne reconnais pas « {{message}} ».",
     "attachment": "Merci d’avoir envoyé cette pièce jointe, nous pouvons vous mettre en relation avec un agent pour son examen ou reprendre du début"
+  },
+  "common": {
+    "yes": "oui",
+    "no": "non"
   }
 }
