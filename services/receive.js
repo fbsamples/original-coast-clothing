@@ -165,8 +165,6 @@ module.exports = class Receive {
     let payload;
     if (postback.referral && postback.referral.type == "OPEN_THREAD") {
       payload = postback.referral.ref;
-    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
     } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
