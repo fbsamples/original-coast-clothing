@@ -22,7 +22,11 @@
     "coupon": "Tambahkan kupon Anda ke utas ini untuk melihat koleksi musim panas dengan harga diskon"
   },
   "wholesale_leadgen": {
-    "intro": "Halo {{userFirstName}}, nama saya {{agentFirstName}}. Saya melihat bahwa Anda ingin bergabung dengan program reseller kami"
+    "intro": "Halo {{userFirstName}}, nama saya {{agentFirstName}}. Saya melihat bahwa Anda ingin bergabung dengan program reseller kami",
+    "lead_intro": "Hai {{userFirstName}}. Pakaian Pantai Asli dapat menyediakan toko Anda yang segar dengan gaya pakaian asli",
+    "lead_question": "Apakah Anda tertarik untuk menjadi Reseller Resmi Pakaian Pantai Asli?",
+    "lead_qualified": "Terima kasih telah menyatakan minat Anda pada merek kami. Kami akan segera menindaklanjuti dengan info lebih lanjut",
+    "lead_disqualified": "Tidak masalah, Anda selalu dapat membeli pakaian melalui situs web kami https://www.originalcoastclothing.com/"
   },
   "curation": {
     "prompt": "Apa Anda mencari pakaian untuk Anda atau untuk orang lain?",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "Maaf, kami tidak mengenali \"{{message}}\".",
     "attachment": "Terima kasih telah mengirimkan lampiran ini, kami dapat menghubungkan Anda dengan agen yang akan meninjaunya, atau kita bisa mulai lagi dari awal"
+  },
+  "common": {
+    "yes": "ya",
+    "no": "tidak"
   }
 }

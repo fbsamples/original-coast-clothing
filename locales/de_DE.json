@@ -22,7 +22,11 @@
     "coupon": "Dein Gutschein wurde zu diesem Nachrichtenverlauf hinzugefügt. Entdecke jetzt unsere heruntergesetzte Sommerkollektion!"
   },
   "wholesale_leadgen": {
-    "intro": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}, Wie ich sehe, möchten Sie unserem Reseller-Programm beitreten"
+    "intro": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}, Wie ich sehe, möchten Sie unserem Reseller-Programm beitreten",
+    "lead_intro": "Hallo {{userFirstName}}. Original Coast Clothing kann Ihr Geschäft mit frischen und originellen Kleidungsstilen beliefern",
+    "lead_question": "Sind Sie daran interessiert, ein autorisierter Wiederverkäufer von Original Coast Clothing zu werden?",
+    "lead_qualified": "Vielen Dank für Ihr Interesse an unserer Marke. Wir melden uns in Kürze mit weiteren Informationen",
+    "lead_disqualified": "Kein Problem, Sie können Kleidung jederzeit über unsere Website https://www.originalcoastclothing.com/ kaufen."
   },
   "curation": {
     "prompt": "Suchst du ein Outfit für dich selbst oder für jemand anderen?",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "Es tut mir leid, ich kenne „{{message}}“ nicht.",
     "attachment": "Vielen Dank für diesen Anhang! Wir können dich zur Prüfung mit einem Mitarbeiter verbinden, oder du kannst von vorne beginnen."
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "nein"
   }
 }

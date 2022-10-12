@@ -22,7 +22,11 @@
     "coupon": "Đã thêm phiếu giảm giá vào cuộc trò chuyện này. Giờ thì bạn hãy xem thử bộ sưu tập mùa hè đang được chiết khấu nhé"
   },
   "wholesale_leadgen": {
-    "intro": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Tôi thấy rằng bạn đang muốn tham gia chương trình người bán lại của chúng tôi"
+    "intro": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Tôi thấy rằng bạn đang muốn tham gia chương trình người bán lại của chúng tôi",
+    "lead_intro": "Hi {{userFirstName}}. Original Coast Clothing có thể cung cấp cho cửa hàng của bạn những phong cách quần áo mới nhất",
+    "lead_question": "Bạn có quan tâm đến việc trở thành Đại lý được ủy quyền của Original Coast Clothing không?",
+    "lead_qualified": "Cảm ơn bạn đã quan tâm đến thương hiệu của chúng tôi. Chúng tôi sẽ liên hệ ngay với thông tin chi tiết",
+    "lead_disqualified": "Không sao, bạn luôn có thể mua quần áo qua trang web của chúng tôi https://www.originalcoastclothing.com/"
   },
   "curation": {
     "prompt": "Bạn đang tìm trang phục cho mình hay người khác?",
@@ -73,5 +77,9 @@
   "fallback": {
     "any": "Rất tiếc, nhưng tôi không nhận ra tin nhắn \"{{message}}\".",
     "attachment": "Cảm ơn bạn đã gửi file đính kèm. Chúng tôi có thể kết nối bạn với nhân viên để xem lại file này hoặc chúng ta có thể bắt đầu lại."
+  },
+  "common": {
+    "yes": "vâng",
+    "no": "không"
   }
 }

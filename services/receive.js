@@ -165,11 +165,13 @@ module.exports = class Receive {
     let payload;
     if (postback.referral && postback.referral.type == "OPEN_THREAD") {
       payload = postback.referral.ref;
-    } else if (postback.referral && postback.referral.type == "OPEN_THREAD") {
-      payload = postback.referral.ref;
     } else if (postback.payload) {
       // Get the payload of the postback
       payload = postback.payload;
+    }
+    if (payload.trim().length === 0) {
+      console.log("Ignore postback with empty payload");
+      return null;
     }
 
     return this.handlePayload(payload.toUpperCase());
@@ -179,7 +181,10 @@ module.exports = class Receive {
   handleReferral() {
     // Get the payload of the postback
     let payload = this.webhookEvent.referral.ref.toUpperCase();
-
+    if (payload.trim().length === 0) {
+      console.log("Ignore referral with empty payload");
+      return null;
+    }
     return this.handlePayload(payload);
   }
 
@@ -197,10 +202,10 @@ module.exports = class Receive {
   }
 
   handlePassThreadControlHandover() {
-    let new_owner_app_id = this.webhookEvent.pass_thread_control
-      .new_owner_app_id;
-    let previous_owner_app_id = this.webhookEvent.pass_thread_control
-      .previous_owner_app_id;
+    let new_owner_app_id =
+      this.webhookEvent.pass_thread_control.new_owner_app_id;
+    let previous_owner_app_id =
+      this.webhookEvent.pass_thread_control.previous_owner_app_id;
     let metadata = this.webhookEvent.pass_thread_control.metadata;
     if (config.appId === new_owner_app_id) {
       console.log("Received a handover event, but is not for this app");
@@ -269,6 +274,9 @@ module.exports = class Receive {
       response = {
         text: `[INFO]The following message is a sample Recurring Notification for a weekly frequency. This is usually sent outside the 24 hour window to notify users on topics that they have opted in.`
       };
+    } else if (payload.includes("WHOLESALE_LEAD")) {
+      let lead = new Lead(this.user, this.webhookEvent);
+      response = lead.handlePayload(payload);
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
@@ -312,7 +320,7 @@ module.exports = class Receive {
 
   sendMessage(response, delay = 0, isUserRef) {
     // Check if there is delay in the response
-    if (response === undefined) {
+    if (response === undefined || response === null) {
       return;
     }
     if ("delay" in response) {
@@ -367,6 +375,7 @@ module.exports = class Receive {
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
+
   sendRecurringMessage(notificationMessageToken, delay) {
     console.log("Received Recurring Message token");
     let requestBody = {},
@@ -390,5 +399,26 @@ module.exports = class Receive {
   }
   firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+  }
+
+  handleReportLeadSubmittedEvent() {
+    let requestBody = {
+      custom_events: [
+        {
+          _eventName: "lead_submitted"
+        }
+      ],
+      advertiser_tracking_enabled: 1,
+      application_tracking_enabled: 1,
+      page_id: config.pageId,
+      page_scoped_user_id: this.user.psid,
+      logging_source: "messenger_bot",
+      logging_target: "page"
+    };
+    try {
+      GraphApi.callAppEventApi(requestBody);
+    } catch (error) {
+      console.error("Error while reporting lead submitted", error);
+    }
   }
 };

@@ -23,7 +23,11 @@
     "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
   },
   "wholesale_leadgen": {
-    "intro": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I see that you are looking to join our resellers program"
+    "intro": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I see that you are looking to join our resellers program",
+    "lead_intro": "Hi {{userFirstName}}. Original Coast Clothing can supply your store which fresh a original clothing styles",
+    "lead_question": "Are you interested in becoming an Original Coast Clothing Authorized Reseller?",
+    "lead_qualified": "Thanks for expresing your interest in our brand. We will follow up shortly with more info",
+    "lead_disqualified": "No problem, you can always buy clothing via our website https://www.originalcoastclothing.com/"
   },
   "curation": {
     "prompt": "Are you looking for an outfit for yourself or someone else?",
@@ -75,5 +79,9 @@
   "fallback": {
     "any": "Sorry, but I don’t recognize \"{{message}}\".",
     "attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
+  },
+  "common": {
+    "yes": "yes",
+    "no": "no"
   }
 }
