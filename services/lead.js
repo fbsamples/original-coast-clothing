@@ -22,18 +22,18 @@ module.exports = class Lead {
     this.webhookEvent = webhookEvent;
   }
 
-  handleHandover(metadata) {
-    switch (metadata) {
-      case "messenger_lead_gen_complete":
-        return this.responseForLeadRef();
-      case "messenger_lead_gen_incomplete":
-        return Response.genNuxMessage(this.user);
+  handleReferral(type) {
+    switch (type) {
+      case "LEAD_COMPLETE":
+        return this.responseForLeadComplete();
+      case "LEAD_INCOMPLETE":
+        return null;
     }
 
     return;
   }
 
-  responseForLeadRef() {
+  responseForLeadComplete() {
     var responses = [
       Response.genTextWithPersona(
         i18n.__("wholesale_leadgen.intro", {

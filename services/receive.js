@@ -180,12 +180,20 @@ module.exports = class Receive {
   // Handles referral events
   handleReferral() {
     // Get the payload of the postback
-    let payload = this.webhookEvent.referral.ref.toUpperCase();
-    if (payload.trim().length === 0) {
-      console.log("Ignore referral with empty payload");
-      return null;
+    let type = this.webhookEvent.referral.type;
+    if (type === "LEAD_COMPLETE" || type === "LEAD_INCOMPLETE") {
+      let lead = new Lead(this.user, this.webhookEvent);
+      return lead.handleReferral(type);
     }
-    return this.handlePayload(payload);
+    if (type === "OPEN_THREAD") {
+      let payload = this.webhookEvent.referral.ref.toUpperCase();
+      if (payload.trim().length === 0) {
+        console.log("Ignore referral with empty payload");
+        return null;
+      }
+      return this.handlePayload(payload);
+    }
+    console.log("Ignore referral of invalid type");
   }
 
   // Handles optins events
@@ -213,8 +221,10 @@ module.exports = class Receive {
     }
     const lead_gen_app_id = 413038776280800; // App id for Messenger Lead Ads
     if (previous_owner_app_id === lead_gen_app_id) {
-      let lead = new Lead(this.user, this.webhookEvent);
-      return lead.handleHandover(metadata);
+      console.log(
+        "Received a handover event from Lead Generation Ad will handle Referral Webhook Instead"
+      );
+      return;
     }
     // We have thread control but no context on what to do, default to New User Experience
     return Response.genNuxMessage(this.user);
