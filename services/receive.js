@@ -407,8 +407,14 @@ module.exports = class Receive {
 
     setTimeout(() => GraphApi.callSendApi(requestBody), delay);
   }
-  firstEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+ firstEntity(nlp, name) {
+    if (nlp && nlp.entities && nlp.entities[`wit$${name}:${name}`]) {
+      return nlp.entities[`wit$${name}:${name}`][0];
+    } else if (nlp && nlp.traits && nlp.traits[`wit$${name}`]) {
+      return nlp.traits[`wit$${name}`][0];
+    } else {
+      return null;
+    }
   }
 
   handleReportLeadSubmittedEvent() {
