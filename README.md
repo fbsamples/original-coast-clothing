@@ -183,6 +183,68 @@ heroku logs --tail
 
 Send a message to your page from Facebook or in Messenger. If your webhook receives an event, you have fully set up your app! Voilà!
 
+## Using AWS server
+
+#### 1. Pre-Requisites
+An AWS  EC2 ubuntu/linux instance.
+
+A valid TLS or SSL certificate configured and installed in the AWS EC2 instance.
+
+Map the AWS EC2 instance to a DNS record, eg, https://api.originalcoastclothing.com
+
+#### 2. Launch the EC2 instance and SSH into it.
+
+#### 3. Install Node 10.X or higher in the EC2 instance
+
+#### 4. Clone the Original Coast Clothing repository
+
+```bash
+$ git clone git@github.com:fbsamples/original-coast-clothing.git
+$ cd original-coast-clothing
+```
+
+#### 5. Install the dependencies:
+In the repo directiory.
+
+```bash
+$ npm install
+```
+
+#### 6. Set up .env file
+
+Copy the file `.sample.env` to `.env`
+
+```bash
+cp .sample.env .env
+```
+
+Edit the `.env` file to add all the values for your app and page. Note that `APP_URL` will be the AWS instance DNS mapped address (eg, https://api.originalcoastclothing.com) from the pre-requisites.
+
+#### 4. Run your app locally
+
+```bash
+node app.js
+```
+
+Confirm that you can also access it at the external APP_URL from the pre-requisites.
+
+#### 5. Configure your webhook subcription and set the Messenger profile
+
+Use the `VERIFY_TOKEN` that you created in `.env` file and call the **/profile** endpoint in your browser or via cURL:
+```
+https://APP_URL/profile?mode=all&verify_token=VERIFY_TOKEN
+```
+
+This will configure your webhook.
+
+#### 6. Test that your app setup is successful
+
+Send a message to your Page from Facebook or in Messenger.
+
+You should see the webhook called in your application terminal tab.
+
+If you see a response to your message in messenger, you have fully set up your app!
+
 ## License
 
 Sample Messenger App Original Coast Clothing is BSD licensed, as found in the LICENSE file.
