@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "greeting": "欢迎来到 Original Coast Clothing{{user_first_name}}！点击“立即开始”进入我们的自动消息体验示例。如果您想打造类似的体验，请访问 https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "order": "订单更新",
+    "help": "转接客服",
+    "suggestion": "穿搭建议",
+    "shop": "去逛逛",
+    "start_over": "重新开始"
+  },
+  "get_started": {
+    "welcome": "您好，{{userFirstName}}！欢迎来到 Original Coast Clothing，您可以在这里找到适合各种场合的不同风格服饰。",
+    "guidance": "您随时可通过下面的菜单进入其他功能",
+    "help": "那么今天我们能为您做些什么呢？"
+  },
+  "leadgen": {
+    "promo": "您好，{{userFirstName}}，我们可以帮您更轻松、方便地找到合意的服装。",
+    "title": "五折优惠券",
+    "subtitle": "这是给您的优惠券",
+    "apply": "使用折扣",
+    "coupon": "将您的优惠券添加到对话里，就能以优惠价格结账购买夏季系列了"
+  },
+  "wholesale_leadgen": {
+    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划",
+    "lead_intro": "嗨 {{userFirstName}}。 Original Coast Clothing 可以為您的商店提供新鮮的原創服裝款式",
+    "lead_question": "您有興趣成為 Original Coast Clothing 授權經銷商嗎？",
+    "lead_qualified": "感謝您表達對我們品牌的興趣。我們將盡快跟進更多信息",
+    "lead_disqualified": "沒問題，您可以隨時通過我們的網站 https://www.originalcoastclothing.com/ 購買服裝"
+  },
+  "curation": {
+    "prompt": "您是想给自己还是给别人买衣服呢？",
+    "occasion": "太好了！让我们马上开始吧。首先，着装场合是什么？",
+    "price": "您的预算是多少？",
+    "me": "给我自己！",
+    "someone": "给别人买",
+    "work": "职场",
+    "dinner": "晚宴",
+    "party": "聚会",
+    "sales": "转接销售",
+    "shop": "买这套",
+    "title": "2022 夏季系列",
+    "subtitle": "精选服装",
+    "show": "换一套"
+  },
+  "order": {
+    "prompt": "我们很乐意帮助您。请从下方选项中做出选择",
+    "search": "按订单编号搜索",
+    "account": "关联我的帐户",
+    "dialog": "帐户关联对话框",
+    "searching": "正在搜索您最近的订单...",
+    "number": "好的，请提供订单编号",
+    "status": "您的订单正在配送途中，预计 3 天后送达。"
+  },
+  "care": {
+    "prompt": "为了帮您转接到合适的团队，请告诉我一些详情？",
+    "order": "订单查询",
+    "billing": "账单问题",
+    "other": "其他",
+    "appointment": "感谢您想预约。",
+    "issue": "您好，{{userFirstName}}，我是{{agentFirstName}}，希望能帮您解决关于{{topic}}的问题。",
+    "default": "您好，{{userFirstName}}，我是{{agentFirstName}}，今天由我来协助您。请问您需要什么帮助？",
+    "style": "您好，{{userFirstName}}，我是{{agentFirstName}}，有关我们夏季款式的问题请尽管问我。",
+    "end": "功能演示到此为止。您也可以利用 Messenger 平台来发展业务。请访问 https://fb.me/get-sample-oc，了解如何构建类似体验",
+    "help": "帮助"
+  },
+  "survey": {
+    "prompt": "您好，我想快速了解一下，对于最近由{{agentFirstName}}为您提供的服务，您有何反馈",
+    "positive": "感谢提供反馈",
+    "neutral": "感谢提供反馈，如果认为我们还有其他需要改进的地方，请随时在评论中提出来，并注明 #suggestion",
+    "negative": "谢谢您告诉我们这些意见。对于您所述的经历，我们感到抱歉。如果我们能做些什么来改善这种情况，请指出来",
+    "suggestion": "您的意见已记录在案，将提供给相关团队查看。如果您希望我们就此事宜立即回应您，请输入评论“帮助”"
+  },
+  "chat_plugin": {
+    "prompt": "感谢您访问我们的商店，请务必查看我们夏季部分的所有风格。"
+  },
+  "fallback": {
+    "any": "抱歉，我不知道“{{message}}”是什么。",
+    "attachment": "感谢您发送这份附件，我们可以为您联系一名客服人员阅读附件，或者我们可以重新开始聊天"
+  },
+  "common": {
+    "yes": "是的",
+    "no": "不"
+  }
+}

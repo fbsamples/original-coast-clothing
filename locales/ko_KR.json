@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "greeting": "{{user_first_name}}님, 안녕하세요. Original Coast Clothing입니다! 시작하기를 클릭하여 샘플 자동 메시지 기능을 활용해보세요. 비슷한 메시지를 만들려면 visit https://fb.me/get-sample-oc를 방문하세요."
+  },
+  "menu": {
+    "order": "주문 업데이트",
+    "help": "상담원과 대화하기",
+    "suggestion": "의상 추천",
+    "shop": "지금 구매하기",
+    "start_over": "다시 시작"
+  },
+  "get_started": {
+    "welcome": "{{userFirstName}}님, 안녕하세요! 모든 사람을 위한 스타일이 준비되어 있는 Original Coast Clothing입니다.",
+    "guidance": "언제든지 아래 메뉴를 사용하여 다양한 기능을 살펴보세요,",
+    "help": "무엇을 도와드릴까요?"
+  },
+  "leadgen": {
+    "promo": "{{userFirstName}}님, 안녕하세요. 더욱 쉽고 편리하게 멋진 의상을 찾아보세요.",
+    "title": "50% 쿠폰",
+    "subtitle": "쿠폰이 지급되었습니다.",
+    "apply": "할인 적용",
+    "coupon": "스레드에 쿠폰이 추가되었습니다. 이제 여름 컬렉션 의상을 할인이 적용된 가격으로 확인하세요."
+  },
+  "wholesale_leadgen": {
+    "intro": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 귀하가 당사 리셀러 프로그램에 가입하려고 하는 것을 확인했습니다.",
+    "lead_intro": "안녕하세요 {{userFirstName}}님. Original Coast Clothing은 신선한 오리지널 의류 스타일을 매장에 공급할 수 있습니다.",
+    "lead_question": "Original Coast Clothing Authorized Reseller가 되는 데 관심이 있으십니까?",
+    "lead_qualified": "저희 브랜드에 관심을 보여주셔서 감사합니다. 곧 추가 정보를 알려드리겠습니다.",
+    "lead_disqualified": "문제 없습니다. 저희 웹사이트 https://www.originalcoastclothing.com/을 통해 언제든지 의류를 구입할 수 있습니다."
+  },
+  "curation": {
+    "prompt": "직접 착용하실 옷인가요, 아니면 다른 사람이 착용할 옷인가요?",
+    "occasion": "좋습니다! 그럼 시작해볼까요? 먼저 어떤 상황에서 착용할 옷을 찾으시나요?",
+    "price": "예산은 어느 정도로 생각하고 계시나요?",
+    "me": "직접 입을 옷",
+    "someone": "다른 사람",
+    "work": "직장",
+    "dinner": "저녁 식사",
+    "party": "파티",
+    "sales": "판매 담당자와 대화하기",
+    "shop": "이 의상 구매하기",
+    "title": "2022년 여름 컬렉션",
+    "subtitle": "추천 의상",
+    "show": "다른 의상"
+  },
+  "order": {
+    "prompt": "정성껏 도와드리겠습니다. 다음 메뉴에서 선택",
+    "search": "주문 번호로 검색",
+    "account": "내 계정 연결하기",
+    "dialog": "계정 연결 대화 상자",
+    "searching": "최종 주문 검색 중...",
+    "number": "네, 주문 번호를 입력해주세요.",
+    "status": "주문하신 상품이 발송되었습니다. 3일 이내에 배송될 예정입니다."
+  },
+  "care": {
+    "prompt": "문의 내용을 알려주시면 담당팀에 연결해드리겠습니다.",
+    "order": "주문 관련 문의",
+    "billing": "청구 비용 문제",
+    "other": "기타",
+    "appointment": "예약을 원해주셔서 감사합니다.",
+    "issue": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. {{topic}}에 관해 문의해주신 문제 해결을 도와드리겠습니다.",
+    "default": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 정성껏 도와드리겠습니다. 무엇을 도와드릴까요?",
+    "style": "{{userFirstName}}님, 안녕하세요. 저는 {{agentFirstName}}입니다. 저희 여름 컬렉션에 관해 문의해주신 내용에 대해 답변해드리겠습니다.",
+    "end": "데모는 여기까지입니다. 비즈니스를 위한 Messenger 플랫폼의 기능을 마음껏 활용하세요. https://fb.me/get-sample-oc를 참조하여 비슷한 경험에 대한 메시지를 만드는 방법을 알아보세요",
+    "help": "도움말"
+  },
+  "survey": {
+    "prompt": "안녕하세요. {{agentFirstName}} 상담원과의 최근 상담 경험에 관해 간단한 의견을 보내주시겠어요?",
+    "positive": "의견을 보내주셔서 감사합니다",
+    "neutral": "의견을 보내주셔서 감사합니다. 개선이 필요한 사항이 있으면 언제든지 #suggestion 태그와 함께 댓글을 남겨주세요",
+    "negative": "소중한 의견 감사드립니다. 불편을 끼쳐 드려 죄송합니다. 관련 문제를 개선할 수 있는 방법이 있으면 알려주세요.",
+    "suggestion": "담당팀의 검토를 위해 회원님이 제안해주신 내용이 기록되었습니다. 즉시 조치가 필요한 문제인 경우 '지원'이라고 댓글을 남겨주세요."
+  },
+  "chat_plugin": {
+    "prompt": "우리 가게를 방문해 주셔서 감사합니다. 여름 섹션에있는 멋진 스타일을 모두 확인하십시오."
+  },
+  "fallback": {
+    "any": "죄송합니다. '{{message}}'이(가) 무엇인지 식별할 수 없습니다.",
+    "attachment": "첨부파일을 보내주셔서 감사합니다. 검토를 위해 담당자에게 연결하거나 처음부터 다시 시작할 수 있습니다."
+  },
+  "common": {
+    "yes": "예",
+    "no": "아니"
+  }
+}

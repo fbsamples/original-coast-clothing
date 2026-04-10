@@ -1,0 +1,86 @@
+{
+  "profile": {
+    "greeting": "{{user_first_name}}, witamy w Original Coast Clothing! Kliknij Rozpocznij, aby wypróbować przykładowe zautomatyzowane środowisko komunikacyjne. Jeżeli chcesz zbudować podobny komunikator, przejdź do strony https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "support": "Obsługa klienta",
+    "order": "Aktualizacje zamówienia",
+    "help": "Rozmowa z konsultantem",
+    "suggestion": "Rozmowa z konsultantem",
+    "shop": "Kup teraz",
+    "start_over": "Rozpocznij od nowa"
+  },
+  "get_started": {
+    "welcome": "Witaj, {{userFirstName}}! Witamy w Original Coast Clothing, gdzie znajdziesz styl na każdą okazję.",
+    "guidance": "W każdej chwili możesz skorzystać z poniższego menu, aby nawigować po funkcjach",
+    "help": "W czym możemy Ci dzisiaj pomóc?"
+  },
+  "leadgen": {
+    "promo": "Witaj, {{userFirstName}}! Znalezienie wspaniałych ubrań jest teraz łatwiejsze i wygodniejsze.",
+    "title": "Kupon rabatowy 50%",
+    "subtitle": "Oto Twój kupon",
+    "apply": "Zastosuj zniżkę",
+    "coupon": "Po dodaniu kuponu do tego wątku możesz zobaczyć przecenioną kolekcję letnią"
+  },
+  "wholesale_leadgen": {
+    "intro": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} Widzę, że chcesz dołączyć do naszego programu dla sprzedawców",
+    "lead_intro": "Witaj {{userFirstName}}. Original Coast Clothing może dostarczyć Twojemu sklepowi świeże oryginalne style odzieży",
+    "lead_question": "Czy chcesz zostać autoryzowanym sprzedawcą odzieży Original Coast?",
+    "lead_qualified": "Dziękujemy za wyrażenie zainteresowania naszą marką. Wkrótce podamy więcej informacji",
+    "lead_disqualified": "Nie ma problemu, zawsze możesz kupić odzież za pośrednictwem naszej strony https://www.originalcoastclothing.com/"
+  },
+  "curation": {
+    "prompt": "Szukasz ubrania dla siebie czy kogoś innego?",
+    "occasion": "Doskonale! W takim razie zaczynajmy. Czy szukasz czegoś na konkretną okazję?",
+    "price": "Ile zamierzasz wydać?",
+    "me": "Dla mnie!",
+    "someone": "Ktoś inny",
+    "work": "Praca",
+    "dinner": "Kolacja",
+    "party": "Przyjęcie",
+    "sales": "Kontakt z działem sprzedaży",
+    "shop": "Wybierz ten styl",
+    "title": "Kolekcja Lato 2022",
+    "subtitle": "Wyróżniony ubiór",
+    "show": "Inny styl"
+  },
+  "order": {
+    "prompt": "Z przyjemnością udzielimy Ci pomocy. Wybierz jedną z opcji",
+    "search": "Wyszukaj według numeru zamówienia",
+    "account": "Powiąż moje konto",
+    "dialog": "Okno dialogowe łączenia konta",
+    "searching": "Wyszukiwanie Twojego ostatniego zamówienia…",
+    "number": "Podaj numer zamówienia",
+    "status": "Twoje zamówienie jest w drodze, powinno dotrzeć do Ciebie w ciągu 3 dni."
+  },
+  "care": {
+    "prompt": "Opisz sprawę, abyśmy mogli połączyć Cię z odpowiednim zespołem.",
+    "order": "Zapytania dotyczące zamówienia",
+    "billing": "Problemy z rozliczeniem",
+    "other": "Inne",
+    "appointment": "Dziękuję za chęć umówienia spotkania.",
+    "issue": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i udzielę Ci wszelkiej pomocy w zakresie: {{topic}}.",
+    "default": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i udzielę Ci wszelkiej pomocy. W czym możemy pomóc?",
+    "style": "Witaj, {{userFirstName}}! Mam na imię {{agentFirstName}} i odpowiem na wszelkie pytania dotyczące letnich stylizacji",
+    "end": "To tyle, jeśli chodzi o wersję demonstracyjną. Wykorzystaj możliwości platformy Messenger dla swojej firmy. Na stronie https://fb.me/get-sample-oc dowiesz się, jak zbudować podobne rozwiązanie",
+    "help": "Pomoc"
+  },
+  "survey": {
+    "prompt": "Witaj, interesuje mnie Twoja opinia na temat ostatniego kontaktu z konsultantem {{agentFirstName}}",
+    "positive": "Dziękujemy za opinię",
+    "neutral": "Dziękujemy za opinię. Jeżeli powinniśmy coś poprawić, przekaż komentarz z #sugestia",
+    "negative": "Dziękujemy za informację. Przykro nam to słyszeć. Jeżeli jest coś, co możemy zrobić, poinformuj nas o tym.",
+    "suggestion": "YoTwoja sugestia została zapisana do zweryfikowania przez zespół. Jeżeli jest to coś, co wymaga ponownego kontaktu, po prostu dodaj komentarz \"help\""
+  },
+  "chat_plugin": {
+    "prompt": "Dziękujemy za wizytę w naszym sklepie. Koniecznie zobacz wszystkie wspaniałe stylizacje z kolekcji letniej."
+  },
+  "fallback": {
+    "any": "Niestety nie rozpoznaję \"{{message}}\".",
+    "attachment": "Dziękujemy za przesłanie tego załącznika. Możemy połączyć Cię z konsultantem, aby sprawdzić załącznik, lub zacząć od nowa."
+  },
+  "common": {
+    "yes": "tak",
+    "no": "nie"
+  }
+}

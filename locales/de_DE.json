@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "greeting": "Herzlich willkommen bei Original Coast Clothing, {{user_first_name}}! Klicke auf „Los geht’s“, um unser Beispiel für automatisierte Nachrichten zu entdecken. Wenn du ein ähnliches Kundenerlebnis anbieten möchtest, besuche die Seite https://fb.me/get-sample-oc."
+  },
+  "menu": {
+    "order": "Updates zur Bestellung",
+    "help": "Kontakt zu Mitarbeiter",
+    "suggestion": "Outfit-Vorschläge",
+    "shop": "Jetzt einkaufen",
+    "start_over": "Neu beginnen"
+  },
+  "get_started": {
+    "welcome": "Hallo {{userFirstName}}! Herzlich willkommen bei Original Coast Clothing! Hier findest du Outfits für jeden Anlass.",
+    "guidance": "Du kannst jederzeit über das unten stehende Menü durch die Features navigieren.",
+    "help": "Wie können wir dir heute behilflich sein?"
+  },
+  "leadgen": {
+    "promo": "Hallo {{userFirstName}}! Ein tolles Outfit zu finden, ist jetzt noch einfacher.",
+    "title": "50-%-Gutschein",
+    "subtitle": "Hier ist dein Gutschein",
+    "apply": "Rabatt anwenden",
+    "coupon": "Dein Gutschein wurde zu diesem Nachrichtenverlauf hinzugefügt. Entdecke jetzt unsere heruntergesetzte Sommerkollektion!"
+  },
+  "wholesale_leadgen": {
+    "intro": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}, Wie ich sehe, möchten Sie unserem Reseller-Programm beitreten",
+    "lead_intro": "Hallo {{userFirstName}}. Original Coast Clothing kann Ihr Geschäft mit frischen und originellen Kleidungsstilen beliefern",
+    "lead_question": "Sind Sie daran interessiert, ein autorisierter Wiederverkäufer von Original Coast Clothing zu werden?",
+    "lead_qualified": "Vielen Dank für Ihr Interesse an unserer Marke. Wir melden uns in Kürze mit weiteren Informationen",
+    "lead_disqualified": "Kein Problem, Sie können Kleidung jederzeit über unsere Website https://www.originalcoastclothing.com/ kaufen."
+  },
+  "curation": {
+    "prompt": "Suchst du ein Outfit für dich selbst oder für jemand anderen?",
+    "occasion": "Super! Los geht’s! Geht es um einen bestimmten Anlass?",
+    "price": "Wie viel möchtest du ausgeben?",
+    "me": "Für mich!",
+    "someone": "Jemand anders",
+    "work": "Arbeit",
+    "dinner": "Abendessen",
+    "party": "Party",
+    "sales": "Mit Vertrieb sprechen",
+    "shop": "Diesen Look einkaufen",
+    "title": "Sommerkollektion 2022",
+    "subtitle": "Empfohlenes Outfit",
+    "show": "Anderer Look"
+  },
+  "order": {
+    "prompt": "Wir helfen dir gerne weiter. Triff eine Auswahl:",
+    "search": "Nach Bestellnummer suchen",
+    "account": "Mein Konto verknüpfen",
+    "dialog": "Dialog zur Kontoverknüpfung",
+    "searching": "Deine letzte Bestellung wird gesucht ...",
+    "number": "Gerne, bitte gib deine Bestellnummer ein",
+    "status": "Deine Bestellung ist unterwegs und wird voraussichtlich innerhalb der nächsten drei Tage bei dir eintreffen."
+  },
+  "care": {
+    "prompt": "Bitte verrate mir, um was es geht, damit ich dich mit dem richtigen Mitarbeiter verbinden kann.",
+    "order": "Frage zur Bestellung",
+    "billing": "Problem mit der Zahlung",
+    "other": "Sonstiges",
+    "appointment": "Vielen Dank, dass Sie einen Termin vereinbaren möchten.",
+    "issue": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich werde dich bei Fragen zu {{topic}} unterstützen.",
+    "default": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich bin heute für dich da. Wie kann ich dir helfen?",
+    "style": "Hallo {{userFirstName}}, mein Name ist {{agentFirstName}}. Ich werde deine Fragen zu unseren Sommerstyles beantworten.",
+    "end": "Das war die Demo. Nutze die Stärken der Messenger-Plattform für dein Unternehmen. Unter https://fb.me/get-sample-oc erfährst du, wie du ein ähnliches Kundenerlebnis anbieten kannst.",
+    "help": "Hilfe"
+  },
+  "survey": {
+    "prompt": "Hallo, ich möchte dich kurz zu deiner kürzlichen Interaktion mit {{agentFirstName}} befragen.",
+    "positive": "Vielen Dank für dein Feedback!",
+    "neutral": "Vielen Dank für dein Feedback! Wenn du weitere Ideen hast, wie wir uns verbessern können, hinterlasse uns gerne einen Kommentar mit dem Hashtag #vorschlag.",
+    "negative": "Vielen Dank für deine Nachricht! Es tut uns leid, das zu hören! Wenn wir etwas tun können, um das Problem zu lösen, lass es uns gerne wissen!",
+    "suggestion": "Dein Vorschlag wurde zur Prüfung durch das Team erfasst. Wenn du sofort Unterstützung benötigst, kommentiere mit „Hilfe“."
+  },
+  "chat_plugin": {
+    "prompt": "Bedankt voor het bezoeken van onze winkel. Zorg ervoor dat je alle geweldige stijlen bekijkt die we in de zomer hebben."
+  },
+  "fallback": {
+    "any": "Es tut mir leid, ich kenne „{{message}}“ nicht.",
+    "attachment": "Vielen Dank für diesen Anhang! Wir können dich zur Prüfung mit einem Mitarbeiter verbinden, oder du kannst von vorne beginnen."
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "nein"
+  }
+}

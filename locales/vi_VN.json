@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "greeting": "Chào mừng bạn đến với Original Coast Clothing {{user_first_name}}! Hãy nhấp vào nút Bắt đầu để tận hưởng trải nghiệm nhắn tin mẫu và hoàn toàn tự động của chúng tôi. Nếu bạn muốn xây dựng trải nghiệm tương tự, hãy truy cập https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "order": "Cập nhật đơn đặt hàng",
+    "help": "Trò chuyện với nhân viên",
+    "suggestion": "Gợi ý về trang phục",
+    "shop": "Mua ngay",
+    "start_over": "Bắt đầu lại"
+  },
+  "get_started": {
+    "welcome": "Hi {{userFirstName}}! Chào mừng bạn đến với Original Coast Clothing để khám phá những phong cách phù hợp với mọi hoàn cảnh.",
+    "guidance": "Hãy sử dụng menu bên dưới bất cứ lúc nào để di chuyển giữa các tính năng",
+    "help": "Chúng tôi có thể giúp gì cho bạn nào?"
+  },
+  "leadgen": {
+    "promo": "Hi {{userFirstName}}! Giờ đây, công cuộc tìm kiếm trang phục như ý trở nên dễ dàng và tiện lợi hơn rất nhiều.",
+    "title": "Phiếu giảm giá 50%",
+    "subtitle": "Phiếu giảm giá của bạn đây",
+    "apply": "Áp dụng chiết khấu",
+    "coupon": "Đã thêm phiếu giảm giá vào cuộc trò chuyện này. Giờ thì bạn hãy xem thử bộ sưu tập mùa hè đang được chiết khấu nhé"
+  },
+  "wholesale_leadgen": {
+    "intro": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Tôi thấy rằng bạn đang muốn tham gia chương trình người bán lại của chúng tôi",
+    "lead_intro": "Hi {{userFirstName}}. Original Coast Clothing có thể cung cấp cho cửa hàng của bạn những phong cách quần áo mới nhất",
+    "lead_question": "Bạn có quan tâm đến việc trở thành Đại lý được ủy quyền của Original Coast Clothing không?",
+    "lead_qualified": "Cảm ơn bạn đã quan tâm đến thương hiệu của chúng tôi. Chúng tôi sẽ liên hệ ngay với thông tin chi tiết",
+    "lead_disqualified": "Không sao, bạn luôn có thể mua quần áo qua trang web của chúng tôi https://www.originalcoastclothing.com/"
+  },
+  "curation": {
+    "prompt": "Bạn đang tìm trang phục cho mình hay người khác?",
+    "occasion": "Quá tuyệt! Mình bắt đầu thôi. Trước tiên, bạn định mặc trong dịp nào nhỉ?",
+    "price": "Bạn định chi khoảng bao nhiêu?",
+    "me": "Cho mình!",
+    "someone": "Người khác",
+    "work": "Công việc",
+    "dinner": "Bữa tối",
+    "party": "Tiệc tùng",
+    "sales": "Trò chuyện với nhân viên bán hàng",
+    "shop": "Mua bộ này",
+    "title": "Bộ sưu tập mùa hè 2022",
+    "subtitle": "Trang phục nổi bật",
+    "show": "Bộ khác"
+  },
+  "order": {
+    "prompt": "Chúng tôi luôn sẵn lòng hỗ trợ bạn. Chọn trong số tùy chọn sau",
+    "search": "Tìm kiếm theo số đơn đặt hàng",
+    "account": "Liên kết tài khoản của tôi",
+    "dialog": "Hộp thoại liên kết tài khoản",
+    "searching": "Đang tìm kiếm đơn đặt hàng gần đây nhất...",
+    "number": "Chắc chắn rồi, vui lòng viết số đơn đặt hàng",
+    "status": "Đơn đặt hàng của bạn đang trên đường vận chuyển. 3 ngày nữa là bạn nhận được hàng."
+  },
+  "care": {
+    "prompt": "Để kết nối với đội ngũ phù hợp, vui lòng cho tôi biết bạn cần giúp gì.",
+    "order": "Thắc mắc về đơn đặt hàng",
+    "billing": "Vấn đề về thanh toán",
+    "other": "Khác",
+    "appointment": "Cảm ơn bạn đã muốn đặt một cuộc hẹn.",
+    "issue": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được hỗ trợ bạn về mọi thắc mắc liên quan đến {{topic}}.",
+    "default": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được hỗ trợ bạn hôm nay. Tôi có thể giúp gì cho bạn?",
+    "style": "Hi {{userFirstName}}! Tôi là {{agentFirstName}}. Rất vui được giải đáp cho bạn mọi thắc mắc về phong cách thời trang mùa hè của chúng tôi",
+    "end": "Bản demo đến đây là hết. Hãy tận dụng sức mạnh của nền tảng Messenger để phát triển doanh nghiệp bạn. Truy cập https://fb.me/get-sample-oc để biết cách xây dựng trải nghiệm tương tự",
+    "help": "Trợ giúp"
+  },
+  "survey": {
+    "prompt": "Chào bạn! Bạn có thể phản hồi ngắn gọn về trải nghiệm vừa rồi với {{agentFirstName}} không?",
+    "positive": "Cảm ơn bạn đã phản hồi",
+    "neutral": "Cảm ơn bạn đã phản hồi. Nếu muốn góp ý thêm cho chúng tôi, hãy thoải mái bình luận kèm hashtag #suggestion nhé",
+    "negative": "Cảm ơn đã cho chúng tôi biết. Rất tiếc về điều đó. Nếu được, hãy cho biết chúng tôi nên cải thiện điều gì nhé.",
+    "suggestion": "Chúng tôi đã ghi lại gợi ý của bạn để đội ngũ của mình xem xét trong tương lai. Nếu bạn cần chúng tôi hỗ trợ ngay bây giờ, hãy gõ \"trợ giúp\" vào khung bình luận."
+  },
+  "chat_plugin": {
+    "prompt": "Cảm ơn bạn đã ghé thăm cửa hàng của chúng tôi, hãy chắc chắn kiểm tra tất cả các phong cách tuyệt vời chúng tôi có trong phần mùa hè."
+  },
+  "fallback": {
+    "any": "Rất tiếc, nhưng tôi không nhận ra tin nhắn \"{{message}}\".",
+    "attachment": "Cảm ơn bạn đã gửi file đính kèm. Chúng tôi có thể kết nối bạn với nhân viên để xem lại file này hoặc chúng ta có thể bắt đầu lại."
+  },
+  "common": {
+    "yes": "vâng",
+    "no": "không"
+  }
+}

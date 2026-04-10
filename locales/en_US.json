@@ -1,0 +1,87 @@
+{
+  "profile": {
+    "greeting": "Welcome to Original Coast Clothing {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "order": "Order updates",
+    "help": "Talk to an agent",
+    "suggestion": "Outfit suggestions",
+    "shop": "Shop now",
+    "start_over": "Start over",
+    "product_launch":"Launch updates"
+  },
+  "get_started": {
+    "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
+    "guidance": "At any time, use the menu below to navigate through the features",
+    "help": "What we can do to help you today?"
+  },
+  "leadgen": {
+    "promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",
+    "title": "50% Coupon",
+    "subtitle": "Here is your coupon",
+    "apply": "Apply discount",
+    "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
+  },
+  "wholesale_leadgen": {
+    "intro": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I see that you are looking to join our resellers program",
+    "lead_intro": "Hi {{userFirstName}}. Original Coast Clothing can supply your store which fresh a original clothing styles",
+    "lead_question": "Are you interested in becoming an Original Coast Clothing Authorized Reseller?",
+    "lead_qualified": "Thanks for expresing your interest in our brand. We will follow up shortly with more info",
+    "lead_disqualified": "No problem, you can always buy clothing via our website https://www.originalcoastclothing.com/"
+  },
+  "curation": {
+    "prompt": "Are you looking for an outfit for yourself or someone else?",
+    "occasion": "Great! Let's get started. First, is there an occasion in mind?",
+    "price": "How much are you looking to spend?",
+    "me": "For me!",
+    "someone": "Someone else",
+    "work": "Work",
+    "dinner": "Dinner",
+    "party": "Party",
+    "sales": "Talk to sales",
+    "shop": "Shop this look",
+    "title": "Summer collection 2022",
+    "subtitle": "Featured outfit",
+    "show": "Another look",
+    "productLaunchTitle":"New Product Launches"
+  },
+  "order": {
+    "prompt": "We'll be happy to help you. Select from the following",
+    "search": "Search by order number",
+    "account": "Link my Account",
+    "dialog": "Account linking dialog",
+    "searching": "Searching for your last order...",
+    "number": "Sure, please write the order number",
+    "status": "Your order is on it’s way, expect to have it in 3 days."
+  },
+  "care": {
+    "prompt": "To connect you with the right team please let me know what this is about?",
+    "order": "Order Inquiries",
+    "billing": "Billing Issues",
+    "other": "Other",
+    "appointment": "Thank you for wanting to make an appointment.",
+    "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
+    "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
+    "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
+    "end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
+    "help": "Help"
+  },
+  "survey": {
+    "prompt": "Hi, want to get quick feedback on your recent experience with {{agentFirstName}}",
+    "positive": "Thanks for the feedback",
+    "neutral": "Thanks for the feedback, if there something we should improve feel free to comment with #suggestion",
+    "negative": "Thanks for telling us. Sorry to hear that, if there something we can do to turn this let us know",
+    "suggestion": "Your suggestion has been recorded for future review by the team. If this is something we need to get back to you right now just comment \"help\""
+  },
+  "chat_plugin": {
+    "prompt": "Thanks for visiting our store, be sure to check out all the great styles we have on the summer section."
+  },
+  "fallback": {
+    "any": "Sorry, but I don’t recognize \"{{message}}\".",
+    "attachment": "Thanks for sending this attachment, we can connect you to an agent to review it or we can start over"
+  },
+  "common": {
+    "yes": "yes",
+    "no": "no"
+  }
+}

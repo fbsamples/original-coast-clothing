@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "greeting": "{{user_first_name}}，歡迎來到 Original Coast Clothing！點擊「立即開始」，在範例中體驗我們的自動訊息功能。如果您想要建立類似的自動訊息，請前往 https://fb.me/get-sample-oc"
+  },
+  "menu": {
+    "order": "訂單更新",
+    "help": "聯絡代理商",
+    "suggestion": "服裝建議",
+    "shop": "立即購買",
+    "start_over": "重新開始"
+  },
+  "get_started": {
+    "welcome": "{{userFirstName}}，您好！歡迎來到 Original Coast Clothing，找出適合各種場合的穿搭風格！",
+    "guidance": "您隨時都可透過下方功能表，瀏覽各種精選商品",
+    "help": "您現在需要我們提供什麼協助呢？"
+  },
+  "leadgen": {
+    "promo": "{{userFirstName}}，您好！尋找合適服裝比以前更簡單方便了。",
+    "title": "五折優惠券",
+    "subtitle": "這是您的優惠券",
+    "apply": "套用優惠折扣",
+    "coupon": "您已在此對話串中加入優惠券，快來購買夏季折扣系列商品吧"
+  },
+  "wholesale_leadgen": {
+    "intro": "您好，{{userFirstName}}，我是{{agentFirstName}}，我看到您希望加入我们的经销商计划",
+    "lead_intro": "嗨 {{userFirstName}}。 Original Coast Clothing 可以為您的商店提供新鮮的原創服裝款式",
+    "lead_question": "您有興趣成為 Original Coast Clothing 授權經銷商嗎？",
+    "lead_qualified": "感謝您表達對我們品牌的興趣。我們將盡快跟進更多信息",
+    "lead_disqualified": "沒問題，您可以隨時通過我們的網站 https://www.originalcoastclothing.com/ 購買服裝"
+  },
+  "curation": {
+    "prompt": "您是為自己還是他人挑選服裝呢？",
+    "occasion": "太棒了！馬上開始吧。首先，您打算穿去什麼場合呢？",
+    "price": "預算多少？",
+    "me": "為我自己！",
+    "someone": "為他人",
+    "work": "工作場合",
+    "dinner": "晚宴",
+    "party": "宴會",
+    "sales": "聯絡銷售人員",
+    "shop": "購買這套穿搭組合",
+    "title": "2022 年夏季商品系列",
+    "subtitle": "精選服裝",
+    "show": "其他穿搭"
+  },
+  "order": {
+    "prompt": "我們很樂意為您提供協助。從以下商品挑選",
+    "search": "依訂單編號搜尋",
+    "account": "連結我的帳號",
+    "dialog": "帳號連結對話方塊",
+    "searching": "搜尋您上一筆訂單……",
+    "number": "沒問題！請填寫訂單編號",
+    "status": "您訂購的商品已出貨，預計 3 天內送達。"
+  },
+  "care": {
+    "prompt": "為了將您的問題交由合適團隊處理，請說明您遇到什麼問題？",
+    "order": "訂單查詢",
+    "billing": "帳單問題",
+    "other": "其他",
+    "appointment": "感謝您想預約。",
+    "issue": "{{userFirstName}}，您好！我是 {{agentFirstName}}，負責協助您處理任何與 {{topic}} 相關的問題。",
+    "default": "{{userFirstName}}，您好！我是 {{agentFirstName}}，今天由我負責協助您。需要我提供什麼協助嗎？",
+    "style": "{{userFirstName}}，您好！我是 {{agentFirstName}}，負責解答夏季穿搭風格的相關問題",
+    "end": "以上是操作範例。充分發揮 Messenger 平台的效用，提升您商家的業務成果。請參閱 https://fb.me/get-sample-oc to learn how to build a similar experience",
+    "help": "使用說明"
+  },
+  "survey": {
+    "prompt": "您好，我們想快速瞭解您對最近與 {{agentFirstName}} 聯絡的經驗有何感想",
+    "positive": "謝謝您的意見回饋",
+    "neutral": "謝謝您的意見回饋，若您認為有任何需改進之處，歡迎隨時在留言中使用 #suggestion 主題標籤告訴我們",
+    "negative": "謝謝您的意見回饋。對於您遇到的問題，我們深感抱歉，如有任何可改進之處，請告訴我們",
+    "suggestion": "我們團隊已記錄您的建議，作為日後參考之用。如有急需我們立即回覆的其他問題，請留言「協助我」（help）"
+  },
+  "chat_plugin": {
+    "prompt": "感谢您访问我们的商店，请务必查看我们夏季部分的所有风格。"
+  },
+  "fallback": {
+    "any": "很抱歉，我們無法辨識「{{message}}」。",
+    "attachment": "感謝您傳送此附件，我們會將您轉介給負責處理此問題的代理商，或由我們重新檢視問題"
+  },
+  "common": {
+    "yes": "是的",
+    "no": "不"
+  }
+}
