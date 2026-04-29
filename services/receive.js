@@ -84,7 +84,7 @@ module.exports = class Receive {
 
     // check greeting is here and is confident
     let greeting = this.firstEntity(event.message.nlp, "greetings");
-    let message = event.message.text.trim().toLowerCase();
+    let message = event.message.text.trim().toLocaleLowerCase();
 
     let response;
 
@@ -97,7 +97,7 @@ module.exports = class Receive {
       response = Order.handlePayload("ORDER_NUMBER");
     } else if (message.includes("#")) {
       response = Survey.handlePayload("CSAT_SUGGESTION");
-    } else if (message.includes(i18n.__("care.help").toLowerCase())) {
+    } else if (message.includes(i18n.__("care.help").toLocaleLowerCase())) {
       let care = new Care(this.user, this.webhookEvent);
       response = care.handlePayload("CARE_HELP");
     } else {
